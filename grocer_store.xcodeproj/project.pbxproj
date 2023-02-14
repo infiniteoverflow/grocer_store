@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE7653D8299B5DAB00C07969 /* item_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653D7299B5DAB00C07969 /* item_model.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
 		CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */; };
 		CE7D33CC299A5BC9003158E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33CB299A5BC9003158E6 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE7653D7299B5DAB00C07969 /* item_model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = item_model.swift; sourceTree = "<group>"; };
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE7653D6299B5D9500C07969 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE7653D7299B5DAB00C07969 /* item_model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		CE7D33BB299A5BC9003158E6 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +109,7 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
+				CE7653D6299B5D9500C07969 /* Models */,
 				CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */,
 				CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */,
 				CE7D33CB299A5BC9003158E6 /* ViewController.swift */,
@@ -261,6 +272,7 @@
 				CE7D33CC299A5BC9003158E6 /* ViewController.swift in Sources */,
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
+				CE7653D8299B5DAB00C07969 /* item_model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
