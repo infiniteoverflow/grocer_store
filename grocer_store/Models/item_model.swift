@@ -7,12 +7,19 @@
 
 import Foundation
 
+/// A Model class that store details about an Item in Store.
 struct ItemModel {
-    let name: String
-    let price: String
-    let extra: String
     
-    init(name: String, price: String, extra: String) {
+    /// Stores the name of the Item
+    let name: String
+    
+    /// Stores the price of the Item
+    let price: String
+    
+    /// Stores any additional detail about the Item
+    let extra: String?
+    
+    init(name: String, price: String, extra: String?) {
         self.name = name
         self.price = price
         self.extra = extra
