@@ -8,7 +8,7 @@
 import Foundation
 
 /// A Model class that store details about an Item in Store.
-struct ItemModel {
+struct Item : Codable {
     
     /// Stores the name of the Item
     let name: String
@@ -18,10 +18,4 @@ struct ItemModel {
     
     /// Stores any additional detail about the Item
     let extra: String?
-    
-    init(name: String, price: String, extra: String?) {
-        self.name = name
-        self.price = price
-        self.extra = extra
-    }
 }

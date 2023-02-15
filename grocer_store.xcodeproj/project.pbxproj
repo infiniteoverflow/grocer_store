@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE7653D8299B5DAB00C07969 /* item_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653D7299B5DAB00C07969 /* item_model.swift */; };
-		CE7653DA299B5E9E00C07969 /* store_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653D9299B5E9E00C07969 /* store_model.swift */; };
+		CE7653D8299B5DAB00C07969 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653D7299B5DAB00C07969 /* Item.swift */; };
+		CE7653DA299B5E9E00C07969 /* StoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653D9299B5E9E00C07969 /* StoreResponse.swift */; };
+		CE7653DC299B9ECA00C07969 /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653DB299B9ECA00C07969 /* StoreData.swift */; };
+		CE7653DF299BA21A00C07969 /* UrlConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653DE299BA21A00C07969 /* UrlConstants.swift */; };
+		CE7653E1299BA27C00C07969 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653E0299BA27C00C07969 /* NetworkClient.swift */; };
+		CE7653E3299BA60F00C07969 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653E2299BA60F00C07969 /* ApiService.swift */; };
+		CE7653E5299BB22300C07969 /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653E4299BB22300C07969 /* DataWrapper.swift */; };
+		CE7653E8299BB2D700C07969 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7653E7299BB2D700C07969 /* ViewModel.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
 		CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */; };
 		CE7D33CC299A5BC9003158E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33CB299A5BC9003158E6 /* ViewController.swift */; };
-		CE7D33CF299A5BC9003158E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7D33CD299A5BC9003158E6 /* Main.storyboard */; };
 		CE7D33D1299A5BCA003158E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7D33D0299A5BCA003158E6 /* Assets.xcassets */; };
 		CE7D33D4299A5BCA003158E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7D33D2299A5BCA003158E6 /* LaunchScreen.storyboard */; };
 		CE7D33DF299A5BCA003158E6 /* grocer_storeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33DE299A5BCA003158E6 /* grocer_storeTests.swift */; };
@@ -38,13 +43,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE7653D7299B5DAB00C07969 /* item_model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = item_model.swift; sourceTree = "<group>"; };
-		CE7653D9299B5E9E00C07969 /* store_model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = store_model.swift; sourceTree = "<group>"; };
+		CE7653D7299B5DAB00C07969 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CE7653D9299B5E9E00C07969 /* StoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreResponse.swift; sourceTree = "<group>"; };
+		CE7653DB299B9ECA00C07969 /* StoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
+		CE7653DE299BA21A00C07969 /* UrlConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConstants.swift; sourceTree = "<group>"; };
+		CE7653E0299BA27C00C07969 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		CE7653E2299BA60F00C07969 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		CE7653E4299BB22300C07969 /* DataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
+		CE7653E7299BB2D700C07969 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CE7D33CB299A5BC9003158E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE7D33CE299A5BC9003158E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE7D33D0299A5BCA003158E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7D33D3299A5BCA003158E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7D33D5299A5BCA003158E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,13 +90,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE7653D6299B5D9500C07969 /* Models */ = {
+		CE7653D6299B5D9500C07969 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE7653D7299B5DAB00C07969 /* item_model.swift */,
-				CE7653D9299B5E9E00C07969 /* store_model.swift */,
+				CE7653D7299B5DAB00C07969 /* Item.swift */,
+				CE7653D9299B5E9E00C07969 /* StoreResponse.swift */,
+				CE7653DB299B9ECA00C07969 /* StoreData.swift */,
 			);
-			path = Models;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE7653DD299BA20700C07969 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CE7653DE299BA21A00C07969 /* UrlConstants.swift */,
+				CE7653E0299BA27C00C07969 /* NetworkClient.swift */,
+				CE7653E2299BA60F00C07969 /* ApiService.swift */,
+				CE7653E4299BB22300C07969 /* DataWrapper.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CE7653E6299BB2C100C07969 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE7653E7299BB2D700C07969 /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		CE7D33BB299A5BC9003158E6 = {
@@ -112,11 +142,12 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
-				CE7653D6299B5D9500C07969 /* Models */,
+				CE7653E6299BB2C100C07969 /* ViewModel */,
+				CE7653DD299BA20700C07969 /* Networking */,
+				CE7653D6299B5D9500C07969 /* Model */,
 				CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */,
 				CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */,
 				CE7D33CB299A5BC9003158E6 /* ViewController.swift */,
-				CE7D33CD299A5BC9003158E6 /* Main.storyboard */,
 				CE7D33D0299A5BCA003158E6 /* Assets.xcassets */,
 				CE7D33D2299A5BCA003158E6 /* LaunchScreen.storyboard */,
 				CE7D33D5299A5BCA003158E6 /* Info.plist */,
@@ -247,7 +278,6 @@
 			files = (
 				CE7D33D4299A5BCA003158E6 /* LaunchScreen.storyboard in Resources */,
 				CE7D33D1299A5BCA003158E6 /* Assets.xcassets in Resources */,
-				CE7D33CF299A5BC9003158E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +302,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7653DA299B5E9E00C07969 /* store_model.swift in Sources */,
+				CE7653DF299BA21A00C07969 /* UrlConstants.swift in Sources */,
+				CE7653DA299B5E9E00C07969 /* StoreResponse.swift in Sources */,
 				CE7D33CC299A5BC9003158E6 /* ViewController.swift in Sources */,
+				CE7653E8299BB2D700C07969 /* ViewModel.swift in Sources */,
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
-				CE7653D8299B5DAB00C07969 /* item_model.swift in Sources */,
+				CE7653E5299BB22300C07969 /* DataWrapper.swift in Sources */,
+				CE7653E3299BA60F00C07969 /* ApiService.swift in Sources */,
+				CE7653D8299B5DAB00C07969 /* Item.swift in Sources */,
+				CE7653DC299B9ECA00C07969 /* StoreData.swift in Sources */,
+				CE7653E1299BA27C00C07969 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,14 +349,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE7D33CD299A5BC9003158E6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE7D33CE299A5BC9003158E6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE7D33D2299A5BCA003158E6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -458,7 +486,7 @@
 				INFOPLIST_FILE = grocer_store/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -486,7 +514,7 @@
 				INFOPLIST_FILE = grocer_store/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

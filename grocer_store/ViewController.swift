@@ -6,14 +6,24 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
-
+    
+    private var cancellable: AnyCancellable?
+    
+    var viewModel = ViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        cancellable = viewModel.$store.sink {
+            print("\($0.isLoading)")
+        }
+        
+        self.view.backgroundColor = UIColor.red
     }
-
-
+    
+    
 }
 
