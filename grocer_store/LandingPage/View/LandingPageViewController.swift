@@ -8,40 +8,43 @@
 import UIKit
 import Combine
 
-class LandingPageViewController: UITabBarController, UITabBarControllerDelegate {
+class LandingPageViewController: UITabBarController {
     
+    // Defines a cancellable object to retrieve the
+    // state of the Network call.
     private var cancellable: AnyCancellable?
     
     var viewModel = ViewModel()
     
-    private var button: UIButton {
-        let button = UIButton(frame: CGRect(x:100,y:100,width: 100,height: 100))
-        button.setTitle("LogIn", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        button.center = view.center
-        return button
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task {
-            try await ViewModel().getStoreDetails()
-        }
+        createBottomBar()
+        self.view.addSubview(HeaderSectionViewController().view)
         view.backgroundColor = .white
-        view.addSubview(button)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        button.center = view.center
-    }
-    
-    @objc func didTapButton() {
-        print("Tap")
+
+    // Define a BottomBar
+    private func createBottomBar() {
+        let vc1 = UINavigationController(rootViewController: ProductListingTableView())
+        let vc2 = UINavigationController(rootViewController: ProductListingCollectionView())
+                        
+        self.modalPresentationStyle = .fullScreen
+        self.tabBar.backgroundColor = .white
+        self.setViewControllers([vc1,vc2], animated: false)
+        
+        guard let items = self.tabBar.items else {
+            return
+        }
+        
+        let tabBarImageItem = ["tablecells","square.grid.2x2"]
+        let tabBarSelectedImageItem = [
+            "tablecells.fill", "square.grid.2x2.fill"
+        ]
+        
+        for i in 0..<items.count {
+            items[i].image = UIImage(systemName: tabBarImageItem[i])
+            items[i].selectedImage = UIImage(systemName: tabBarSelectedImageItem[i])
+        }
     }
 }
-
-
