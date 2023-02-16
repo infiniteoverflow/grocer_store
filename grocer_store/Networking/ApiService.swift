@@ -10,10 +10,16 @@ import Foundation
 struct ApiService {
     
     // Get the Store Data from the API
-    func getStoreData() async throws -> StoreResponse{
-        let data = try await NetworkClient.instance.call(url: URLConstants.getStoreData)
+    func getStoreData() async throws -> StoreResponse? {
+        var data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
+        var storeModel: StoreResponse
         
-        let storeModel: StoreResponse = try JSONDecoder().decode(StoreResponse.self, from: data)
+        if(data == nil) {
+            let jsonData = try JSONSerialization.data(withJSONObject: Utils.mockData, options: .prettyPrinted)
+            data = jsonData
+        }
+        
+        storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
         
         print(storeModel.data.items)
         

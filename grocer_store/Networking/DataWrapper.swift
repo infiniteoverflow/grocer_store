@@ -9,6 +9,6 @@ import Foundation
 
 struct DataWrapper<T> {
     var isLoading: Bool = false
-    var sucess: T?
+    var success: T?
     var error: String = ""
 }

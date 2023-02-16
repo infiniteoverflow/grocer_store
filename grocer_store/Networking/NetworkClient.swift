@@ -20,14 +20,18 @@ struct NetworkClient {
     private let session = URLSession.shared
     
     /// performs the network call
-    func call(url using: String) async throws -> Data {
+    func call(url using: String) async -> Data? {
         
         // URL object for performing the network request
         let url = URL(string: using)!
         
         // Perform the network request
-        let (data,_) = try await URLSession.shared.data(from: url)
-        
-        return data
+        do {
+            let (data,_) = try await URLSession.shared.data(from: url)
+            return data
+        } catch {
+            print("Exception Occured : \(error)")
+            return nil
+        }
     }
 }
