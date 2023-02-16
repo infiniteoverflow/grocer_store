@@ -28,14 +28,6 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
     
     private var loader: LoaderView!
     
-    private var stackView: UIStackView = {
-        var stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        return stackView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         attachViewModelListener()
@@ -49,8 +41,6 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
     // Setup the Loader and add it to the subview
     func setupLoader() {
         loader = LoaderView(frame: view.frame)
-        stackView.addArrangedSubview(HeaderSectionViewController().view)
-        stackView.addSubview(loader.loadingView)
         view.addSubview(loader.loadingView)
     }
     
@@ -89,25 +79,19 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
                 Task {
-                    self.stackView.addArrangedSubview(HeaderSectionViewController().view)
-//                    self.stackView.addSubview(self.loader.loadingView)
                     self.view.addSubview(self.loader.loadingView)
                 }
             } else {
                 if($0.success != nil) {
-                    guard let response = $0.success else {return}
+                    guard let response = $0.success else { return }
                     self.storeResponse = response.data.items
                     Task {
-                        self.stackView.addArrangedSubview(HeaderSectionViewController().view)
                         self.loader.loadingView.removeFromSuperview()
                         self.myTableView.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
-                        
-                        let ui = UIScrollView(frame: self.view.frame)
-                        ui.addSubview(self.myTableView)
                         self.view.addSubview(self.myTableView)
                     }
                 } else if($0.error != "") {
-
+                    
                     Task {
                         self.loader.stopLoader()
                         self.view.addSubview(self.errorLabel)
