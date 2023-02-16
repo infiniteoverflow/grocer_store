@@ -14,6 +14,7 @@ struct ApiService {
         var data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
         var storeModel: StoreResponse
         
+        // if data is nil, then use the mock data
         if(data == nil) {
             let jsonData = try JSONSerialization.data(withJSONObject: Utils.mockData, options: .prettyPrinted)
             data = jsonData
