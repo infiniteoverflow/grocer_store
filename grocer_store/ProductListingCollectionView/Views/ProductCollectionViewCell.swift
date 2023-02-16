@@ -9,7 +9,7 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
-    /// Unique identifier for the TableView Cell
+    /// Unique identifier for the CollectionView Cell
     static let identifier = "ProductCollectionViewCell"
     
     /// Store Item
