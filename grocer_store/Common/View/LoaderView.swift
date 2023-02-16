@@ -24,10 +24,12 @@ class LoaderView: UIView {
         super.init(coder: aDecoder)
     }
     
+    // MARK: Start the Loader
     private func startLoader() {
         loadingView.startAnimating()
     }
     
+    // MARK: Stop the loader
     func stopLoader() {
         loadingView.stopAnimating()
         loadingView.removeFromSuperview()

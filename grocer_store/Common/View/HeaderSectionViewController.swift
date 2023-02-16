@@ -44,6 +44,7 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
         addConstraints()
     }
     
+    // MARK: Constraints
     // Add the constraints
     private func addConstraints() {
         let viewsDict = [
@@ -69,6 +70,7 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
         view.addConstraints(constraints)
     }
     
+    // MARK: Add Subviews
     // Add the subviews
     private func addSubViews() {
         view.addSubview(titleLabel)
@@ -76,12 +78,14 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
         view.addSubview(searchBar)
     }
     
+    // MARK: Setup View
     // Setup the View
     private func setupView() {
         view.backgroundColor = Utils.hexStringToUIColor(hex: "E6E9F7")
         view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 180)
     }
     
+    // MARK: Setup SearchBar
     // Setup the Search Bar
     private func setupSearchBar() {
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0))
@@ -95,6 +99,7 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    // MARK: Setup Labels
     // Setup the Labels
     private func setupLabels() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
