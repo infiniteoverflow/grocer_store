@@ -14,9 +14,12 @@ class ViewModel : ObservableObject {
         store.isLoading = true
   
         let storeResponse = try await ApiService().getStoreData()
-        store.sucess = storeResponse
-        print("API Success")
- 
+        
+        if(storeResponse == nil) {
+            store.error = "No Data Found"
+        } else {
+            store.success = storeResponse
+        }
         
         store.isLoading = false
         
