@@ -180,6 +180,8 @@
 		CE686D3F299CC0A30067EDFF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F836A299F4B2D004FCDFD /* LocalData */,
+				CE686D40299CC0A30067EDFF /* Networking */,
 				CE3F8372299F7EFC004FCDFD /* Repository */,
 				CE2D820B299D365F006B648C /* Utils */,
 				CE2D8206299D17C9006B648C /* View */,
@@ -266,12 +268,10 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
-				CE3F836A299F4B2D004FCDFD /* LocalData */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
 				CE2D81F8299CF812006B648C /* ProductListingTableView */,
 				CE686D5E299CDDAE0067EDFF /* LandingPage */,
 				CE686D59299CDB680067EDFF /* Delegates */,
-				CE686D40299CC0A30067EDFF /* Networking */,
 				CE686D3F299CC0A30067EDFF /* Common */,
 				CE7D33D0299A5BCA003158E6 /* Assets.xcassets */,
 				CE7D33D2299A5BCA003158E6 /* LaunchScreen.storyboard */,
