@@ -20,6 +20,8 @@ class ViewModel : ObservableObject {
             store.error = "No Data Found"
         } else {
             store.success = storeResponse
+            let isStored = await LocalDataHelper.instance.storeLocalData(storeResponse: storeResponse!)
+            let fetchedData = await LocalDataHelper.instance.fetchLocalData()
         }
         
         store.isLoading = false

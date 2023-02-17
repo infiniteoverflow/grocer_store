@@ -21,9 +21,6 @@ struct ApiService {
         }
         
         storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
-        
-        print(storeModel.data.items)
-        
         return storeModel
     }
 }
