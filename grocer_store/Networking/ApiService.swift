@@ -10,7 +10,7 @@ import Foundation
 struct ApiService {
     
     // Get the Store Data from the API
-    func getStoreData() async throws -> StoreResponse? {
+    func getStoreData() async -> StoreResponse? {
         let data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
         var storeModel: StoreResponse
         
