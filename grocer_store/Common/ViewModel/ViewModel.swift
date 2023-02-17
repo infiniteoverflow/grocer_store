@@ -8,20 +8,18 @@
 import Foundation
 
 class ViewModel : ObservableObject {
-    @Published var store: DataWrapper<StoreResponse> = DataWrapper()
+    @Published var store: DataWrapper<[Item]> = DataWrapper()
     
     /// Get the store details from the API or Mock Data
-    func getStoreDetails() async throws {
+    func getStoreDetails() async {
         store.isLoading = true
 
-        let storeResponse = try await ApiService().getStoreData()
+        let result = await DataRepository().fetchStoreDetails()
         
-        if(storeResponse == nil) {
+        if(result.error != "") {
             store.error = "No Data Found"
         } else {
-            store.success = storeResponse
-            let isStored = await LocalDataHelper.instance.storeLocalData(storeResponse: storeResponse!)
-            let fetchedData = await LocalDataHelper.instance.fetchLocalData()
+            store.success = result.success
         }
         
         store.isLoading = false

@@ -16,6 +16,7 @@
 		CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */; };
 		CE3F836D299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836B299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld */; };
 		CE3F836F299F4DD0004FCDFD /* LocalDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836E299F4DD0004FCDFD /* LocalDataHelper.swift */; };
+		CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8370299F78C6004FCDFD /* DataRepository.swift */; };
 		CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D41299CC0A30067EDFF /* NetworkClient.swift */; };
 		CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D42299CC0A30067EDFF /* DataWrapper.swift */; };
 		CE686D4B299CC0A30067EDFF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D43299CC0A30067EDFF /* ApiService.swift */; };
@@ -61,6 +62,7 @@
 		CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionViewController.swift; sourceTree = "<group>"; };
 		CE3F836C299F4B4D004FCDFD /* StoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CE3F836E299F4DD0004FCDFD /* LocalDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataHelper.swift; sourceTree = "<group>"; };
+		CE3F8370299F78C6004FCDFD /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		CE686D41299CC0A30067EDFF /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		CE686D42299CC0A30067EDFF /* DataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
 		CE686D43299CC0A30067EDFF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -167,9 +169,18 @@
 			path = LocalData;
 			sourceTree = "<group>";
 		};
+		CE3F8372299F7EFC004FCDFD /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F8370299F78C6004FCDFD /* DataRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		CE686D3F299CC0A30067EDFF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F8372299F7EFC004FCDFD /* Repository */,
 				CE2D820B299D365F006B648C /* Utils */,
 				CE2D8206299D17C9006B648C /* View */,
 				CE686D53299CC0B80067EDFF /* ViewModel */,
@@ -423,6 +434,7 @@
 				CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */,
 				CE686D4D299CC0A30067EDFF /* Item.swift in Sources */,
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
+				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,

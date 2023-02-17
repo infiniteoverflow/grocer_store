@@ -40,7 +40,7 @@ class LocalDataHelper {
     /// Store API Data into CoreData
     func storeLocalData(storeResponse: StoreResponse) async -> Bool{
         
-        var isDeleted = await clearLocalDataValues()
+        let isDeleted = await clearLocalDataValues()
         if !isDeleted {
             return false
         }

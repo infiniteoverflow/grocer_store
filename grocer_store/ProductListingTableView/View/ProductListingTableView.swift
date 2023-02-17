@@ -84,7 +84,7 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
             } else {
                 if($0.success != nil) {
                     guard let response = $0.success else { return }
-                    self.storeResponse = response.data.items
+                    self.storeResponse = response
                     Task {
                         self.loader.loadingView.removeFromSuperview()
                         self.myTableView.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)

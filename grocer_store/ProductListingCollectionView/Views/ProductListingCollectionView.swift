@@ -83,17 +83,18 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
                     self.view.addSubview(self.loader.loadingView)
                 }
             } else {
-                if($0.success != nil) {
-                    guard let response = $0.success else {return}
-                    self.storeResponse = response.data.items
-                    Task {
-                        self.collectionview.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
-                        self.view.addSubview(self.collectionview)
-                    }
-                } else if($0.error != "") {
+                if($0.error != "") {
                     Task {
                         self.loader.stopLoader()
                         self.view.addSubview(self.errorLabel)
+                    }
+                }
+                else {
+                    guard let response = $0.success else {return}
+                    self.storeResponse = response
+                    Task {
+                        self.collectionview.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
+                        self.view.addSubview(self.collectionview)
                     }
                 }
             }

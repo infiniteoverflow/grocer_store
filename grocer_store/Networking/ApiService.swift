@@ -11,16 +11,19 @@ struct ApiService {
     
     // Get the Store Data from the API
     func getStoreData() async throws -> StoreResponse? {
-        var data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
+        let data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
         var storeModel: StoreResponse
         
         // if data is nil, then use the mock data
         if(data == nil) {
-            let jsonData = try JSONSerialization.data(withJSONObject: Utils.mockData, options: .prettyPrinted)
-            data = jsonData
+            return nil
         }
         
-        storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
-        return storeModel
+        do {
+            storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
+            return storeModel
+        } catch {
+            return nil
+        }
     }
 }
