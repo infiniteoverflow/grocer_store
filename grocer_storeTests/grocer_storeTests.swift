@@ -9,28 +9,48 @@ import XCTest
 @testable import grocer_store
 
 final class grocer_storeTests: XCTestCase {
+    
+    var dataRepoResponse: DataWrapper<[Item]>!
+    
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    // Test whether the converted hexstring color is same as the
+    // given UIColor.
+    func test_color_black_from_hexcode() {
+        let hexcode = "000000"
+        let colorAfterConversion = Utils.hexStringToUIColor(hex: hexcode)
+        let expectedColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        XCTAssertEqual(colorAfterConversion, expectedColor)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    // Test whether the converted hexstring color is same as the
+    // given UIColor with the given alpha.
+    func test_color_black_with_alpha_from_hexcode() {
+        let hexcode = "000000"
+        let colorAfterConversion = Utils.hexStringToUIColor(hex: hexcode,alpha: 0)
+        let expectedColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        XCTAssertEqual(colorAfterConversion, expectedColor)
     }
-
+    
+    // Test whether the converting method is able to trim '#' from the passed
+    // Hexcode string
+    func test_hex_string_with_hash() {
+        let hexcode = "#010204"
+        let colorAfterConversion = Utils.hexStringToUIColor(hex: hexcode)
+        let expectedColor = UIColor(red: 1/255, green: 2/255, blue: 4/255, alpha: 1)
+        XCTAssertEqual(colorAfterConversion, expectedColor)
+    }
+    
+    // Test the color: #5DB075
+    func test_color_5DB075_from_hexcode() {
+        let hexcode = "#5DB075"
+        let colorAfterConversion = Utils.hexStringToUIColor(hex: hexcode)
+        let expectedColor = UIColor(red: 93/255, green: 176/255, blue: 117/255, alpha: 1)
+        XCTAssertEqual(colorAfterConversion, expectedColor)
+    }
 }

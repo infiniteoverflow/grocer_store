@@ -69,7 +69,7 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
     // Perfrom Network call to fetch Store Data.
     func fetchData() {
         Task {
-            try await viewModel.getStoreDetails()
+            await viewModel.getStoreDetails()
         }
     }
     

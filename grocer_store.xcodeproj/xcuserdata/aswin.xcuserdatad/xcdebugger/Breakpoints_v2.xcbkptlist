@@ -621,5 +621,148 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D149DD2-4D00-4927-ABF1-FC98EA7202FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/Common/Utils/Utils.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "hexStringToUIColor(hex:alpha:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A391A8DA-9E48-48C5-8E80-29D8F2042CB9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_storeTests/grocer_storeTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "test_color_black_from_hexcode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A391A8DA-9E48-48C5-8E80-29D8F2042CB9 - 4fc4841d1c2bfd64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "grocer_storeTests.grocer_storeTests.test_color_black_from_hexcode() -&gt; ()"
+                  moduleName = "grocer_storeTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_storeTests/grocer_storeTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "A391A8DA-9E48-48C5-8E80-29D8F2042CB9 - 4fc4841d1c2bfd64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "grocer_storeTests.grocer_storeTests.test_color_black_from_hexcode() -&gt; ()"
+                  moduleName = "grocer_storeTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_storeTests/grocer_storeTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5D37246-551D-480C-9535-EA96FB8EF0B8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/Common/Repository/DataRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "fetchStoreDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE670D2C-8AE7-49F6-9EE5-F40D61046D63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/Common/Repository/DataRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetchStoreDetails()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EE670D2C-8AE7-49F6-9EE5-F40D61046D63 - 28f6eaae32f22519"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for grocer_store.DataRepository.fetchStoreDetails() async -&gt; grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.Item&gt;&gt;"
+                  moduleName = "grocer_store"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/Common/Repository/DataRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "EE670D2C-8AE7-49F6-9EE5-F40D61046D63 - 1c31b61fa19961f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) await resume partial function for grocer_store.DataRepository.fetchStoreDetails() async -&gt; grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.Item&gt;&gt;"
+                  moduleName = "grocer_store"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/Common/Repository/DataRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "EE670D2C-8AE7-49F6-9EE5-F40D61046D63 - f6cd5665cea0ad15"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for grocer_store.DataRepository.fetchStoreDetails() async -&gt; grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.Item&gt;&gt;"
+                  moduleName = "grocer_store"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/Common/Repository/DataRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
