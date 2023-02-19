@@ -13,23 +13,23 @@ class LocalDataHelper {
     static let instance = LocalDataHelper()
     
     // create a private initializer
-    private init() {}
+    private init() {
+        self.coreDataStack = CoreDataStack()
+        self.managedObjectContext = coreDataStack.getMainContext()
+    }
     
     private let storeItemEntity = "StoreItem"
+    let managedObjectContext: NSManagedObjectContext
+    let coreDataStack: CoreDataStack
     
     // Clear all the values inside CoreData
     func clearLocalDataValues() async -> Bool {
-        guard let appDelegate = await UIApplication.shared.delegate as? AppDelegate else {
-            return false
-        }
-        
-        let managedContext = await appDelegate.persistentContainer.viewContext
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: storeItemEntity)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try managedContext.execute(deleteRequest)
+            try managedObjectContext.execute(deleteRequest)
             return true
         } catch let error as NSError {
             print("Cannot delete CoreData Entities: \(error) \(error.description)")
@@ -44,18 +44,13 @@ class LocalDataHelper {
         if !isDeleted {
             return false
         }
-        
-        guard let appDelegate = await UIApplication.shared.delegate as? AppDelegate else {
-            return false
-        }
-        
-        let managedContext = await appDelegate.persistentContainer.viewContext
+
         
         storeResponse.data.items.forEach {
             item in
             
-            let entity = NSEntityDescription.entity(forEntityName: storeItemEntity, in: managedContext)!
-            let storeItem = NSManagedObject(entity: entity, insertInto: managedContext)
+            let entity = NSEntityDescription.entity(forEntityName: storeItemEntity, in: managedObjectContext)!
+            let storeItem = NSManagedObject(entity: entity, insertInto: managedObjectContext)
             
             storeItem.setValue(item.name, forKey: "name")
             storeItem.setValue(item.price, forKey: "price")
@@ -64,7 +59,7 @@ class LocalDataHelper {
         }
         
         do {
-            try managedContext.save()
+            try managedObjectContext.save()
             return true
         } catch let error as NSError {
             print("Cannot save to CoreData: \(error) \(error.description)")
@@ -75,13 +70,6 @@ class LocalDataHelper {
     /// Fetch the data from CoreData
     func fetchLocalData() async -> [Item]{
         var items: [Item] = []
-        guard let appDelegate =
-                await UIApplication.shared.delegate as? AppDelegate else {
-            return items
-        }
-        
-        let managedContext =
-        await appDelegate.persistentContainer.viewContext
         
         //2
         let fetchRequest =
@@ -89,13 +77,13 @@ class LocalDataHelper {
         
         //3
         do {
-            var item = try managedContext.fetch(fetchRequest)
+            var item = try managedObjectContext.fetch(fetchRequest)
             item = item.sorted { a, b in
                 a.name ?? "" < b.name ?? ""
             }
             
             item.forEach { itemData in
-                var item = Item(
+                let item = Item(
                     name: itemData.name ?? "", price: itemData.price ?? "", extra: itemData.extra, image: itemData.image
                 )
                 

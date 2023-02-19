@@ -25,8 +25,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
                 if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
                     if let image = UIImage(data: data) {
                         Task {
-                            self?.itemImageView.image = image
+                            self?.itemImage.image = image
                         }
+                    }
+                } else {
+                    Task {
+                        self?.itemImage.image = UIImage(named: "placeholder")
                     }
                 }
             }
@@ -34,7 +38,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     /// Shows the image of the item
-    let itemImageView : UIImageView = {
+    let itemImage : UIImageView = {
         let ui = UIImageView()
         return ui
     }()
@@ -58,18 +62,18 @@ class ProductCollectionViewCell: UICollectionViewCell {
         
         // Prevent the view’s autoresizing mask to be translated into
         // Auto Layout constraints.
-        itemImageView.translatesAutoresizingMaskIntoConstraints = false
+        itemImage.translatesAutoresizingMaskIntoConstraints = false
         itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Add the views to the contentView
-        contentView.addSubview(itemImageView)
+        contentView.addSubview(itemImage)
         contentView.addSubview(itemNameLabel)
         contentView.addSubview(itemPriceLabel)
         
         // Dictionary of views to be used in the VFL
         let viewsDict = [
-            "itemImageView" : itemImageView,
+            "itemImageView" : itemImage,
             "itemNameLabel" : itemNameLabel,
             "itemPriceLabel" : itemPriceLabel
         ] as [String : Any]

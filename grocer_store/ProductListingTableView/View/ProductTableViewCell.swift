@@ -31,6 +31,10 @@ class ProductListingTableItem : UITableViewCell {
                             self?.itemImage.image = image
                         }
                     }
+                } else {
+                    Task {
+                        self?.itemImage.image = UIImage(named: "placeholder")
+                    }
                 }
             }
         }
