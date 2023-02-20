@@ -22,6 +22,8 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
     /// Data instances
     // Stores the store items
     private var storeResponse: [Item] = []
+    // ViewModel class that contains logic for interacting the model
+    // with the UI View.
     private var viewModel = ViewModel()
     
     // MARK: UI Elements

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Connects your view with your model artefacts
 class ViewModel : ObservableObject {
     @Published var store: DataWrapper<[Item]> = DataWrapper()
     

@@ -10,12 +10,17 @@ import Combine
 
 class LandingPageViewController: UITabBarController {
     
+    // MARK: Properties
+    /// Properties
     // Defines a cancellable object to retrieve the
     // state of the Network call.
     private var cancellable: AnyCancellable?
-    
+    // ViewModel class that contains logic for interacting the model
+    // with the UI View.
     var viewModel = ViewModel()
     
+    // MARK: Lifecycle Methods
+    /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -28,6 +33,8 @@ class LandingPageViewController: UITabBarController {
         self.tabBar.frame.size.height = 90
     }
     
+    // MARK: View Methods
+    /// View Methods
     // Define the header section
     private func createHeaderSection() {
         self.view.addSubview(HeaderSectionViewController().view)

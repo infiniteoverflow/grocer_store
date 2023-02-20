@@ -11,15 +11,21 @@ import CoreData
 /// A Stack that takes care of initializing your CoreData artefacts.
 class CoreDataStack {
     
+    // MARK: Properties
+    /// Properties
     /// Name of your model file
     static let modelName = "StoreDataModel"
     
+    // MARK: UI Elements
+    /// UI Elements
     /// Programmatic representation of Model file
     static let model: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
+    // MARK: Methods
+    /// Methods
     /// Save your Context
     private func saveContext(_ context: NSManagedObjectContext) {
         context.perform {

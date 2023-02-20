@@ -11,15 +11,21 @@ import UIKit
 /// A Helper class for performing all your CoreData Actions.
 class CoreDataHelper {
     
+    // MARK: Lifecycle methods
+    /// Lifecycle methods
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.getMainContext()
     }
     
+    // MARK: Properties
+    /// Properties
     private let storeItemEntity = "StoreItem"
     private let managedObjectContext: NSManagedObjectContext
     private let coreDataStack: CoreDataStack
     
+    // MARK: View Methods
+    /// View Methods
     /// Clear all the values inside CoreData
     func clearLocalDataValues() async -> Bool {
         
