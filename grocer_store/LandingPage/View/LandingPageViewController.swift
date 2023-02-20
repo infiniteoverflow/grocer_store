@@ -23,6 +23,11 @@ class LandingPageViewController: UITabBarController {
         createHeaderSection()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tabBar.frame.size.height = 90
+    }
+    
     // Define the header section
     private func createHeaderSection() {
         self.view.addSubview(HeaderSectionViewController().view)
@@ -32,6 +37,7 @@ class LandingPageViewController: UITabBarController {
     private func setupView() {
         view.backgroundColor = .white
         tabBar.backgroundColor = .white
+        tabBar.tintColor = .green
     }
     
     // Define a BottomBar
@@ -43,18 +49,19 @@ class LandingPageViewController: UITabBarController {
         // CollectionView
         let vc2 = UINavigationController(rootViewController: ProductListingCollectionView())
         
-        self.setViewControllers([vc1,vc2], animated: false)
+        // EmptyViewControllers
+        let vc3 = UINavigationController(rootViewController: EmptyViewController())
+        let vc4 = UINavigationController(rootViewController: EmptyViewController())
+        let vc5 = UINavigationController(rootViewController: EmptyViewController())
+        
+        self.setViewControllers([vc1,vc2,vc3,vc4,vc5], animated: false)
         
         guard let items = self.tabBar.items else {
             return
         }
         
-        let tabBarImageItem = ["tablecells","square.grid.2x2"]
-        let tabBarSelectedImageItem = ["tablecells.fill", "square.grid.2x2.fill"]
-        
         for i in 0..<items.count {
-            items[i].image = UIImage(systemName: tabBarImageItem[i])
-            items[i].selectedImage = UIImage(systemName: tabBarSelectedImageItem[i])
+            items[i].image = UIImage(named: "BottomCircleGray")
         }
     }
 }

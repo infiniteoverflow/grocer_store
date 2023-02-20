@@ -33,7 +33,7 @@ class ProductListingTableItem : UITableViewCell {
                     }
                 } else {
                     Task {
-                        self?.itemImage.image = UIImage(named: "placeholder")
+                        self?.itemImage.image = UIImage(named: "Placeholder")
                     }
                 }
             }
@@ -44,6 +44,7 @@ class ProductListingTableItem : UITableViewCell {
     let itemName = UILabel()
     let itemPrice = UILabel()
     let extraLabel = UILabel()
+    let uiDivider = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,9 +54,15 @@ class ProductListingTableItem : UITableViewCell {
     // Layout the subviews
     override func layoutSubviews() {
         setupImage()
+        setupDivider()
         setupLabels()
         addSubviews()
         addConstraints()
+    }
+    
+    func setupDivider() {
+        uiDivider.translatesAutoresizingMaskIntoConstraints = false
+        uiDivider.backgroundColor = .gray
     }
     
     // MARK: Setup Image
@@ -85,6 +92,7 @@ class ProductListingTableItem : UITableViewCell {
         contentView.addSubview(itemName)
         contentView.addSubview(itemPrice)
         contentView.addSubview(extraLabel)
+        contentView.addSubview(uiDivider)
     }
     
     // MARK: Add Constaints
@@ -97,6 +105,7 @@ class ProductListingTableItem : UITableViewCell {
             "itemName" : itemName,
             "itemPrice" : itemPrice,
             "extra" : extraLabel,
+            "divider": uiDivider
         ] as [String : Any]
         
         // List of constraints.
@@ -111,12 +120,20 @@ class ProductListingTableItem : UITableViewCell {
         constraints += verticalAlignExtra
         
         // Vertical Align Name and Price Relative to each other.
-        let verticalAlignNameAndPrice = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[itemName]-[itemPrice]-|", options: [], metrics: nil, views: viewsDict)
+        let verticalAlignNameAndPrice = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[itemName]-[itemPrice]", options: [], metrics: nil, views: viewsDict)
         constraints += verticalAlignNameAndPrice
+        
+        // Vertical Align Divider.
+        let verticalAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemPrice]-[divider(0.5)]", options: [], metrics: nil, views: viewsDict)
+        constraints += verticalAlignDivider
         
         // Horizontal Align the Image and Name Relative to each other.
         let horizAlignImageAndName = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[itemName]|", options: [], metrics: nil, views: viewsDict)
         constraints += horizAlignImageAndName
+        
+        // Horizontal Align Divider.
+        let horizAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[divider]|", options: [], metrics: nil, views: viewsDict)
+        constraints += horizAlignDivider
         
         // Horizontal Align Image, Price, and Extra labels relative to each other.
         let horizAlignImagePriceAndExtra = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[itemPrice]-[extra]-20-|", options: [], metrics: nil, views: viewsDict)

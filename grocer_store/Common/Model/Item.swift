@@ -11,14 +11,14 @@ import Foundation
 struct Item : Codable {
     
     /// Stores the name of the Item
-    let name: String
+    var name: String? = ""
     
     /// Stores the price of the Item
-    let price: String
+    var price: String? = ""
     
     /// Stores any additional detail about the Item
-    let extra: String?
+    var extra: String? = ""
     
     /// Stores the image of the Item
-    let image: String?
+    var image: String? = ""
 }

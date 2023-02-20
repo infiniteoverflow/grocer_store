@@ -8,28 +8,32 @@
 import CoreData
 import UIKit
 
-class LocalDataHelper {
-    // create a singleton
-    static let instance = LocalDataHelper()
+/// A Helper class for performing all your CoreData Actions.
+class CoreDataHelper {
     
-    // create a private initializer
-    private init() {
-        self.coreDataStack = CoreDataStack()
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.getMainContext()
     }
     
     private let storeItemEntity = "StoreItem"
-    let managedObjectContext: NSManagedObjectContext
-    let coreDataStack: CoreDataStack
+    private let managedObjectContext: NSManagedObjectContext
+    private let coreDataStack: CoreDataStack
     
-    // Clear all the values inside CoreData
+    /// Clear all the values inside CoreData
     func clearLocalDataValues() async -> Bool {
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: storeItemEntity)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let deleteRequest: NSBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try managedObjectContext.execute(deleteRequest)
+            // For NSInMemoryStoreType, deleteRequest cannot be executed.
+            if coreDataStack.storeContainer.persistentStoreDescriptions.first?.type == NSInMemoryStoreType {
+                managedObjectContext.reset()
+            }
+            else {
+                try managedObjectContext.execute(deleteRequest)
+            }
             return true
         } catch let error as NSError {
             print("Cannot delete CoreData Entities: \(error) \(error.description)")
@@ -68,23 +72,25 @@ class LocalDataHelper {
     }
     
     /// Fetch the data from CoreData
-    func fetchLocalData() async -> [Item]{
+    func fetchLocalData() -> [Item]{
         var items: [Item] = []
         
-        //2
         let fetchRequest =
         NSFetchRequest<StoreItem>(entityName: storeItemEntity)
         
-        //3
         do {
-            var item = try managedObjectContext.fetch(fetchRequest)
-            item = item.sorted { a, b in
-                a.name ?? "" < b.name ?? ""
-            }
+            var item = try managedObjectContext.fetch(fetchRequest) as NSArray
+            item = item.sorted(by: {
+                itemA, itemB in
+                (itemA as! StoreItem).name ?? "" < (itemB as! StoreItem).name ?? ""
+            }) as NSArray
             
             item.forEach { itemData in
                 let item = Item(
-                    name: itemData.name ?? "", price: itemData.price ?? "", extra: itemData.extra, image: itemData.image
+                    name: (itemData as? StoreItem)?.name ?? "",
+                    price: (itemData as? StoreItem)?.price ?? "",
+                    extra: (itemData as? StoreItem)?.extra ?? "",
+                    image: (itemData as? StoreItem)?.image ?? ""
                 )
                 
                 items.append(item)

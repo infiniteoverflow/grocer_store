@@ -30,7 +30,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
                     }
                 } else {
                     Task {
-                        self?.itemImage.image = UIImage(named: "placeholder")
+                        self?.itemImage.image = UIImage(named: "Placeholder")
                     }
                 }
             }
