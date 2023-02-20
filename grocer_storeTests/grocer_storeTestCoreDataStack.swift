@@ -1,13 +1,13 @@
 //
-//  grocer_testCoreDataStack.swift
+//  grocer_storeTestCoreDataStack.swift
 //  grocer_storeTests
 //
-//  Created by Aswin Gopinathan on 18/02/23.
+//  Created by Aswin Gopinathan on 19/02/23.
 //
 
 import XCTest
 
-final class grocer_testCoreDataStack: XCTestCase {
+final class grocer_storeTestCoreDataStack: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
