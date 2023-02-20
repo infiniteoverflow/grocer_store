@@ -6,18 +6,10 @@
 //
 
 import XCTest
-@testable import grocer_store
 
 final class grocer_storeTests: XCTestCase {
     
     var dataRepoResponse: DataWrapper<[Item]>!
-    
-
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-    }
     
     // Test whether the converted hexstring color is same as the
     // given UIColor.

@@ -8,28 +8,86 @@
 import XCTest
 
 final class grocer_storeTestCoreDataStack: XCTestCase {
+    
+    /// Class that contains all the operations related to CoreData.
+    var coreDataHelper: CoreDataHelper!
+    
+    /// Initialises the CoreData Artefacts
+    var coreDataStack: TestCoreDataStack!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        coreDataStack = TestCoreDataStack()
+        coreDataStack.setupCoreDataHelper()
+        coreDataHelper = CoreDataHelper(coreDataStack: coreDataStack)
+    }
+    
+    override func tearDown() {
+        coreDataStack = nil
+        coreDataHelper = nil
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    /// Test Adding a new item to CoreData
+    func testAddStoreItemToCoreData() async throws {
+        let context = coreDataStack.getMainContext()
+        
+        expectation(forNotification: .NSManagedObjectContextDidSave, object: coreDataStack.getMainContext()) {
+            _ in return true
         }
+        
+        await context.perform {
+            let storeResponse = StoreResponse(
+                status: "success",
+                error: nil,
+                data: StoreData(
+                    items: [
+                        Item(name: "Item 1", price: "100", extra: "Same day shipping", image: nil)
+                    ]
+                )
+            )
+            
+            Task {
+                await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
+            }
+        }
+        
+        await waitForExpectations(timeout: 2.0) {
+            error in
+            XCTAssertNil(error,"Save did not occur")
+        }
+    }
+    
+    /// Test whether the added item is available in CoreData
+    func testGetStoreItemsFromCoreData() async{
+        let context = coreDataStack.getMainContext()
+        await context.perform {
+            let storeResponse = StoreResponse(
+                status: "success",
+                error: nil,
+                data: StoreData(
+                    items: [
+                        Item(name: "Item 1", price: "100", extra: "Same day shipping", image: nil)
+                    ]
+                )
+            )
+            
+            Task {
+                await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
+            }
+        }
+        let getItems = await coreDataHelper.fetchLocalData()
+        
+        XCTAssertEqual(getItems.count, 1)
+    }
+    
+    /// Test the Clear CoreData operation.
+    func testClearCoreData() async {
+        let cleared = await coreDataHelper.clearLocalDataValues()
+        
+        XCTAssertTrue(cleared)
+        
+        let getItems = await coreDataHelper.fetchLocalData()
+        XCTAssertEqual(getItems.count, 0)
     }
 
 }
