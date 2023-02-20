@@ -9,9 +9,13 @@ import UIKit
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
+    // MARK: Properties
+    /// Properties
     /// Unique identifier for the CollectionView Cell
     static let identifier = "ProductCollectionViewCell"
     
+    // MARK: UI Elements
+    /// UI Elements
     /// Store Item
     var item: Item? {
         didSet {
@@ -21,31 +25,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
             guard let imageUrl = item?.image else {
                 return
             }
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
-                    if let image = UIImage(data: data) {
-                        Task {
-                            self?.itemImage.image = image
-                        }
-                    }
-                } else {
-                    Task {
-                        self?.itemImage.image = UIImage(named: "Placeholder")
-                    }
-                }
-            }
+            updateImage(imageUrl: imageUrl)
         }
     }
     
     /// Shows the image of the item
-    let itemImage : UIImageView = {
-        let ui = UIImageView()
-        return ui
-    }()
+    let itemImage = UIImageView()
     
     /// Shows the name of the item
     let itemNameLabel: UILabel = {
         let uiLabel = UILabel()
+        // Setting the font of the UILabel
         uiLabel.font = .systemFont(ofSize: 14,weight: .regular)
         return uiLabel
     }()
@@ -53,9 +43,43 @@ class ProductCollectionViewCell: UICollectionViewCell {
     /// Shows the price of the item
     let itemPriceLabel: UILabel = {
         let uiLabel = UILabel()
+        // Setting the font of the UILabel
         uiLabel.font = .systemFont(ofSize: 14,weight: .bold)
         return uiLabel
     }()
+    
+    // MARK: Lifecycle methods
+    // Lifecycle methods
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func layoutSubviews() {
+        addViews()
+    }
+    
+    // MARK: View Methods
+    /// View Methods
+    /// Update image
+    func updateImage(imageUrl: String) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
+                if let image = UIImage(data: data) {
+                    Task {
+                        self?.itemImage.image = image
+                    }
+                }
+            } else {
+                Task {
+                    self?.itemImage.image = UIImage(named: "Placeholder")
+                }
+            }
+        }
+    }
     
     /// Add the UI Views
     func addViews() {
@@ -106,17 +130,5 @@ class ProductCollectionViewCell: UICollectionViewCell {
         constraints += horizConstraintPrice
         
         contentView.addConstraints(constraints)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        addViews()
     }
 }

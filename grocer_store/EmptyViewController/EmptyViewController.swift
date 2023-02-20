@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+/// Empty Container for un-implemented tabs
 class EmptyViewController: UIViewController {
 
     override func viewDidLoad() {

@@ -12,9 +12,14 @@ import UIKit
 
 class ProductListingTableItem : UITableViewCell {
     
+    // MARK: Properties
+    /// Properties
     /// Unique identifier for the Table Cell
     static let identifer = "ProductListingTableItem"
     
+    // MARK: UI Elements
+    /// UI Elements
+    /// Stores the Item data
     var productItem: Item? {
         didSet {
             itemName.text = productItem?.name
@@ -40,15 +45,27 @@ class ProductListingTableItem : UITableViewCell {
         }
     }
     
+    // Stores the item image.
     let itemImage = UIImageView()
+    // Stores the item name.
     let itemName = UILabel()
+    // Stores the item price.
     let itemPrice = UILabel()
+    // Stores the extra data regarding the item.
     let extraLabel = UILabel()
+    // Shows the Divider between cells.
     let uiDivider = UIView()
     
+    
+    // MARK: Lifecycle methods
+    /// Lifecycle methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layoutSubviews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     // Layout the subviews
@@ -60,6 +77,10 @@ class ProductListingTableItem : UITableViewCell {
         addConstraints()
     }
     
+    
+    // MARK: View methods
+    /// View methods
+    /// Setup the Divider between the cells
     func setupDivider() {
         uiDivider.translatesAutoresizingMaskIntoConstraints = false
         uiDivider.backgroundColor = .gray
@@ -141,9 +162,5 @@ class ProductListingTableItem : UITableViewCell {
         
         // Add all the constraints to the ContentView
         contentView.addConstraints(constraints)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

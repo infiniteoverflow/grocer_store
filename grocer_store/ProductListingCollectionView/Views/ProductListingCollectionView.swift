@@ -10,20 +10,29 @@ import Combine
 
 class ProductListingCollectionView: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // MARK: Properties
+    /// Properties
+    /// List of properties used by the controller
+    
     // Defines a cancellable object to retrieve the
     // state of the Network call.
     private var cancellable: AnyCancellable?
     
+    // ViewModel class that contains logic for interacting the model
+    // with the UI View.
     private var viewModel = ViewModel()
     
     // Stores the store items
     private var storeResponse: [Item] = []
     
+    // MARK: UI Elements
+    /// UI Elements
     private var loader: LoaderView!
     
     // Label to show an error message if the API fails
     private var errorLabel: UILabel!
     
+    // Defines the CollectionView for displaying the data.
     var collectionview: UICollectionView!
     
     override func viewDidLoad() {
@@ -33,6 +42,22 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
         setupErrorLabel()
         setupCollectionView()
         fetchData()
+    }
+    
+    // MARK: Lifecycle Methods
+    /// Lifecycle methods
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        storeResponse.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
+        cell.item = storeResponse[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 110, height: 160)
     }
     
     // MARK: Setup Collection View
@@ -100,19 +125,4 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
             }
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        storeResponse.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
-        cell.item = storeResponse[indexPath.row]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 110, height: 160)
-    }
-    
 }

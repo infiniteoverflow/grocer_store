@@ -11,23 +11,29 @@ import Combine
 /// Defins the table view of the store data
 class ProductListingTableView: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
-    // Defines the table view that renders the API response.
-    private var myTableView: UITableView!
+    // MARK: Properties
+    /// Properties
+    /// List of properties used by the controller
     
     // Defines a cancellable object to retrieve the
     // state of the Network call.
     private var cancellable: AnyCancellable?
     
+    /// Data instances
     // Stores the store items
     private var storeResponse: [Item] = []
-    
     private var viewModel = ViewModel()
     
+    // MARK: UI Elements
+    /// UI Elements
+    // Defines the table view that renders the API response.
+    private var myTableView: UITableView!
     // Label to show an error message if the API fails
     private var errorLabel: UILabel!
-    
     private var loader: LoaderView!
     
+    // MARK: Lifecycle methods
+    /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         attachViewModelListener()
