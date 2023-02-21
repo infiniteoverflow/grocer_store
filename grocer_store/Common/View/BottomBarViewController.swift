@@ -7,23 +7,28 @@
 
 import UIKit
 
+/// Defines the bottom-bar section of the view
 class BottomBarViewController: UIViewController {
+    
+    // MARK: UI Views
+    /// Defines the icon of the bottom-bar icon
+    var bottomBarIcon = UIImage()
+    
+    /// Defines the container of the bottom-bar
+    var bottomBar : UIView = {
+        let uiv = UIView()
+        uiv.backgroundColor = .blue
+        return uiv
+    }()
 
+    // MARK: Lifecycle methods
+    /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        bottomBar.frame = CGRect(x: 0, y: 200, width: 100, height: 70)
+        bottomBar.backgroundColor = .green
+        // Adds the bottom-bar to the view
+        view.addSubview(bottomBar)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

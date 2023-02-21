@@ -68,7 +68,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         CGSize(width: 110, height: 160)
     }
     
-    // MARK: Setup Collection View
+    // MARK: UI Methods
     // Setup the Collection View to show the grid of store items.
     func setupCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -79,16 +79,17 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         collectionview.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
         collectionview.backgroundColor = .white
         collectionview.contentInset = UIEdgeInsets(top: 39, left: 20, bottom: 10,right: 0)
+        collectionview.bounces = true
+        collectionview.alwaysBounceVertical = true
+        collectionview.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
     }
     
-    // MARK: Setup Loader
     // Setup the Loader and add it to the subview
     func setupLoader() {
         loader = LoaderView(frame: view.frame)
         view.addSubview(loader.loadingView)
     }
     
-    // MARK: Setup Error Label
     // Setup the Error Label to show any error messages
     func setupErrorLabel() {
         errorLabel = UILabel(frame: self.view.frame)
@@ -98,15 +99,20 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         errorLabel.numberOfLines = 2
     }
     
+    // Setup the RefreshController to be used for swipe-down-to-refresh
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        self.collectionview.bounces = true
-        self.collectionview.alwaysBounceVertical = true
         collectionview.addSubview(refreshControl)
     }
     
-    // MARK: Fetch Data
+    // MARK: View methods
+    /// View Methods
+    /// Execute this method when we pull to refresh the view
+    @objc func refresh() {
+        fetchData()
+    }
+    
     // Perfrom Network call to fetch Store Data.
     func fetchData() {
         Task {
@@ -114,7 +120,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
-    // MARK: Attach ViewModel Listener
     // Attach listeners to listen to the Network call
     // to fetch store data.
     func attachViewModelListener() {
@@ -141,7 +146,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
                     guard let response = $0.success else {return}
                     self.storeResponse = response
                     Task {
-                        self.collectionview.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
                         self.view.addSubview(self.collectionview)
                     }
                 }
@@ -149,10 +153,4 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
-    // MARK: View methods
-    /// View Methods
-    /// Execute this method when we pull to refresh the view
-    @objc func refresh() {
-        fetchData()
-    }
 }

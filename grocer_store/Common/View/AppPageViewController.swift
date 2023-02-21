@@ -7,23 +7,68 @@
 
 import UIKit
 
-class AppPageViewController: UIViewController {
+/// A UIPageViewController that takes care of the tabs displayed to the user.
+class AppPageViewController: UIPageViewController, UIPageViewControllerDataSource {
+
+    // MARK: Properties
+    /// Properties
+    /// List of pages to be used in the PageView
+    var pages: [UIViewController] = [UIViewController]()
+
+    // MARK: Lifecycle Methods
+    /// Lifecycle methods
+    override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the background color of the view to be white
+        view.backgroundColor = .white
+        
+        // Add the header section to the view
+        view.addSubview(HeaderSectionViewController().view)
+        
+        // Setting this class to provide the data source for the UIPageViewController
+        dataSource = self
 
-        // Do any additional setup after loading the view.
+        // instantiate the pages
+        pages.append(ProductListingTableView())
+        pages.append(ProductListingCollectionView())
+
+        // Sets the ViewControllers to be displayed, with the initial page to be the first
+        // page in the list, direction: Forward.
+        setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
     }
     
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-    /*
-    // MARK: - Navigation
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let previousIndex = viewControllerIndex - 1
+
+        guard previousIndex >= 0 else { return pages.last }
+
+        guard pages.count > previousIndex else { return nil }
+
+        return pages[previousIndex]
     }
-    */
 
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
+
+        let nextIndex = viewControllerIndex + 1
+
+        guard nextIndex < pages.count else { return pages.first }
+
+        guard pages.count > nextIndex else { return nil }
+
+        return pages[nextIndex]
+    }
 }
+

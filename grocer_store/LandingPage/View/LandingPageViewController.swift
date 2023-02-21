@@ -6,69 +6,55 @@
 //
 
 import UIKit
-import Combine
 
-class LandingPageViewController: UITabBarController {
-    
-    // MARK: Properties
-    /// Properties
-    // Defines a cancellable object to retrieve the
-    // state of the Network call.
-    private var cancellable: AnyCancellable?
-    // ViewModel class that contains logic for interacting the model
-    // with the UI View.
-    var viewModel = ViewModel()
-    
-    // MARK: Lifecycle Methods
+/// The entry point of the application.
+/// The UIPageView is rendered from here.
+class LandingPageViewController: UIViewController {
+
+    // MARK: UI Views
+    /// Parent container to host the UIPageViewController.
+    let pageViewContainer: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    /// Holds the UIPageViewController for the app.
+    var appPageViewController: AppPageViewController!
+
+    // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        createBottomBar()
-        createHeaderSection()
+
+        // add myContainerView
+        view.addSubview(pageViewContainer)
+
+        NSLayoutConstraint.activate([
+            pageViewContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0.0),
+            pageViewContainer.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0.0),
+            pageViewContainer.heightAnchor.constraint(equalToConstant: view.frame.height),
+            ])
+
+        // instantiate MyPageViewController and add it as a Child View Controller
+        appPageViewController = AppPageViewController()
+        addChild(appPageViewController)
+
+        // we need to re-size the page view controller's view to fit our container view
+        appPageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+
+        // add the page VC's view to our container view
+        pageViewContainer.addSubview(appPageViewController.view)
+
+        // constrain it to all 4 sides
+        NSLayoutConstraint.activate([
+            appPageViewController.view.topAnchor.constraint(equalTo: pageViewContainer.topAnchor, constant: 0.0),
+            appPageViewController.view.bottomAnchor.constraint(equalTo: pageViewContainer.bottomAnchor, constant: 0.0),
+            appPageViewController.view.leadingAnchor.constraint(equalTo: pageViewContainer.leadingAnchor, constant: 0.0),
+            appPageViewController.view.trailingAnchor.constraint(equalTo: pageViewContainer.trailingAnchor, constant: 0.0),
+            ])
+
+        appPageViewController.didMove(toParent: self)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tabBar.frame.size.height = 90
-    }
-    
-    // MARK: View Methods
-    /// View Methods
-    // Define the header section
-    private func createHeaderSection() {
-        self.view.addSubview(HeaderSectionViewController().view)
-    }
-    
-    // Setup the superview
-    private func setupView() {
-        view.backgroundColor = .white
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .green
-    }
-    
-    // Define a BottomBar
-    private func createBottomBar() {
-        
-        // TableView
-        let vc1 = UINavigationController(rootViewController: ProductListingTableView())
-        
-        // CollectionView
-        let vc2 = UINavigationController(rootViewController: ProductListingCollectionView())
-        
-        // EmptyViewControllers
-        let vc3 = UINavigationController(rootViewController: EmptyViewController())
-        let vc4 = UINavigationController(rootViewController: EmptyViewController())
-        let vc5 = UINavigationController(rootViewController: EmptyViewController())
-        
-        self.setViewControllers([vc1,vc2,vc3,vc4,vc5], animated: false)
-        
-        guard let items = self.tabBar.items else {
-            return
-        }
-        
-        for i in 0..<items.count {
-            items[i].image = UIImage(named: "BottomCircleGray")
-        }
-    }
+
 }

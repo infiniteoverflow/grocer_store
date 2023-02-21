@@ -20,7 +20,7 @@ struct Utils {
         var red: Double = 0.0
         var green: Double = 0.0
         var blue: Double = 0.0
-        var opacity: Double = alpha
+        let opacity: Double = alpha
         
         let length = hexSanitized.count
         
