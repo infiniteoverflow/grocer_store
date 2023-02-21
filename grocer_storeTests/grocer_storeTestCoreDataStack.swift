@@ -75,7 +75,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
                 await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
             }
         }
-        let getItems = await coreDataHelper.fetchLocalData()
+        let getItems = coreDataHelper.fetchLocalData()
         
         XCTAssertEqual(getItems.count, 1)
     }
@@ -86,7 +86,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
         
         XCTAssertTrue(cleared)
         
-        let getItems = await coreDataHelper.fetchLocalData()
+        let getItems = coreDataHelper.fetchLocalData()
         XCTAssertEqual(getItems.count, 0)
     }
 
