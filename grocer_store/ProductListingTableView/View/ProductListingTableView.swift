@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 /// Defins the table view of the store data
-class ProductListingTableView: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     /// Properties
@@ -34,6 +34,9 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
     private var errorLabel: UILabel!
     private var loader: LoaderView!
     
+    // Performs the pull to refresh on the ViewController
+    let refreshControl = UIRefreshControl()
+    
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
@@ -42,7 +45,12 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
         fetchData()
         setupTableView()
         setupErrorLabel()
+        setupRefreshController()
         setupLoader()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Constraints \(self.view.constraints)")
     }
     
     // MARK: Setup Loader
@@ -50,6 +58,17 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
     func setupLoader() {
         loader = LoaderView(frame: view.frame)
         view.addSubview(loader.loadingView)
+    }
+    
+    func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        myTableView.addSubview(refreshControl)
+    }
+    
+    /// Execute this method when we pull to refresh the view
+    @objc func refresh(){
+        fetchData()
     }
     
     // MARK: Fetch Data
@@ -87,9 +106,17 @@ class ProductListingTableView: UIViewController,UITableViewDelegate, UITableView
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
                 Task {
-                    self.view.addSubview(self.loader.loadingView)
+//                    self.myTableView.removeFromSuperview()
+                    if !self.refreshControl.isRefreshing {
+                        self.view.addSubview(self.loader.loadingView)
+                    }
                 }
             } else {
+                Task {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
                 if($0.success != nil) {
                     guard let response = $0.success else { return }
                     self.storeResponse = response

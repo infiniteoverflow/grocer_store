@@ -38,7 +38,7 @@ class ProductListingTableItem : UITableViewCell {
                     }
                 } else {
                     Task {
-                        self?.itemImage.image = UIImage(named: "Placeholder")
+                        self?.itemImage.image = UIImage(named: "Phonepe")
                     }
                 }
             }

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ProductListingCollectionView: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: Properties
     /// Properties
@@ -35,13 +35,21 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
     // Defines the CollectionView for displaying the data.
     var collectionview: UICollectionView!
     
+    // Performs the pull to refresh on the ViewController
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attachViewModelListener()
         setupLoader()
         setupErrorLabel()
         setupCollectionView()
+        setupRefreshController()
         fetchData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Constraints \(self.view.constraints)")
     }
     
     // MARK: Lifecycle Methods
@@ -90,6 +98,14 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
         errorLabel.numberOfLines = 2
     }
     
+    func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.collectionview.bounces = true
+        self.collectionview.alwaysBounceVertical = true
+        collectionview.addSubview(refreshControl)
+    }
+    
     // MARK: Fetch Data
     // Perfrom Network call to fetch Store Data.
     func fetchData() {
@@ -105,9 +121,16 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
                 Task {
-                    self.view.addSubview(self.loader.loadingView)
+                    if !self.refreshControl.isRefreshing {
+                        self.view.addSubview(self.loader.loadingView)
+                    }
                 }
             } else {
+                Task {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                }
                 if($0.error != "") {
                     Task {
                         self.loader.stopLoader()
@@ -124,5 +147,12 @@ class ProductListingCollectionView: UIViewController, UICollectionViewDataSource
                 }
             }
         }
+    }
+    
+    // MARK: View methods
+    /// View Methods
+    /// Execute this method when we pull to refresh the view
+    @objc func refresh() {
+        fetchData()
     }
 }
