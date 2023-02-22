@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E7D64CA6-5321-4083-B58E-22DD11DB5DA2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "attachViewModelListener()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4399098A-0E77-44C8-9877-1C3F9B0299AA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -62,8 +46,8 @@
             filePath = "grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "attachViewModelListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,22 +65,6 @@
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "addViews()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D3E17D65-99A3-45FB-A41B-2073B85DFBF0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "grocer_store/LandingPage/View/LandingPageViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "createBottomBar()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1105,40 +1073,40 @@
             filePath = "grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "attachViewModelListener()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "3EB1B49C-32C3-4BCF-B99A-5D919A333823 - 629de3088bb816b3"
+                  uuid = "3EB1B49C-32C3-4BCF-B99A-5D919A333823 - dc7e8ce1f1cc2e6d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.StoreItem&gt;&gt;) -&gt; () in grocer_store.ProductListingTableView.attachViewModelListener() -&gt; ()"
+                  symbolName = "closure #1 (grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.Item&gt;&gt;) -&gt; () in grocer_store.ProductListingTableView.attachViewModelListener() -&gt; ()"
                   moduleName = "grocer_store"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "168">
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "220">
                </Location>
                <Location
-                  uuid = "3EB1B49C-32C3-4BCF-B99A-5D919A333823 - 845a1b421e11889e"
+                  uuid = "3EB1B49C-32C3-4BCF-B99A-5D919A333823 - 17a277d071589961"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #1 (grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.StoreItem&gt;&gt;) -&gt; () in grocer_store.ProductListingTableView.attachViewModelListener() -&gt; ()"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #1 (grocer_store.DataWrapper&lt;Swift.Array&lt;grocer_store.Item&gt;&gt;) -&gt; () in grocer_store.ProductListingTableView.attachViewModelListener() -&gt; ()"
                   moduleName = "grocer_store"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "0">
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1153,8 +1121,8 @@
             filePath = "grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "attachViewModelListener()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,6 +1156,54 @@
             startingLineNumber = "14"
             endingLineNumber = "14"
             landmarkName = "setupCoreDataHelper()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78F00AF5-30F4-4705-8417-3CF9B7FBA698"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/ProductListingCollectionView/Views/ProductCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "layoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FFDAB229-4DA0-4DBA-B872-5C9A38138052"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/ProductListingTableView/View/ProductListingTableView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "078E6DF7-C1DA-4D1B-81A5-0BBB43C6930B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "grocer_store/ProductListingCollectionView/Views/ProductListingCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

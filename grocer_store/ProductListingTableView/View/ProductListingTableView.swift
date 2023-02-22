@@ -9,20 +9,26 @@ import UIKit
 import Combine
 
 /// Defins the table view of the store data
-class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource {
+class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     // MARK: Properties
     /// Properties
     /// List of properties used by the controller
-    
     // Defines a cancellable object to retrieve the
     // state of the Network call.
     private var cancellable: AnyCancellable?
+    
+    /// Delegate for passing the search data to another view
+    var searchDelegate: UISearchBarDelegate? = nil
     
     /// Data instances
     // Stores the store items
     private var storeResponse: [Item] = []
     // ViewModel class that contains logic for interacting the model
+    
+    // Stores the store items in a temp list
+    private var tempStoreResponse: [Item] = []
+    
     // with the UI View.
     private var viewModel = ViewModel()
     
@@ -51,6 +57,20 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         print("Constraints \(self.view.constraints)")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchDelegate?.searchBar?(searchBar, textDidChange: searchText)
+        storeResponse = tempStoreResponse
+        if searchText.isEmpty {
+            myTableView.reloadData()
+            return
+        }
+        storeResponse = storeResponse.filter { item in
+            return item.contains(text: searchText.lowercased())
+        }
+        
+        myTableView.reloadData()
     }
     
     // MARK: Setup Loader
@@ -120,6 +140,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
                 if($0.success != nil) {
                     guard let response = $0.success else { return }
                     self.storeResponse = response
+                    self.tempStoreResponse = response
                     Task {
                         self.loader.loadingView.removeFromSuperview()
                         self.myTableView.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)

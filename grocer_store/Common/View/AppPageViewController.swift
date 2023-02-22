@@ -31,15 +31,27 @@ class AppPageViewController: UIPageViewController, UIPageViewControllerDataSourc
         // Set the background color of the view to be white
         view.backgroundColor = .white
         
-        // Add the header section to the view
-        view.addSubview(HeaderSectionViewController().view)
-        
         // Setting this class to provide the data source for the UIPageViewController
         dataSource = self
+        
+        // TableView of the app
+        let productListingTableView = ProductListingTableView()
+        
+        // CollectionView of the app
+        let productListingCollectionView = ProductListingCollectionView()
+        
+        // Connecting the searchDelegate of the TableView with the CollectionView
+        // to pass the searchText between both the screens.
+        productListingTableView.searchDelegate = productListingCollectionView
 
         // instantiate the pages
-        pages.append(ProductListingTableView())
-        pages.append(ProductListingCollectionView())
+        pages.append(productListingTableView)
+        pages.append(productListingCollectionView)
+        
+        // Add the header section to the view
+        let headerSectionVC = HeaderSectionViewController()
+        headerSectionVC.searchDelegate = productListingTableView
+        view.addSubview(headerSectionVC.view)
 
         // Sets the ViewControllers to be displayed, with the initial page to be the first
         // page in the list, direction: Forward.

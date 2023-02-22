@@ -7,8 +7,14 @@
 
 import UIKit
 
-class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
+class HeaderSectionViewController: UIViewController  {
     
+    // MARK: Properties
+    /// Properties
+    var searchDelegate: UISearchBarDelegate? = nil
+    
+    // MARK: UI Views
+    /// UI Views
     /// Gives the title of the header section.
     private var titleLabel: UILabel = {
         let tl = UILabel()
@@ -35,6 +41,8 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
         return searchBar
     }()
 
+    // MARK: Lifecycle methods
+    /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -88,15 +96,19 @@ class HeaderSectionViewController: UIViewController, UISearchBarDelegate  {
     // MARK: Setup SearchBar
     // Setup the Search Bar
     private func setupSearchBar() {
-        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0))
-        searchBar.delegate = self
+        searchBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0)
+        searchBar.delegate = self.searchDelegate
+        
         searchBar.layer.cornerRadius = 25
+        searchBar.layer.masksToBounds = true
+        
         searchBar.placeholder = "Search"
-        searchBar.backgroundColor = UIColor.white
-        searchBar.tintColor = .white
+        searchBar.searchBarStyle = .prominent
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchBar.searchTextField.backgroundColor = .clear
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchBar.searchTextField.backgroundColor = .clear
+        searchBar.searchTextField.leftView = nil
     }
     
     // MARK: Setup Labels

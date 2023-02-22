@@ -36,7 +36,8 @@
 		CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D47299CC0A30067EDFF /* StoreData.swift */; };
 		CE686D4F299CC0A30067EDFF /* StoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D48299CC0A30067EDFF /* StoreResponse.swift */; };
 		CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D54299CC0B80067EDFF /* ViewModel.swift */; };
-		CE6EE8A829A346EE005D0535 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8A729A346EE005D0535 /* EmptyViewController.swift */; };
+		CE6EE8AA29A4976A005D0535 /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */; };
+		CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
 		CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */; };
 		CE7D33CC299A5BC9003158E6 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33CB299A5BC9003158E6 /* LandingPageViewController.swift */; };
@@ -86,7 +87,8 @@
 		CE686D47299CC0A30067EDFF /* StoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
 		CE686D48299CC0A30067EDFF /* StoreResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreResponse.swift; sourceTree = "<group>"; };
 		CE686D54299CC0B80067EDFF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		CE6EE8A729A346EE005D0535 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
+		CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarViewController.swift; sourceTree = "<group>"; };
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,8 @@
 			children = (
 				CE2D8207299D17D8006B648C /* LoaderView.swift */,
 				CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */,
+				CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */,
+				CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,14 +274,6 @@
 			path = LandingPage;
 			sourceTree = "<group>";
 		};
-		CE6EE8A629A346D8005D0535 /* EmptyViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CE6EE8A729A346EE005D0535 /* EmptyViewController.swift */,
-			);
-			path = EmptyViewController;
-			sourceTree = "<group>";
-		};
 		CE7D33BB299A5BC9003158E6 = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +297,6 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
-				CE6EE8A629A346D8005D0535 /* EmptyViewController */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
 				CE2D81F8299CF812006B648C /* ProductListingTableView */,
 				CE686D5E299CDDAE0067EDFF /* LandingPage */,
@@ -472,6 +467,7 @@
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
+				CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
 				CE686D4C299CC0A30067EDFF /* UrlConstants.swift in Sources */,
@@ -483,9 +479,9 @@
 				CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */,
 				CE0C18E329A1CF9F00B4D582 /* CoreDataStack.swift in Sources */,
 				CE2D8201299CFA62006B648C /* ProductListingCollectionView.swift in Sources */,
+				CE6EE8AA29A4976A005D0535 /* AppPageViewController.swift in Sources */,
 				CE3F836D299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld in Sources */,
 				CE3F8326299DD1BF004FCDFD /* ProductCollectionViewCell.swift in Sources */,
-				CE6EE8A829A346EE005D0535 /* EmptyViewController.swift in Sources */,
 				CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
