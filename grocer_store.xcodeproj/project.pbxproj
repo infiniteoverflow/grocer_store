@@ -39,6 +39,7 @@
 		CE6EE8AA29A4976A005D0535 /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */; };
 		CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */; };
 		CE6EE8AF29A5B5CC005D0535 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE6EE8AE29A5B5CC005D0535 /* Lottie */; };
+		CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
 		CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */; };
 		CE7D33CC299A5BC9003158E6 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33CB299A5BC9003158E6 /* LandingPageViewController.swift */; };
@@ -90,6 +91,7 @@
 		CE686D54299CC0B80067EDFF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
 		CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarViewController.swift; sourceTree = "<group>"; };
+		CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultViewController.swift; sourceTree = "<group>"; };
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */,
 				CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */,
 				CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */,
+				CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
+				CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */,
 				CE686D4C299CC0A30067EDFF /* UrlConstants.swift in Sources */,
 				CE2D820D299D367A006B648C /* Utils.swift in Sources */,
 				CE2D820A299D3167006B648C /* ProductTableViewCell.swift in Sources */,

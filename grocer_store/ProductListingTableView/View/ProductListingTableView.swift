@@ -43,6 +43,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Loader to show when data is being fetched from the network.
     private var loader: LoaderView!
     
+    // Empty Search Result UI
+    private let emptySearchResultView = EmptySearchResultViewController()
+    
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
     
@@ -60,6 +63,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchDelegate?.searchBar?(searchBar, textDidChange: searchText)
         storeResponse = tempStoreResponse
+        myTableView.backgroundView = nil
         if searchText.isEmpty {
             myTableView.reloadData()
             return
@@ -68,6 +72,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             return item.contains(text: searchText.lowercased())
         }
         
+        if storeResponse.isEmpty {
+            myTableView.backgroundView = emptySearchResultView.view
+        }
         myTableView.reloadData()
     }
     

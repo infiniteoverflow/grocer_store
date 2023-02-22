@@ -39,6 +39,9 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
     
+    // Empty Search Result UI
+    private let emptySearchResultView = EmptySearchResultViewController()
+    
     // MARK: View Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
@@ -52,12 +55,17 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         storeResponse = tempStoreResponse
+        collectionview?.backgroundView = nil
         if searchText.isEmpty {
             collectionview?.reloadData()
             return
         }
         storeResponse = storeResponse.filter { item in
             return item.contains(text: searchText.lowercased())
+        }
+        
+        if storeResponse.isEmpty {
+            collectionview?.backgroundView = emptySearchResultView.view
         }
         
         collectionview?.reloadData()
