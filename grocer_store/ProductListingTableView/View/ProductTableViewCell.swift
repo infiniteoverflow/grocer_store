@@ -23,8 +23,9 @@ class ProductListingTableItem : UITableViewCell {
     var productItem: Item? {
         didSet {
             itemName.text = productItem?.name
-            itemPrice.text = productItem?.price
+            itemPrice.text = productItem?.price?.replacingOccurrences(of: " ", with: "")
             extraLabel.text = productItem?.extra
+            mrpLabel.text = "MRP:"
             
             guard let imageUrl = productItem?.image else {
                 return
@@ -53,6 +54,8 @@ class ProductListingTableItem : UITableViewCell {
     let itemPrice = UILabel()
     // Stores the extra data regarding the item.
     let extraLabel = UILabel()
+    // Shows the "MRP" tag
+    let mrpLabel = UILabel()
     // Shows the Divider between cells.
     let uiDivider = UIView()
     
@@ -83,7 +86,7 @@ class ProductListingTableItem : UITableViewCell {
     /// Setup the Divider between the cells
     func setupDivider() {
         uiDivider.translatesAutoresizingMaskIntoConstraints = false
-        uiDivider.backgroundColor = .gray
+        uiDivider.backgroundColor = .gray.withAlphaComponent(0.3)
     }
     
     // MARK: Setup Image
@@ -97,13 +100,22 @@ class ProductListingTableItem : UITableViewCell {
     // MARK: Setup Labels
     // Setup the labels
     func setupLabels() {
+        // Determines whether the view’s autoresizing mask
+        // is translated into Auto Layout constraint.
         itemName.translatesAutoresizingMaskIntoConstraints = false
         itemPrice.translatesAutoresizingMaskIntoConstraints = false
         extraLabel.translatesAutoresizingMaskIntoConstraints = false
+        mrpLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        // Defines the font for the labels.
         itemName.font = .systemFont(ofSize: 14,weight: .bold)
         extraLabel.font = .systemFont(ofSize: 12)
+        mrpLabel.font = .systemFont(ofSize: 14)
+        itemPrice.font = .systemFont(ofSize: 14)
+                
+        // Defines the textcolor for the labels.
         extraLabel.textColor = .gray
+        mrpLabel.textColor = .gray
     }
     
     // MARK: Setup Subviews
@@ -113,6 +125,7 @@ class ProductListingTableItem : UITableViewCell {
         contentView.addSubview(itemName)
         contentView.addSubview(itemPrice)
         contentView.addSubview(extraLabel)
+        contentView.addSubview(mrpLabel)
         contentView.addSubview(uiDivider)
     }
     
@@ -126,6 +139,7 @@ class ProductListingTableItem : UITableViewCell {
             "itemName" : itemName,
             "itemPrice" : itemPrice,
             "extra" : extraLabel,
+            "mrpLabel": mrpLabel,
             "divider": uiDivider
         ] as [String : Any]
         
@@ -137,15 +151,18 @@ class ProductListingTableItem : UITableViewCell {
         constraints += verticalAlignImage
         
         // Vertical Align the Extra Text.
-        let verticalAlignExtra = NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[extra]", options: [], metrics: nil, views: viewsDict)
+        let verticalAlignExtra = NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[extra]-14-[divider(0.2)]", options: [], metrics: nil, views: viewsDict)
         constraints += verticalAlignExtra
+        
+        let verticalAlignMRP = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemName]-[mrpLabel]", metrics: nil, views: viewsDict)
+        constraints += verticalAlignMRP
         
         // Vertical Align Name and Price Relative to each other.
         let verticalAlignNameAndPrice = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[itemName]-[itemPrice]", options: [], metrics: nil, views: viewsDict)
         constraints += verticalAlignNameAndPrice
         
         // Vertical Align Divider.
-        let verticalAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemPrice]-[divider(0.5)]", options: [], metrics: nil, views: viewsDict)
+        let verticalAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemPrice]-14-[divider(0.2)]", options: [], metrics: nil, views: viewsDict)
         constraints += verticalAlignDivider
         
         // Horizontal Align the Image and Name Relative to each other.
@@ -156,8 +173,10 @@ class ProductListingTableItem : UITableViewCell {
         let horizAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[divider]|", options: [], metrics: nil, views: viewsDict)
         constraints += horizAlignDivider
         
-        // Horizontal Align Image, Price, and Extra labels relative to each other.
-        let horizAlignImagePriceAndExtra = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[itemPrice]-[extra]-20-|", options: [], metrics: nil, views: viewsDict)
+        
+        // Horizontal Align Image, MRP, Price, and Extra labels
+        // relative to each other.
+        let horizAlignImagePriceAndExtra = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[mrpLabel(34)]-3-[itemPrice]-[extra]-20-|", options: [], metrics: nil, views: viewsDict)
         constraints += horizAlignImagePriceAndExtra
         
         // Add all the constraints to the ContentView

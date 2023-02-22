@@ -36,8 +36,11 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     /// UI Elements
     // Defines the table view that renders the API response.
     private var myTableView: UITableView!
+    
     // Label to show an error message if the API fails
     private var errorLabel: UILabel!
+    
+    // Loader to show when data is being fetched from the network.
     private var loader: LoaderView!
     
     // Performs the pull to refresh on the ViewController
@@ -53,10 +56,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         setupErrorLabel()
         setupRefreshController()
         setupLoader()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("Constraints \(self.view.constraints)")
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
