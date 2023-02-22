@@ -30,8 +30,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // MARK: UI Elements
     /// UI Elements
-    private var loader: LoaderView!
-    
     // Label to show an error message if the API fails
     private var errorLabel: UILabel!
     
@@ -46,7 +44,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         attachViewModelListener()
-        setupLoader()
         setupErrorLabel()
         setupCollectionView()
         setupRefreshController()
@@ -96,12 +93,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         collectionview?.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
     }
     
-    // Setup the Loader and add it to the subview
-    func setupLoader() {
-        loader = LoaderView(frame: view.frame)
-        view.addSubview(loader.loadingView)
-    }
-    
     // Setup the Error Label to show any error messages
     func setupErrorLabel() {
         errorLabel = UILabel(frame: self.view.frame)
@@ -139,7 +130,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
             if($0.isLoading == true) {
                 Task {
                     if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(self.loader.loadingView)
+                        self.view.addSubview(LoaderView().view)
                     }
                 }
             } else {
@@ -150,7 +141,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
                 }
                 if($0.error != "") {
                     Task {
-                        self.loader.stopLoader()
                         self.view.addSubview(self.errorLabel)
                     }
                 }

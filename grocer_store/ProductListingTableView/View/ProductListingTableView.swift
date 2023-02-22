@@ -55,7 +55,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         setupTableView()
         setupErrorLabel()
         setupRefreshController()
-        setupLoader()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -72,13 +71,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         myTableView.reloadData()
     }
     
-    // MARK: Setup Loader
-    // Setup the Loader and add it to the subview
-    func setupLoader() {
-        loader = LoaderView(frame: view.frame)
-        view.addSubview(loader.loadingView)
-    }
-    
+    // Setup the RefreshController
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
@@ -125,9 +118,8 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
                 Task {
-//                    self.myTableView.removeFromSuperview()
                     if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(self.loader.loadingView)
+                        self.view.addSubview(LoaderView().view)
                     }
                 }
             } else {
@@ -141,14 +133,12 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
                     self.storeResponse = response
                     self.tempStoreResponse = response
                     Task {
-                        self.loader.loadingView.removeFromSuperview()
                         self.myTableView.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
                         self.view.addSubview(self.myTableView)
                     }
                 } else if($0.error != "") {
                     
                     Task {
-                        self.loader.stopLoader()
                         self.view.addSubview(self.errorLabel)
                     }
                 }

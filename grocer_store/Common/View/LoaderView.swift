@@ -6,32 +6,34 @@
 //
 
 import UIKit
+import Lottie
 
-/// Shows a UIActivityIndicatorView and handles all the internal setup.
-class LoaderView: UIView {
-    var loadingView: UIActivityIndicatorView!
+/// Shows a LottieAnimation while data is being fetched.
+class LoaderView: UIViewController {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        loadingView = UIActivityIndicatorView(frame: frame)
-        loadingView.color = .systemGray
-        loadingView.style = .large
-        loadingView.startAnimating()
-        self.startLoader()
-    }
+    /// LottieAnimationView that handles the Lottie Animation
+    private var animationView: LottieAnimationView?
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    // MARK: Start the Loader
-    private func startLoader() {
-        loadingView.startAnimating()
-    }
-    
-    // MARK: Stop the loader
-    func stopLoader() {
-        loadingView.stopAnimating()
-        loadingView.removeFromSuperview()
+    override func viewDidLoad() {
+        // Initialise the AnimationView with the "Loading.json" Lottie File.
+        animationView = .init(name: "Loading")
+          
+        // Set the frame of the View to cover the entire view.
+        animationView!.frame = view.frame
+        
+        // Setting the AspectRatio of the Lottie view
+        animationView!.contentMode = .scaleAspectFit
+        
+        // Loop the animation unless stopped.
+        animationView!.loopMode = .loop
+
+        // Define the animation speed of the Lottie Animation.
+        animationView!.animationSpeed = 1.5
+        
+        // Start the Lottie animation
+        animationView?.play()
+        
+        // Add the LottiAnimationView to the Superview.
+        view.addSubview(animationView!)
     }
 }
