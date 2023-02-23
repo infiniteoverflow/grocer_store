@@ -39,6 +39,10 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
     
+    // Defines the LoaderView to show to the user when data
+    // is being loaded.
+    let loader = LoaderView()
+    
     // Empty Search Result UI
     private let emptySearchResultView = EmptySearchResultViewController()
     
@@ -141,11 +145,12 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
             if($0.isLoading == true) {
                 Task {
                     if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(LoaderView().view)
+                        self.view.addSubview(self.loader.view)
                     }
                 }
             } else {
                 Task {
+                    self.loader.removeFromParent()
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
