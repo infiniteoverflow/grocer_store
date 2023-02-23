@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HeaderSectionViewController: UIViewController  {
+/// Defines the Header Section of the App.
+class AppHeaderViewController: UIViewController  {
     
     // MARK: Properties
     /// Properties
@@ -55,27 +56,18 @@ class HeaderSectionViewController: UIViewController  {
     // MARK: Constraints
     // Add the constraints
     private func addConstraints() {
-        let viewsDict = [
-            "titleLabel" : titleLabel,
-            "filterLabel" : filterLabel,
-            "searchBar" : searchBar
-        ] as [String : Any]
         
-        var constraints: [NSLayoutConstraint] = []
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49).isActive = true
         
-        let verticalAlignTitle = NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]-|", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignTitle
+        NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 50).isActive = true
+        NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
         
-        let verticalAlignFilterToSearchBar = NSLayoutConstraint.constraints(withVisualFormat: "V:[filterLabel]-15-[searchBar(50)]-15-|", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignFilterToSearchBar
-                
-        let horizAlignTitleToFilter = NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[titleLabel]-[filterLabel]-20-|", options: [], metrics: nil, views: viewsDict)
-        constraints += horizAlignTitleToFilter
-        
-        let horizAlignSearch = NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[searchBar]-20-|", options: [], metrics: nil, views: viewsDict)
-        constraints += horizAlignSearch
-        
-        view.addConstraints(constraints)
+        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16).isActive = true
+        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34).isActive = true
+        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
+        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: -21).isActive = true
     }
     
     // MARK: Add Subviews
@@ -90,7 +82,7 @@ class HeaderSectionViewController: UIViewController  {
     // Setup the View
     private func setupView() {
         view.backgroundColor = Utils.hexStringToUIColor(hex: "E6E9F7")
-        view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 180)
+        view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 153)
     }
     
     // MARK: Setup SearchBar
