@@ -36,4 +36,8 @@ class LoaderView: UIViewController {
         // Add the LottiAnimationView to the Superview.
         view.addSubview(animationView!)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        animationView?.stop()
+    }
 }

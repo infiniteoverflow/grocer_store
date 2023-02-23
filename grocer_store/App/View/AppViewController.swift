@@ -30,7 +30,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         tabBar.itemSpacing = 10.0
         tabBar.itemWidth = 76.0
         tabBar.itemPositioning = .centered
-        
+    
         setUpTheViewController()
         
         self.selectPage(at: 0)
@@ -135,7 +135,9 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     
     // Defines the TabBarItem UI.
     private func tabbarItem() -> UITabBarItem {
-        return UITabBarItem(title: nil, image: tabBarImage, selectedImage: nil)
+        let uiTabBarItem = UITabBarItem(title: nil, image: tabBarImage, selectedImage: nil)
+        uiTabBarItem.imageInsets = UIEdgeInsets(top: 14.5, left: 0, bottom: -14.5, right: 0)
+        return uiTabBarItem
     }
     
     // Handle the change in TabBarItem during user-click or swipe.
