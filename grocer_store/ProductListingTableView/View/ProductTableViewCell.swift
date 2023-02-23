@@ -133,53 +133,34 @@ class ProductListingTableItem : UITableViewCell {
     // Add the constraints
     func addConstraints() {
         
-        // Dictionary of Views with their keys.
-        let viewsDict = [
-            "storeImage" : itemImage,
-            "itemName" : itemName,
-            "itemPrice" : itemPrice,
-            "extra" : extraLabel,
-            "mrpLabel": mrpLabel,
-            "divider": uiDivider
-        ] as [String : Any]
+        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0).isActive = true
         
-        // List of constraints.
-        var constraints: [NSLayoutConstraint] = []
+        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34).isActive = true
         
-        // Vertical Align the Item Image.
-        let verticalAlignImage = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[storeImage(50)]", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignImage
+        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
+
+        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
         
-        // Vertical Align the Extra Text.
-        let verticalAlignExtra = NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[extra]-14-[divider(0.2)]", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignExtra
+        NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
         
-        let verticalAlignMRP = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemName]-[mrpLabel]", metrics: nil, views: viewsDict)
-        constraints += verticalAlignMRP
+        NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
         
-        // Vertical Align Name and Price Relative to each other.
-        let verticalAlignNameAndPrice = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[itemName]-[itemPrice]", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignNameAndPrice
+        NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
         
-        // Vertical Align Divider.
-        let verticalAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemPrice]-14-[divider(0.2)]", options: [], metrics: nil, views: viewsDict)
-        constraints += verticalAlignDivider
+        NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: mrpLabel, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 2).isActive = true
         
-        // Horizontal Align the Image and Name Relative to each other.
-        let horizAlignImageAndName = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[itemName]|", options: [], metrics: nil, views: viewsDict)
-        constraints += horizAlignImageAndName
+        NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
         
-        // Horizontal Align Divider.
-        let horizAlignDivider = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[divider]|", options: [], metrics: nil, views: viewsDict)
-        constraints += horizAlignDivider
+        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemPrice, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 14).isActive = true
         
+        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
         
-        // Horizontal Align Image, MRP, Price, and Extra labels
-        // relative to each other.
-        let horizAlignImagePriceAndExtra = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[storeImage(50)]-10-[mrpLabel(34)]-3-[itemPrice]-[extra]-20-|", options: [], metrics: nil, views: viewsDict)
-        constraints += horizAlignImagePriceAndExtra
+        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
         
-        // Add all the constraints to the ContentView
-        contentView.addConstraints(constraints)
+        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0.5).isActive = true
+        
+        NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: uiDivider, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: -14).isActive = true
+        
+        NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -70).isActive = true
     }
 }

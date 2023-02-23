@@ -9,6 +9,11 @@ import Foundation
 
 /// Connects your view with your model artefacts
 class ViewModel : ObservableObject {
+    
+    // Making this class a Singleton.
+    static let instance = ViewModel()
+    private init() {}
+    
     @Published var store: DataWrapper<[Item]> = DataWrapper()
     
     /// Get the store details from the API or Mock Data
@@ -18,8 +23,11 @@ class ViewModel : ObservableObject {
         let result = await DataRepository().fetchStoreDetails()
         
         if(result.error != "") {
+            print("Error")
             store.error = "No Data Found"
         } else {
+            print("Response")
+            store.error = ""
             store.success = result.success
         }
         

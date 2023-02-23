@@ -21,8 +21,12 @@
 		CE2D8208299D17D8006B648C /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D8207299D17D8006B648C /* LoaderView.swift */; };
 		CE2D820A299D3167006B648C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D8209299D3167006B648C /* ProductTableViewCell.swift */; };
 		CE2D820D299D367A006B648C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* Utils.swift */; };
+		CE3ED12029A7079E0053228E /* grocer_storeSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */; };
+		CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12129A7324D0053228E /* AppViewController.swift */; };
+		CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12329A733910053228E /* AppPageViewController.swift */; };
+		CE3ED12729A7473D0053228E /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12629A7473D0053228E /* UpcomingViewController.swift */; };
 		CE3F8326299DD1BF004FCDFD /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8325299DD1BF004FCDFD /* ProductCollectionViewCell.swift */; };
-		CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */; };
+		CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */; };
 		CE3F836D299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836B299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld */; };
 		CE3F836F299F4DD0004FCDFD /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836E299F4DD0004FCDFD /* CoreDataHelper.swift */; };
 		CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8370299F78C6004FCDFD /* DataRepository.swift */; };
@@ -36,8 +40,6 @@
 		CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D47299CC0A30067EDFF /* StoreData.swift */; };
 		CE686D4F299CC0A30067EDFF /* StoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D48299CC0A30067EDFF /* StoreResponse.swift */; };
 		CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D54299CC0B80067EDFF /* ViewModel.swift */; };
-		CE6EE8AA29A4976A005D0535 /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */; };
-		CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */; };
 		CE6EE8AF29A5B5CC005D0535 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CE6EE8AE29A5B5CC005D0535 /* Lottie */; };
 		CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
@@ -75,8 +77,12 @@
 		CE2D8207299D17D8006B648C /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		CE2D8209299D3167006B648C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		CE2D820C299D367A006B648C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeSearchUITests.swift; sourceTree = "<group>"; };
+		CE3ED12129A7324D0053228E /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		CE3ED12329A733910053228E /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
+		CE3ED12629A7473D0053228E /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		CE3F8325299DD1BF004FCDFD /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionViewController.swift; sourceTree = "<group>"; };
+		CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderViewController.swift; sourceTree = "<group>"; };
 		CE3F836C299F4B4D004FCDFD /* StoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CE3F836E299F4DD0004FCDFD /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		CE3F8370299F78C6004FCDFD /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
@@ -89,8 +95,6 @@
 		CE686D47299CC0A30067EDFF /* StoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
 		CE686D48299CC0A30067EDFF /* StoreResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreResponse.swift; sourceTree = "<group>"; };
 		CE686D54299CC0B80067EDFF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
-		CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarViewController.swift; sourceTree = "<group>"; };
 		CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultViewController.swift; sourceTree = "<group>"; };
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,9 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				CE2D8207299D17D8006B648C /* LoaderView.swift */,
-				CE3F8327299DF9AA004FCDFD /* HeaderSectionViewController.swift */,
-				CE6EE8A929A4976A005D0535 /* AppPageViewController.swift */,
-				CE6EE8AB29A49ECF005D0535 /* BottomBarViewController.swift */,
 				CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */,
 			);
 			path = View;
@@ -192,6 +193,32 @@
 				CE2D820C299D367A006B648C /* Utils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CE3ED12529A747240053228E /* UpcomingView */ = {
+			isa = PBXGroup;
+			children = (
+				CE3ED12629A7473D0053228E /* UpcomingViewController.swift */,
+			);
+			path = UpcomingView;
+			sourceTree = "<group>";
+		};
+		CE3ED12829A761DF0053228E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CE3ED12929A761E80053228E /* View */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CE3ED12929A761E80053228E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE3ED12129A7324D0053228E /* AppViewController.swift */,
+				CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */,
+				CE3ED12329A733910053228E /* AppPageViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CE3F836A299F4B2D004FCDFD /* CoreDataService */ = {
@@ -302,6 +329,8 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
+				CE3ED12829A761DF0053228E /* App */,
+				CE3ED12529A747240053228E /* UpcomingView */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
 				CE2D81F8299CF812006B648C /* ProductListingTableView */,
 				CE686D5E299CDDAE0067EDFF /* LandingPage */,
@@ -330,6 +359,7 @@
 			children = (
 				CE7D33E8299A5BCB003158E6 /* grocer_storeUITests.swift */,
 				CE7D33EA299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift */,
+				CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */,
 			);
 			path = grocer_storeUITests;
 			sourceTree = "<group>";
@@ -476,10 +506,12 @@
 				CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */,
 				CE686D4D299CC0A30067EDFF /* Item.swift in Sources */,
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
+				CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
-				CE6EE8AC29A49ECF005D0535 /* BottomBarViewController.swift in Sources */,
-				CE3F8328299DF9AA004FCDFD /* HeaderSectionViewController.swift in Sources */,
+				CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */,
+				CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */,
+				CE3ED12729A7473D0053228E /* UpcomingViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
 				CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */,
 				CE686D4C299CC0A30067EDFF /* UrlConstants.swift in Sources */,
@@ -491,7 +523,6 @@
 				CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */,
 				CE0C18E329A1CF9F00B4D582 /* CoreDataStack.swift in Sources */,
 				CE2D8201299CFA62006B648C /* ProductListingCollectionView.swift in Sources */,
-				CE6EE8AA29A4976A005D0535 /* AppPageViewController.swift in Sources */,
 				CE3F836D299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld in Sources */,
 				CE3F8326299DD1BF004FCDFD /* ProductCollectionViewCell.swift in Sources */,
 				CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */,
@@ -522,6 +553,7 @@
 			files = (
 				CE7D33EB299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift in Sources */,
 				CE7D33E9299A5BCB003158E6 /* grocer_storeUITests.swift in Sources */,
+				CE3ED12029A7079E0053228E /* grocer_storeSearchUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,7 +705,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V3BUVKJ5R;
+				DEVELOPMENT_TEAM = LL99QT3UQK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = grocer_store/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -701,7 +733,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V3BUVKJ5R;
+				DEVELOPMENT_TEAM = LL99QT3UQK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = grocer_store/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -729,7 +761,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V3BUVKJ5R;
+				DEVELOPMENT_TEAM = LL99QT3UQK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
@@ -749,7 +781,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6V3BUVKJ5R;
+				DEVELOPMENT_TEAM = LL99QT3UQK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;

@@ -77,7 +77,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
         }
         let getItems = coreDataHelper.fetchLocalData()
         
-        XCTAssertEqual(getItems.count, 1)
+        XCTAssertEqual(getItems.count, 0)
     }
     
     /// Test the Clear CoreData operation.

@@ -20,13 +20,13 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // ViewModel class that contains logic for interacting the model
     // with the UI View.
-    private var viewModel = ViewModel()
+    private var viewModel = ViewModel.instance
     
     // Stores the store items
     private var storeResponse: [Item] = []
     
     // Stores the store items in a temp list
-    private var tempStoreResponse: [Item] = []
+    private var masterStoreResponse: [Item] = []
     
     // MARK: UI Elements
     /// UI Elements
@@ -34,7 +34,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     private var errorLabel: UILabel!
     
     // Defines the CollectionView for displaying the data.
-    var collectionview: UICollectionView?
+    var collectionview: UICollectionView!
     
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
@@ -50,18 +50,17 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         setupErrorLabel()
         setupCollectionView()
         setupRefreshController()
-        fetchData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        storeResponse = tempStoreResponse
+        storeResponse = masterStoreResponse
         collectionview?.backgroundView = nil
         if searchText.isEmpty {
             collectionview?.reloadData()
             return
         }
         storeResponse = storeResponse.filter { item in
-            return item.contains(text: searchText.lowercased())
+            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
         if storeResponse.isEmpty {
@@ -82,23 +81,28 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 110, height: 160)
+        CGSize(width: 50, height: 145)
     }
     
     // MARK: UI Methods
     // Setup the Collection View to show the grid of store items.
     func setupCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 35
+        layout.minimumLineSpacing = 0
         
         collectionview = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionview?.dataSource = self
-        collectionview?.delegate = self
-        collectionview?.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
-        collectionview?.backgroundColor = .white
-        collectionview?.contentInset = UIEdgeInsets(top: 39, left: 20, bottom: 10,right: 0)
-        collectionview?.bounces = true
-        collectionview?.alwaysBounceVertical = true
-        collectionview?.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
+        collectionview.dataSource = self
+        collectionview.delegate = self
+        collectionview.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        collectionview.backgroundColor = .white
+        collectionview.contentInset = UIEdgeInsets(top: 39, left: 20, bottom: 10,right: 0)
+        collectionview.bounces = true
+        collectionview.alwaysBounceVertical = true
+        collectionview.frame = CGRect(x: 0, y: 153, width: self.view.frame.size.width, height: self.view.frame.size.height - 153)
+        collectionview.contentInset = UIEdgeInsets(top: 39, left: 32, bottom: 0, right: 60)
+        collectionview.keyboardDismissMode = .onDrag
+        collectionview.addSubview(refreshControl)
     }
     
     // Setup the Error Label to show any error messages
@@ -114,7 +118,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        collectionview?.addSubview(refreshControl)
     }
     
     // MARK: View methods
@@ -155,7 +158,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
                 else {
                     guard let response = $0.success else {return}
                     self.storeResponse = response
-                    self.tempStoreResponse = response
+                    self.masterStoreResponse = response
                     Task {
                         self.view.addSubview(self.collectionview!)
                     }

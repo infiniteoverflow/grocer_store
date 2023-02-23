@@ -27,10 +27,10 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // ViewModel class that contains logic for interacting the model
     
     // Stores the store items in a temp list
-    private var tempStoreResponse: [Item] = []
+    private var masterStoreResponse: [Item] = []
     
     // with the UI View.
-    private var viewModel = ViewModel()
+    private var viewModel = ViewModel.instance
     
     // MARK: UI Elements
     /// UI Elements
@@ -41,14 +41,14 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     private var errorLabel: UILabel!
     
     // Loader to show when data is being fetched from the network.
-    private var loader: LoaderView!
+    let loader = LoaderView()
     
     // Empty Search Result UI
     private let emptySearchResultView = EmptySearchResultViewController()
     
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
-    
+        
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
@@ -62,14 +62,15 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchDelegate?.searchBar?(searchBar, textDidChange: searchText)
-        storeResponse = tempStoreResponse
+        storeResponse = masterStoreResponse
         myTableView.backgroundView = nil
         if searchText.isEmpty {
+            viewModel.store.success = masterStoreResponse
             myTableView.reloadData()
             return
         }
         storeResponse = storeResponse.filter { item in
-            return item.contains(text: searchText.lowercased())
+            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
         if storeResponse.isEmpty {
@@ -77,6 +78,12 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         }
         myTableView.reloadData()
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    
     
     // Setup the RefreshController
     func setupRefreshController() {
@@ -106,6 +113,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         myTableView.delegate = self
         myTableView.register(ProductListingTableItem.self, forCellReuseIdentifier: ProductListingTableItem.identifer)
         myTableView.showsVerticalScrollIndicator = true
+        myTableView.contentInset = UIEdgeInsets(top: 39,left: 0,bottom: 0,right: 0)
+        myTableView.separatorStyle = .none
+        myTableView.keyboardDismissMode = .onDrag
     }
     
     // MARK: Setup Error Label
@@ -126,11 +136,12 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             if($0.isLoading == true) {
                 Task {
                     if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(LoaderView().view)
+                        self.view.addSubview(self.loader.view)
                     }
                 }
             } else {
                 Task {
+                    self.loader.view.removeFromSuperview()
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
@@ -138,9 +149,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
                 if($0.success != nil) {
                     guard let response = $0.success else { return }
                     self.storeResponse = response
-                    self.tempStoreResponse = response
+                    self.masterStoreResponse = response
                     Task {
-                        self.myTableView.frame = CGRect(x: 0, y: 180, width: self.view.frame.size.width, height: self.view.frame.size.height - 180)
+                        self.myTableView.frame = CGRect(x: 0, y: 153, width: self.view.frame.size.width, height: self.view.frame.size.height - 153)
                         self.view.addSubview(self.myTableView)
                     }
                 } else if($0.error != "") {
