@@ -8,7 +8,7 @@
 import UIKit
 
 /// Contains utils to make your development easy
-struct Utils {
+struct AppUtilities {
     
     /// Convert your hexcode to UIColor
     static func hexStringToUIColor (hex:String,alpha: CGFloat = 1.0) -> UIColor {

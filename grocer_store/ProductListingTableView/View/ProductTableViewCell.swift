@@ -92,7 +92,7 @@ class ProductListingTableItem : UITableViewCell {
     // MARK: Setup Image
     // Setup the image
     func setupImage() {
-        itemImage.backgroundColor = Utils.hexStringToUIColor(hex: "F6F6F6")
+        itemImage.backgroundColor = AppUtilities.hexStringToUIColor(hex: "F6F6F6")
         itemImage.layer.cornerRadius = 8
         itemImage.translatesAutoresizingMaskIntoConstraints = false
     }

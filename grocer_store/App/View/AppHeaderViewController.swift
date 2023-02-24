@@ -29,7 +29,7 @@ class AppHeaderViewController: UIViewController  {
         let tl = UILabel()
         tl.text = "Filter"
         tl.font = .systemFont(ofSize: 16,weight: .regular)
-        tl.textColor = Utils.hexStringToUIColor(hex: "5DB075")
+        tl.textColor = AppColors.secondary
         return tl
     }()
     
@@ -81,7 +81,7 @@ class AppHeaderViewController: UIViewController  {
     // MARK: Setup View
     // Setup the View
     private func setupView() {
-        view.backgroundColor = Utils.hexStringToUIColor(hex: "E6E9F7")
+        view.backgroundColor = AppColors.primary
         view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 153)
     }
     

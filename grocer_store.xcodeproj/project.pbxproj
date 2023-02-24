@@ -17,12 +17,12 @@
 		CE0C18E929A22B9F00B4D582 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D46299CC0A30067EDFF /* Item.swift */; };
 		CE0C18EA29A22CE400B4D582 /* StoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836B299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld */; };
 		CE0C18EB29A22FEF00B4D582 /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D42299CC0A30067EDFF /* DataWrapper.swift */; };
-		CE0C18EC29A22FF300B4D582 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* Utils.swift */; };
+		CE0C18EC29A22FF300B4D582 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* AppUtilities.swift */; };
 		CE2D81FD299CF895006B648C /* ProductListingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D81FC299CF895006B648C /* ProductListingTableView.swift */; };
 		CE2D8201299CFA62006B648C /* ProductListingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D8200299CFA62006B648C /* ProductListingCollectionView.swift */; };
 		CE2D8208299D17D8006B648C /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D8207299D17D8006B648C /* LoaderView.swift */; };
 		CE2D820A299D3167006B648C /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D8209299D3167006B648C /* ProductTableViewCell.swift */; };
-		CE2D820D299D367A006B648C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* Utils.swift */; };
+		CE2D820D299D367A006B648C /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* AppUtilities.swift */; };
 		CE3ED12029A7079E0053228E /* grocer_storeSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */; };
 		CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12129A7324D0053228E /* AppViewController.swift */; };
 		CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12329A733910053228E /* AppPageViewController.swift */; };
@@ -51,6 +51,7 @@
 		CE7D33DF299A5BCA003158E6 /* grocer_storeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33DE299A5BCA003158E6 /* grocer_storeTests.swift */; };
 		CE7D33E9299A5BCB003158E6 /* grocer_storeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33E8299A5BCB003158E6 /* grocer_storeUITests.swift */; };
 		CE7D33EB299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33EA299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift */; };
+		CEA86C7629A8668F00BB24B0 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C7529A8668F00BB24B0 /* AppColors.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +88,7 @@
 		CE2D8200299CFA62006B648C /* ProductListingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListingCollectionView.swift; sourceTree = "<group>"; };
 		CE2D8207299D17D8006B648C /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		CE2D8209299D3167006B648C /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
-		CE2D820C299D367A006B648C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		CE2D820C299D367A006B648C /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeSearchUITests.swift; sourceTree = "<group>"; };
 		CE3ED12129A7324D0053228E /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		CE3ED12329A733910053228E /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		CE7D33E4299A5BCB003158E6 /* grocer_storeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grocer_storeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33E8299A5BCB003158E6 /* grocer_storeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeUITests.swift; sourceTree = "<group>"; };
 		CE7D33EA299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEA86C7529A8668F00BB24B0 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,7 +228,8 @@
 		CE2D820B299D365F006B648C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CE2D820C299D367A006B648C /* Utils.swift */,
+				CE2D820C299D367A006B648C /* AppUtilities.swift */,
+				CEA86C7529A8668F00BB24B0 /* AppColors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -649,13 +652,14 @@
 				CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
+				CEA86C7629A8668F00BB24B0 /* AppColors.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */,
 				CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */,
 				CE3ED12729A7473D0053228E /* ComingSoonViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
 				CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */,
 				CE686D4C299CC0A30067EDFF /* UrlConstants.swift in Sources */,
-				CE2D820D299D367A006B648C /* Utils.swift in Sources */,
+				CE2D820D299D367A006B648C /* AppUtilities.swift in Sources */,
 				CE2D820A299D3167006B648C /* ProductTableViewCell.swift in Sources */,
 				CE686D4B299CC0A30067EDFF /* ApiService.swift in Sources */,
 				CE2D81FD299CF895006B648C /* ProductListingTableView.swift in Sources */,
@@ -680,7 +684,7 @@
 				CE5C92BA29A09E4500AB3B9D /* TestCoreDataStack.swift in Sources */,
 				CE0C18EB29A22FEF00B4D582 /* DataWrapper.swift in Sources */,
 				CE0C18E929A22B9F00B4D582 /* Item.swift in Sources */,
-				CE0C18EC29A22FF300B4D582 /* Utils.swift in Sources */,
+				CE0C18EC29A22FF300B4D582 /* AppUtilities.swift in Sources */,
 				CE0C18E729A22B9A00B4D582 /* StoreResponse.swift in Sources */,
 				CE0C18E429A229E300B4D582 /* CoreDataStack.swift in Sources */,
 				CE0C18E829A22B9D00B4D582 /* StoreData.swift in Sources */,

@@ -12,10 +12,10 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     // MARK: View Properties
     /// View Properties
     /// The color for the selected TabBarItem
-    let selectedColor = Utils.hexStringToUIColor(hex: "5DB075")
+    let selectedColor = AppColors.secondary
     
     /// The color for the de-selected TabBarItem
-    let deselectedColor = Utils.hexStringToUIColor(hex: "E8E8E8")
+    let deselectedColor = AppColors.appLightGray
     
     /// The Image for the TabBarItem
     var tabBarImage = UIImage(named: "BottomCircle")!
