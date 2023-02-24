@@ -126,7 +126,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Setup the Error Label to show any error messages
     func setupErrorLabel() {
         errorLabel = UILabel(frame: self.view.frame)
-        errorLabel.text = "Something went wrong, \nPlease try again later"
+        errorLabel.text = AppString.apiErrorString
         errorLabel.textAlignment = .center
         errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         errorLabel.numberOfLines = 2
@@ -134,7 +134,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // Setup the RefreshController to be used for swipe-down-to-refresh
     func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     }
     
@@ -193,7 +193,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
                 self.setupLoader()
             } else {
                 self.stopLoaderAndRefreshViewAnimation()
-                if($0.error != "") {
+                if($0.error != AppString.emptyString) {
                     self.attachErrorView()
                 }
                 else {

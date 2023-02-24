@@ -12,7 +12,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     /// Properties
     /// Unique identifier for the CollectionView Cell
-    static let identifier = "ProductCollectionViewCell"
+    static let identifier = ProductCollectionString.productCollectionCellIdentifier
     
     // MARK: UI Elements
     /// UI Elements
@@ -101,34 +101,5 @@ class ProductCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint(item: itemNameLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
         
         NSLayoutConstraint(item: itemPriceLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemNameLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 5).isActive = true
-        
-        // List of all the constraints
-//        var constraints: [NSLayoutConstraint] = []
-//
-//        // Vertical Align the itemImageView from the top with height:80
-//        let verticalConstraintForItemImageView = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[itemImageView(80)]", options: [], metrics: nil, views: viewsDict)
-//        constraints += verticalConstraintForItemImageView
-//
-//        // Vertical Align the itemNameLabel 10px from the itemImageView
-//        let verticalConstraintForImageAndName = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemImageView(80)]-10-[itemNameLabel(10)]", options: [], metrics: nil, views: viewsDict)
-//        constraints += verticalConstraintForImageAndName
-//
-//        // Vertical Align the itemPriceLabel 10px from itemNameLabel
-//        let verticalConstraintForNameAndPrice = NSLayoutConstraint.constraints(withVisualFormat: "V:[itemNameLabel(10)]-10-[itemPriceLabel(10)]", options: [], metrics: nil, views: viewsDict)
-//        constraints += verticalConstraintForNameAndPrice
-//
-//        // Horizontal Align the itemImageView to the trailing edge of the superview
-//        let horizConstraintImage = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[itemImageView(80)]", options: [], metrics: nil, views: viewsDict)
-//        constraints += horizConstraintImage
-//
-//        // Horizontal Align the itemNameLabel to the trailing edge of the superview
-//        let horizConstraintName = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[itemNameLabel]", options: [], metrics: nil, views: viewsDict)
-//        constraints += horizConstraintName
-//
-//        // Horizontal Align the itemPriceLabel to the trailing edge of the superview
-//        let horizConstraintPrice = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[itemPriceLabel]", options: [], metrics: nil, views: viewsDict)
-//        constraints += horizConstraintPrice
-//
-//        contentView.addConstraints(constraints)
     }
 }

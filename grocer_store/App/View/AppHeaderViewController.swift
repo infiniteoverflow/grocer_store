@@ -19,7 +19,7 @@ class AppHeaderViewController: UIViewController  {
     /// Gives the title of the header section.
     private var titleLabel: UILabel = {
         let tl = UILabel()
-        tl.text = "Explore"
+        tl.text = AppFeatureString.explore
         tl.font = .systemFont(ofSize: 18,weight: .bold)
         return tl
     }()
@@ -27,7 +27,7 @@ class AppHeaderViewController: UIViewController  {
     /// Gives the filter title of the header section.
     private var filterLabel: UILabel = {
         let tl = UILabel()
-        tl.text = "Filter"
+        tl.text = AppFeatureString.filter
         tl.font = .systemFont(ofSize: 16,weight: .regular)
         tl.textColor = AppColors.secondary
         return tl
@@ -94,7 +94,7 @@ class AppHeaderViewController: UIViewController  {
         searchBar.layer.cornerRadius = 25
         searchBar.layer.masksToBounds = true
         
-        searchBar.placeholder = "Search"
+        searchBar.placeholder = AppFeatureString.search
         searchBar.searchBarStyle = .prominent
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.translatesAutoresizingMaskIntoConstraints = false

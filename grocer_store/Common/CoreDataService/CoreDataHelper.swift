@@ -20,7 +20,7 @@ class CoreDataHelper {
     
     // MARK: Properties
     /// Properties
-    private let storeItemEntity = "StoreItem"
+    private let storeItemEntity = AppString.storeItemEntityName
     private let managedObjectContext: NSManagedObjectContext
     private let coreDataStack: CoreDataStack
     
@@ -62,10 +62,10 @@ class CoreDataHelper {
             let entity = NSEntityDescription.entity(forEntityName: storeItemEntity, in: managedObjectContext)!
             let storeItem = NSManagedObject(entity: entity, insertInto: managedObjectContext)
             
-            storeItem.setValue(item.name, forKey: "name")
-            storeItem.setValue(item.price, forKey: "price")
-            storeItem.setValue(item.extra, forKey: "extra")
-            storeItem.setValue(item.image, forKey: "image")
+            storeItem.setValue(item.name, forKey: AppString.itemName)
+            storeItem.setValue(item.price, forKey: AppString.itemPrice)
+            storeItem.setValue(item.extra, forKey: AppString.itemExtra)
+            storeItem.setValue(item.image, forKey: AppString.itemImage)
         }
         
         do {
@@ -93,10 +93,10 @@ class CoreDataHelper {
             
             item.forEach { itemData in
                 let item = Item(
-                    name: (itemData as? StoreItem)?.name ?? "",
-                    price: (itemData as? StoreItem)?.price ?? "",
-                    extra: (itemData as? StoreItem)?.extra ?? "",
-                    image: (itemData as? StoreItem)?.image ?? ""
+                    name: (itemData as? StoreItem)?.name ?? AppString.emptyString,
+                    price: (itemData as? StoreItem)?.price ?? AppString.emptyString,
+                    extra: (itemData as? StoreItem)?.extra ?? AppString.emptyString,
+                    image: (itemData as? StoreItem)?.image ?? AppString.emptyString
                 )
                 
                 items.append(item)

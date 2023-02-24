@@ -22,12 +22,12 @@ class ViewModel : ObservableObject {
 
         let result = await DataRepository().fetchStoreDetails()
         
-        if(result.error != "") {
+        if(result.error != AppString.emptyString) {
             print("Error")
             store.error = "No Data Found"
         } else {
             print("Response")
-            store.error = ""
+            store.error = AppString.emptyString
             store.success = result.success
         }
         

@@ -92,7 +92,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     /// View Methods
     // Setup the RefreshController
     func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         myTableView.addSubview(refreshControl)
     }
@@ -117,7 +117,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Setup the Error Label to show any error messages
     func setupErrorLabel() {
         errorLabel = UILabel(frame: self.view.frame)
-        errorLabel.text = "Something went wrong, \nPlease try again later"
+        errorLabel.text = AppString.apiErrorString
         errorLabel.textAlignment = .center
         errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         errorLabel.numberOfLines = 2
@@ -199,7 +199,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
                     self.masterStoreResponse = response
                     
                     self.attachTableView()
-                } else if($0.error != "") {
+                } else if($0.error != AppString.emptyString) {
                     self.attachErrorView()
                 }
             }

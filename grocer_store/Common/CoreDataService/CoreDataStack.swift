@@ -11,16 +11,11 @@ import CoreData
 /// A Stack that takes care of initializing your CoreData artefacts.
 class CoreDataStack {
     
-    // MARK: Properties
-    /// Properties
-    /// Name of your model file
-    static let modelName = "StoreDataModel"
-    
     // MARK: UI Elements
     /// UI Elements
     /// Programmatic representation of Model file
     static let model: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
+        let modelURL = Bundle.main.url(forResource: AppString.storeDataModelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
@@ -39,7 +34,7 @@ class CoreDataStack {
     
     /// A container that encapsulates the Core Data stack in your app.
     var storeContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        let container = NSPersistentContainer(name: AppString.storeDataModelName, managedObjectModel: model)
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

@@ -15,5 +15,5 @@ import Foundation
 struct DataWrapper<T> {
     var isLoading: Bool = false
     var success: T?
-    var error: String = ""
+    var error: String = AppString.emptyString
 }

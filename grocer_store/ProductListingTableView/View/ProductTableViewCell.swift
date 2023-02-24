@@ -15,7 +15,7 @@ class ProductListingTableItem : UITableViewCell {
     // MARK: Properties
     /// Properties
     /// Unique identifier for the Table Cell
-    static let identifer = "ProductListingTableItem"
+    static let identifer = ProductTableString.productTableCellIdentifier
     
     // MARK: UI Elements
     /// UI Elements
@@ -25,7 +25,7 @@ class ProductListingTableItem : UITableViewCell {
             itemName.text = productItem?.name
             itemPrice.text = productItem?.price?.replacingOccurrences(of: " ", with: "")
             extraLabel.text = productItem?.extra
-            mrpLabel.text = "MRP:"
+            mrpLabel.text = ProductTableString.mrp
             
             guard let imageUrl = productItem?.image else {
                 return
@@ -92,7 +92,7 @@ class ProductListingTableItem : UITableViewCell {
     // MARK: Setup Image
     // Setup the image
     func setupImage() {
-        itemImage.backgroundColor = AppUtilities.hexStringToUIColor(hex: "F6F6F6")
+        itemImage.backgroundColor = AppColors.appLightGray
         itemImage.layer.cornerRadius = 8
         itemImage.translatesAutoresizingMaskIntoConstraints = false
     }
