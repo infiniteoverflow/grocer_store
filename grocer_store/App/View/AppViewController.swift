@@ -96,9 +96,9 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         productListingTableView.searchDelegate = productListingCollectionView
         
         // View for showing the Upcoming Screens
-        let upcomingView1 = UpcomingViewController()
-        let upcomingView2 = UpcomingViewController()
-        let upcomingView3 = UpcomingViewController()
+        let upcomingView1 = ComingSoonViewController()
+        let upcomingView2 = ComingSoonViewController()
+        let upcomingView3 = ComingSoonViewController()
         
         
         // Add the header section to the view

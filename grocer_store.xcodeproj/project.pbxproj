@@ -26,7 +26,7 @@
 		CE3ED12029A7079E0053228E /* grocer_storeSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */; };
 		CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12129A7324D0053228E /* AppViewController.swift */; };
 		CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12329A733910053228E /* AppPageViewController.swift */; };
-		CE3ED12729A7473D0053228E /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12629A7473D0053228E /* UpcomingViewController.swift */; };
+		CE3ED12729A7473D0053228E /* ComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3ED12629A7473D0053228E /* ComingSoonViewController.swift */; };
 		CE3F8326299DD1BF004FCDFD /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8325299DD1BF004FCDFD /* ProductCollectionViewCell.swift */; };
 		CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */; };
 		CE3F836D299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836B299F4B4D004FCDFD /* StoreDataModel.xcdatamodeld */; };
@@ -91,7 +91,7 @@
 		CE3ED11F29A7079E0053228E /* grocer_storeSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeSearchUITests.swift; sourceTree = "<group>"; };
 		CE3ED12129A7324D0053228E /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		CE3ED12329A733910053228E /* AppPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPageViewController.swift; sourceTree = "<group>"; };
-		CE3ED12629A7473D0053228E /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
+		CE3ED12629A7473D0053228E /* ComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonViewController.swift; sourceTree = "<group>"; };
 		CE3F8325299DD1BF004FCDFD /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderViewController.swift; sourceTree = "<group>"; };
 		CE3F836C299F4B4D004FCDFD /* StoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -231,12 +231,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		CE3ED12529A747240053228E /* UpcomingView */ = {
+		CE3ED12529A747240053228E /* ComingSoonView */ = {
 			isa = PBXGroup;
 			children = (
-				CE3ED12629A7473D0053228E /* UpcomingViewController.swift */,
+				CE3ED12629A7473D0053228E /* ComingSoonViewController.swift */,
 			);
-			path = UpcomingView;
+			path = ComingSoonView;
 			sourceTree = "<group>";
 		};
 		CE3ED12829A761DF0053228E /* App */ = {
@@ -368,7 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				CE3ED12829A761DF0053228E /* App */,
-				CE3ED12529A747240053228E /* UpcomingView */,
+				CE3ED12529A747240053228E /* ComingSoonView */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
 				CE2D81F8299CF812006B648C /* ProductListingTableView */,
 				CE686D5E299CDDAE0067EDFF /* LandingPage */,
@@ -651,7 +651,7 @@
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */,
 				CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */,
-				CE3ED12729A7473D0053228E /* UpcomingViewController.swift in Sources */,
+				CE3ED12729A7473D0053228E /* ComingSoonViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
 				CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */,
 				CE686D4C299CC0A30067EDFF /* UrlConstants.swift in Sources */,

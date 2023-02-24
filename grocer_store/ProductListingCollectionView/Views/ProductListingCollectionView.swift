@@ -18,6 +18,9 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // state of the Network call.
     private var cancellable: AnyCancellable?
     
+    // Defines the debounce timer for the search text comparison.
+    var searchDebounceTimer: Timer?
+    
     // ViewModel class that contains logic for interacting the model
     // with the UI View.
     private var viewModel = ViewModel.instance
@@ -57,21 +60,13 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        storeResponse = masterStoreResponse
-        collectionview?.backgroundView = nil
-        if searchText.isEmpty {
-            collectionview?.reloadData()
-            return
-        }
-        storeResponse = storeResponse.filter { item in
-            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
-        }
+        // Stop the timer if its running.
+        searchDebounceTimer?.invalidate()
         
-        if storeResponse.isEmpty {
-            collectionview?.backgroundView = emptySearchResultView.view
+        // Restart the timer, and perform the closure action after the given interval.
+        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
+            self.filterData(searchText: searchText)
         }
-        
-        collectionview?.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,6 +84,25 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     }
     
     // MARK: UI Methods
+    // Perform Filter on the ui data based on the search text.
+    func filterData(searchText: String) {
+        storeResponse = masterStoreResponse
+        collectionview?.backgroundView = nil
+        if searchText.isEmpty {
+            collectionview?.reloadData()
+            return
+        }
+        storeResponse = storeResponse.filter { item in
+            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        
+        if storeResponse.isEmpty {
+            collectionview?.backgroundView = emptySearchResultView.view
+        }
+        
+        collectionview?.reloadData()
+    }
+    
     // Setup the Collection View to show the grid of store items.
     func setupCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

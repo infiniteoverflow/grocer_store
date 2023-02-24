@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 /// Shows a LottieAnimation while data is being fetched.
-class UpcomingViewController: UIViewController {
+class ComingSoonViewController: UIViewController {
     
     /// LottieAnimationView that handles the Lottie Animation
     private var animationView: LottieAnimationView?

@@ -21,6 +21,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     /// Delegate for passing the search data to another view
     var searchDelegate: UISearchBarDelegate? = nil
     
+    // Defines the debounce timer for the search text comparison.
+    var searchDebounceTimer: Timer?
+    
     /// Data instances
     // Stores the store items
     private var storeResponse: [Item] = []
@@ -60,7 +63,103 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         setupRefreshController()
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        storeResponse.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductListingTableItem.identifer, for: indexPath) as! ProductListingTableItem
+        cell.productItem = storeResponse[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        70
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchDebounceTimer?.invalidate()
+        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
+            self.filterData(searchBar: searchBar, searchText: searchText)
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    // MARK: View Methods
+    /// View Methods
+    // Setup the RefreshController
+    func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        myTableView.addSubview(refreshControl)
+    }
+    
+    // Execute this method when we pull to refresh the view
+    @objc func refresh(){
+        fetchData()
+    }
+    
+    // Setup the Table View for displaying table data.
+    func setupTableView() {
+        myTableView = UITableView(frame: view.frame)
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.register(ProductListingTableItem.self, forCellReuseIdentifier: ProductListingTableItem.identifer)
+        myTableView.showsVerticalScrollIndicator = true
+        myTableView.contentInset = UIEdgeInsets(top: 39,left: 0,bottom: 0,right: 0)
+        myTableView.separatorStyle = .none
+        myTableView.keyboardDismissMode = .onDrag
+    }
+    
+    // Setup the Error Label to show any error messages
+    func setupErrorLabel() {
+        errorLabel = UILabel(frame: self.view.frame)
+        errorLabel.text = "Something went wrong, \nPlease try again later"
+        errorLabel.textAlignment = .center
+        errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        errorLabel.numberOfLines = 2
+    }
+    
+    // Setup the loader if the view state is "Loading"
+    func setupLoader() {
+        Task {
+            if !self.refreshControl.isRefreshing {
+                self.view.addSubview(self.loader.view)
+            }
+        }
+    }
+    
+    // Dispose Loader and Refresh View Animation
+    func stopLoaderAndRefreshViewAnimation() {
+        Task {
+            self.loader.view.removeFromSuperview()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    // Attach the TableView
+    func attachTableView() {
+        Task {
+            self.myTableView.frame = CGRect(x: 0, y: 153, width: self.view.frame.size.width, height: self.view.frame.size.height - 153)
+            self.view.addSubview(self.myTableView)
+        }
+    }
+    
+    // Attach the Error View
+    func attachErrorView() {
+        Task {
+            self.view.addSubview(self.errorLabel)
+        }
+    }
+    
+    // MARK: UI Methods
+    // Perform Filter on the ui data based on the search text.
+    func filterData(searchBar: UISearchBar, searchText: String) {
         self.searchDelegate?.searchBar?(searchBar, textDidChange: searchText)
         storeResponse = masterStoreResponse
         myTableView.backgroundView = nil
@@ -79,104 +178,31 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         myTableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    
-    
-    // Setup the RefreshController
-    func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        myTableView.addSubview(refreshControl)
-    }
-    
-    /// Execute this method when we pull to refresh the view
-    @objc func refresh(){
-        fetchData()
-    }
-    
-    // MARK: Fetch Data
     // Perfrom Network call to fetch Store Data.
     func fetchData() {
         Task {
             await viewModel.getStoreDetails()
         }
     }
-    
-    // MARK: Setup TableView
-    // Setup the Table View for displaying table data.
-    func setupTableView() {
-        myTableView = UITableView(frame: view.frame)
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        myTableView.register(ProductListingTableItem.self, forCellReuseIdentifier: ProductListingTableItem.identifer)
-        myTableView.showsVerticalScrollIndicator = true
-        myTableView.contentInset = UIEdgeInsets(top: 39,left: 0,bottom: 0,right: 0)
-        myTableView.separatorStyle = .none
-        myTableView.keyboardDismissMode = .onDrag
-    }
-    
-    // MARK: Setup Error Label
-    // Setup the Error Label to show any error messages
-    func setupErrorLabel() {
-        errorLabel = UILabel(frame: self.view.frame)
-        errorLabel.text = "Something went wrong, \nPlease try again later"
-        errorLabel.textAlignment = .center
-        errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
-        errorLabel.numberOfLines = 2
-    }
-    
-    // MARK: Attach ViewModel Listener
+        
     // Attach listeners to listen to the Network call
     // to fetch store data.
     func attachViewModelListener() {
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
-                Task {
-                    if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(self.loader.view)
-                    }
-                }
+                self.setupLoader()
             } else {
-                Task {
-                    self.loader.view.removeFromSuperview()
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                }
+                self.stopLoaderAndRefreshViewAnimation()
                 if($0.success != nil) {
                     guard let response = $0.success else { return }
                     self.storeResponse = response
                     self.masterStoreResponse = response
-                    Task {
-                        self.myTableView.frame = CGRect(x: 0, y: 153, width: self.view.frame.size.width, height: self.view.frame.size.height - 153)
-                        self.view.addSubview(self.myTableView)
-                    }
-                } else if($0.error != "") {
                     
-                    Task {
-                        self.view.addSubview(self.errorLabel)
-                    }
+                    self.attachTableView()
+                } else if($0.error != "") {
+                    self.attachErrorView()
                 }
             }
         }
-    }
-    
-    // MARK: TableView-NumberOfRowsInSection
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        storeResponse.count
-    }
-    
-    // MARK: TableView-cellForRowAt
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProductListingTableItem.identifer, for: indexPath) as! ProductListingTableItem
-        cell.productItem = storeResponse[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        70
     }
 }

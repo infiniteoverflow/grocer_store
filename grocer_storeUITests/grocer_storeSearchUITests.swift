@@ -11,20 +11,21 @@ import XCTest
 // of the SearchBar on the Header of the application.
 final class grocer_storeSearchUITests: XCTestCase {
     
+    var app: XCUIApplication!
+    
+    override func setUp() {
+        self.app = XCUIApplication()
+        self.app.launch()
+    }
+    
     // Verify the SearchBar is visible on Loading the app.
     func testSearchBarVisibleOnLoad() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = XCUIApplication().searchFields["Search"]
         XCTAssertTrue(searchField.exists)
     }
     
     // Verify the SearchBar is enabled on tapping it.
     func testSearchBarOnTapIsEnabled() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = XCUIApplication().searchFields["Search"]
         searchField.tap()
         XCTAssertTrue(searchField.isEnabled)
@@ -32,9 +33,6 @@ final class grocer_storeSearchUITests: XCTestCase {
     
     // Verify the SearchBar Text is the same as we entered.
     func testSearchBarTextIsSameAsEntered() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
@@ -44,9 +42,6 @@ final class grocer_storeSearchUITests: XCTestCase {
     // Verify the SearchBar ClearText Buttonn works as expected.
     // Expected: The placeholder text "Search" should be shown.
     func testSearchBarClearTextTappedShowPlaceholderText() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
@@ -57,9 +52,6 @@ final class grocer_storeSearchUITests: XCTestCase {
     
     // Verify the SearchBar Search Button is visible.
     func testSearchBarSearchIsVisible() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
@@ -69,9 +61,6 @@ final class grocer_storeSearchUITests: XCTestCase {
     
     // Verify the SearchBar Search Button tapped closes the Keyboard.
     func testSearchBarSearchTappedClosesKeyboard() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
@@ -83,9 +72,6 @@ final class grocer_storeSearchUITests: XCTestCase {
     // Verify the SearchBar Search Button works as expected.
     // Expected: The same text should persist in the SearchBar
     func testSearchBarSearchTappedPersistText() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
