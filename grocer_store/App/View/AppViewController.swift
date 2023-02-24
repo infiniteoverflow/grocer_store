@@ -18,7 +18,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     let deselectedColor = AppColors.appLightGray
     
     /// The Image for the TabBarItem
-    var tabBarImage = UIImage(named: "BottomCircle")!
+    var tabBarImage = UIImage(named: AppAssets.bottomCircleGreen)!
     
     // MARK: Lifecycle methods
     /// Lifecycle methods

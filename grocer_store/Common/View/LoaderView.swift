@@ -16,7 +16,7 @@ class LoaderView: UIViewController {
     
     override func viewDidLoad() {
         // Initialise the AnimationView with the "Loading.json" Lottie File.
-        animationView = .init(name: "Loading")
+        animationView = .init(name: AppAssets.loading)
           
         // Set the frame of the View to cover the entire view.
         animationView!.frame = view.frame

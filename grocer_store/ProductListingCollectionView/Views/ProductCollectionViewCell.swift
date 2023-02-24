@@ -75,7 +75,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
                 }
             } else {
                 Task {
-                    self?.itemImage.image = UIImage(named: "Phonepe")
+                    self?.itemImage.image = UIImage(named: AppAssets.phonePePlaceholder)
                 }
             }
         }

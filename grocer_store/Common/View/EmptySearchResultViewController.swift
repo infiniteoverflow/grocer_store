@@ -17,7 +17,7 @@ class EmptySearchResultViewController: UIViewController {
         super.viewDidLoad()
         
         // Initialise the AnimationView with the "Loading.json" Lottie File.
-        animationView = .init(name: "EmptyResult")
+        animationView = .init(name: AppAssets.emptyResult)
           
         // Set the frame of the View to cover the entire view.
         animationView!.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)

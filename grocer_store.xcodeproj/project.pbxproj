@@ -52,6 +52,7 @@
 		CE7D33E9299A5BCB003158E6 /* grocer_storeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33E8299A5BCB003158E6 /* grocer_storeUITests.swift */; };
 		CE7D33EB299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33EA299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift */; };
 		CEA86C7629A8668F00BB24B0 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C7529A8668F00BB24B0 /* AppColors.swift */; };
+		CEA86C7829A8685000BB24B0 /* AppAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C7729A8685000BB24B0 /* AppAssets.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		CE7D33E8299A5BCB003158E6 /* grocer_storeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeUITests.swift; sourceTree = "<group>"; };
 		CE7D33EA299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CEA86C7529A8668F00BB24B0 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		CEA86C7729A8685000BB24B0 /* AppAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 			children = (
 				CE2D820C299D367A006B648C /* AppUtilities.swift */,
 				CEA86C7529A8668F00BB24B0 /* AppColors.swift */,
+				CEA86C7729A8685000BB24B0 /* AppAssets.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */,
 				CE686D4D299CC0A30067EDFF /* Item.swift in Sources */,
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
+				CEA86C7829A8685000BB24B0 /* AppAssets.swift in Sources */,
 				CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
