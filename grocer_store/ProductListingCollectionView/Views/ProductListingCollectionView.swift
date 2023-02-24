@@ -138,6 +138,39 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
     }
     
+    // Setup the loader if the view state is "Loading"
+    func setupLoader() {
+        Task {
+            if !self.refreshControl.isRefreshing {
+                self.view.addSubview(self.loader.view)
+            }
+        }
+    }
+    
+    // Dispose Loader and Refresh View Animation
+    func stopLoaderAndRefreshViewAnimation() {
+        Task {
+            self.loader.removeFromParent()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    // Attach the TableView
+    func attachCollectionView() {
+        Task {
+            self.view.addSubview(self.collectionview!)
+        }
+    }
+    
+    // Attach the Error View
+    func attachErrorView() {
+        Task {
+            self.view.addSubview(self.errorLabel)
+        }
+    }
+    
     // MARK: View methods
     /// View Methods
     /// Execute this method when we pull to refresh the view
@@ -157,30 +190,18 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     func attachViewModelListener() {
         cancellable = viewModel.$store.sink {
             if($0.isLoading == true) {
-                Task {
-                    if !self.refreshControl.isRefreshing {
-                        self.view.addSubview(self.loader.view)
-                    }
-                }
+                self.setupLoader()
             } else {
-                Task {
-                    self.loader.removeFromParent()
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                }
+                self.stopLoaderAndRefreshViewAnimation()
                 if($0.error != "") {
-                    Task {
-                        self.view.addSubview(self.errorLabel)
-                    }
+                    self.attachErrorView()
                 }
                 else {
                     guard let response = $0.success else {return}
                     self.storeResponse = response
                     self.masterStoreResponse = response
-                    Task {
-                        self.view.addSubview(self.collectionview!)
-                    }
+                    
+                    self.attachCollectionView()
                 }
             }
         }
