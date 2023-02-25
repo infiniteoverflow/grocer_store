@@ -15,7 +15,7 @@ class TestCoreDataStack: CoreDataStack {
         peristentStoreDescription.type = NSInMemoryStoreType
         
         let container = NSPersistentContainer(
-            name: CoreDataStack.modelName,
+            name: AppString.storeDataModelName,
             managedObjectModel: CoreDataStack.model
         )
         
