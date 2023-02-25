@@ -104,7 +104,22 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         // Add the header section to the view
         let appHeaderViewController = AppHeaderViewController()
         appHeaderViewController.searchDelegate = productListingTableView
+        
         view.addSubview(appHeaderViewController.view)
+        
+        let headerTopConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let headerLeadingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let headerTrailingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let headerHeight = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 153)
+        
+        view.addConstraints([
+            headerTopConstraint,
+            headerLeadingConstraint,
+            headerTrailingConstraint,
+            headerHeight
+        ])
+        
+        NSLayoutConstraint.activate(view.constraints)
         
         // Setting the tag for individual views so that they can be
         // easily distinguishable during tab index change.
