@@ -35,8 +35,8 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Defines the table view that renders the API response.
     private var myTableView: UITableView!
     
-    // Label to show an error message if the API fails
-    private var errorLabel: UILabel!
+    // View to show an error message if the API fails
+    private var errorView = ApiFetchFailViewController()
     
     // Loader to show when data is being fetched from the network.
     let loader = LoaderView()
@@ -57,8 +57,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         fetchData()
         // Setup the TableView.
         setupTableView()
-        // Setup the Error view.
-        setupErrorLabel()
         // Setup the Pull-down-to-refresh View.
         setupRefreshController()
     }
@@ -147,15 +145,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         myTableView.keyboardDismissMode = .onDrag
     }
     
-    // Setup the Error Label to show any error messages
-    func setupErrorLabel() {
-        errorLabel = UILabel(frame: self.view.frame)
-        errorLabel.text = AppString.apiErrorString
-        errorLabel.textAlignment = .center
-        errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
-        errorLabel.numberOfLines = 2
-    }
-    
     // Setup the loader if the view state is "Loading"
     func setupLoader() {
         Task {
@@ -186,7 +175,8 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Attach the Error View
     func attachErrorView() {
         Task {
-            self.view.addSubview(self.errorLabel)
+            self.loader.view.removeFromSuperview()
+            self.view.addSubview(self.errorView.view)
         }
     }
     

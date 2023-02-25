@@ -19,4 +19,5 @@ class AppAssets {
     static let comingSoon = "ComingSoon"
     static let emptyResult = "EmptyResult"
     static let loading = "Loading"
+    static let somethingWentWrong = "SomethingWentWrong"
 }

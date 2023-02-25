@@ -28,8 +28,8 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // MARK: UI Elements
     /// UI Elements
-    // Label to show an error message if the API fails
-    private var errorLabel: UILabel!
+    // View to show an error message if the API fails
+    private var errorView = ApiFetchFailViewController()
     
     // Defines the CollectionView for displaying the data.
     var collectionview: UICollectionView!
@@ -50,8 +50,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         super.viewDidLoad()
         // Setup this class as a Subscriber to the Publiser.
         setupSubscriber()
-        // Setup the Error view.
-        setupErrorLabel()
         // Setup the CollectionView.
         setupCollectionView()
         // Setup the Pull-down-to-refresh View.
@@ -149,15 +147,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         collectionview.addSubview(refreshControl)
     }
     
-    // Setup the Error Label to show any error messages
-    func setupErrorLabel() {
-        errorLabel = UILabel(frame: self.view.frame)
-        errorLabel.text = AppString.apiErrorString
-        errorLabel.textAlignment = .center
-        errorLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
-        errorLabel.numberOfLines = 2
-    }
-    
     // Setup the RefreshController to be used for swipe-down-to-refresh
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)
@@ -193,7 +182,8 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Attach the Error View
     func attachErrorView() {
         Task {
-            self.view.addSubview(self.errorLabel)
+            self.loader.view.removeFromSuperview()
+            self.view.addSubview(self.errorView.view)
         }
     }
     

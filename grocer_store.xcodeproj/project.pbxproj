@@ -64,6 +64,7 @@
 		CEA86C8F29A9B7FA00BB24B0 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C8E29A9B7FA00BB24B0 /* Publisher.swift */; };
 		CEA86C9129A9B81B00BB24B0 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */; };
 		CEA86C9329A9BE2600BB24B0 /* AppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */; };
+		CEA86C9629A9D8A300BB24B0 /* ApiFetchFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		CEA86C8E29A9B7FA00BB24B0 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnums.swift; sourceTree = "<group>"; };
+		CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchFailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			children = (
 				CE2D8207299D17D8006B648C /* LoaderView.swift */,
 				CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */,
+				CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
 				CEA86C7629A8668F00BB24B0 /* AppColors.swift in Sources */,
 				CE3F8328299DF9AA004FCDFD /* AppHeaderViewController.swift in Sources */,
+				CEA86C9629A9D8A300BB24B0 /* ApiFetchFailViewController.swift in Sources */,
 				CE3ED12229A7324D0053228E /* AppViewController.swift in Sources */,
 				CE3ED12729A7473D0053228E /* ComingSoonViewController.swift in Sources */,
 				CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */,
