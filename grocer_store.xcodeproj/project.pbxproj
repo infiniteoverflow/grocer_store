@@ -307,8 +307,7 @@
 		CE686D3F299CC0A30067EDFF /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CEA86C8D29A9B7E900BB24B0 /* PubSubService */,
-				CE3F836A299F4B2D004FCDFD /* CoreDataService */,
+				CEA86C9429A9C36900BB24B0 /* Services */,
 				CE686D40299CC0A30067EDFF /* Networking */,
 				CE3F8372299F7EFC004FCDFD /* Repository */,
 				CE2D820B299D365F006B648C /* Utils */,
@@ -481,6 +480,15 @@
 				CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */,
 			);
 			path = PubSubService;
+			sourceTree = "<group>";
+		};
+		CEA86C9429A9C36900BB24B0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F836A299F4B2D004FCDFD /* CoreDataService */,
+				CEA86C8D29A9B7E900BB24B0 /* PubSubService */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -21,11 +21,6 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
         coreDataStack.setupCoreDataHelper()
         coreDataHelper = CoreDataHelper(coreDataStack: coreDataStack)
     }
-    
-    override func tearDown() {
-        coreDataStack = nil
-        coreDataHelper = nil
-    }
 
     /// Test Adding a new item to CoreData
     func testAddStoreItemToCoreData() async throws {
@@ -60,6 +55,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
     /// Test whether the added item is available in CoreData
     func testGetStoreItemsFromCoreData() async{
         let context = coreDataStack.getMainContext()
+        
         await context.perform {
             let storeResponse = StoreResponse(
                 status: "success",
@@ -73,11 +69,10 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
             
             Task {
                 await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
+                let getItems = self.coreDataHelper.fetchLocalData()
+                XCTAssertEqual(getItems.count, 1)
             }
         }
-        let getItems = coreDataHelper.fetchLocalData()
-        
-        XCTAssertEqual(getItems.count, 0)
     }
     
     /// Test the Clear CoreData operation.
