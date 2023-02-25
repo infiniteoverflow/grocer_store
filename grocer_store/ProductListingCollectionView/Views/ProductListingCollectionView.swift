@@ -6,17 +6,12 @@
 //
 
 import UIKit
-import Combine
 
-class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, Subscriber {
     
     // MARK: Properties
     /// Properties
     /// List of properties used by the controller
-    
-    // Defines a cancellable object to retrieve the
-    // state of the Network call.
-    private var cancellable: AnyCancellable?
     
     // Defines the debounce timer for the search text comparison.
     var searchDebounceTimer: Timer?
@@ -53,12 +48,17 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        attachViewModelListener()
+        // Setup this class as a Subscriber to the Publiser.
+        setupSubscriber()
+        // Setup the Error view.
         setupErrorLabel()
+        // Setup the CollectionView.
         setupCollectionView()
+        // Setup the Pull-down-to-refresh View.
         setupRefreshController()
     }
     
+    // Called when the text in the searchbar changes.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // Stop the timer if its running.
         searchDebounceTimer?.invalidate()
@@ -69,21 +69,47 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
+    // Defines the count of items to be displayed in the CollectionView.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         storeResponse.count
     }
     
+    // Defines the UICollectionViewCell.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         cell.item = storeResponse[indexPath.row]
         return cell
     }
     
+    // Defines the size of the individual item in the CollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 50, height: 145)
     }
     
+    // Get the Publisher data.
+    func getPublisherData(state: NetworkState, extra: Any?) {
+        switch state {
+        case .loading:
+            setupLoader()
+        case .success:
+            self.stopLoaderAndRefreshViewAnimation()
+            guard let response = extra as? [Item] else { return }
+            self.storeResponse = response
+            self.masterStoreResponse = response
+            
+            self.attachCollectionView()
+        default:
+            self.stopLoaderAndRefreshViewAnimation()
+            self.attachErrorView()
+        }
+    }
+    
     // MARK: UI Methods
+    // Setup this class as a Subsriber.
+    func setupSubscriber() {
+        Publisher.instance.subscribe(subscriber: self)
+    }
+    
     // Perform Filter on the ui data based on the search text.
     func filterData(searchText: String) {
         storeResponse = masterStoreResponse
@@ -182,28 +208,6 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     func fetchData() {
         Task {
             await viewModel.getStoreDetails()
-        }
-    }
-    
-    // Attach listeners to listen to the Network call
-    // to fetch store data.
-    func attachViewModelListener() {
-        cancellable = viewModel.$store.sink {
-            if($0.isLoading == true) {
-                self.setupLoader()
-            } else {
-                self.stopLoaderAndRefreshViewAnimation()
-                if($0.error != AppString.emptyString) {
-                    self.attachErrorView()
-                }
-                else {
-                    guard let response = $0.success else {return}
-                    self.storeResponse = response
-                    self.masterStoreResponse = response
-                    
-                    self.attachCollectionView()
-                }
-            }
         }
     }
     

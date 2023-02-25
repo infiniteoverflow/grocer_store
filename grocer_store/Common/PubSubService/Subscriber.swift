@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol Subscriber {
+    func getPublisherData(state: NetworkState, extra: Any?)
+}

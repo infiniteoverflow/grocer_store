@@ -18,20 +18,26 @@ class ViewModel : ObservableObject {
     
     /// Get the store details from the API or Mock Data
     func getStoreDetails() async {
-        store.isLoading = true
+        Publisher.instance.notify(
+            list: ["ProductListingTableView","ProductListingCollectionView"],
+            state: .loading,
+            extra: nil
+        )
 
         let result = await DataRepository().fetchStoreDetails()
         
         if(result.error != AppString.emptyString) {
-            print("Error")
-            store.error = "No Data Found"
+            Publisher.instance.notify(
+                list: ["ProductListingTableView","ProductListingCollectionView"],
+                state: .failure,
+                extra: "Something went wrong"
+            )
         } else {
-            print("Response")
-            store.error = AppString.emptyString
-            store.success = result.success
+            Publisher.instance.notify(
+                list: ["ProductListingTableView","ProductListingCollectionView"],
+                state: .success,
+                extra: result.success
+            )
         }
-        
-        store.isLoading = false
-        
     }
 }

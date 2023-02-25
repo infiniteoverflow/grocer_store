@@ -6,18 +6,13 @@
 //
 
 import UIKit
-import Combine
 
 /// Defins the table view of the store data
-class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, Subscriber {
     
     // MARK: Properties
     /// Properties
     /// List of properties used by the controller
-    // Defines a cancellable object to retrieve the
-    // state of the Network call.
-    private var cancellable: AnyCancellable?
-    
     /// Delegate for passing the search data to another view
     var searchDelegate: UISearchBarDelegate? = nil
     
@@ -56,40 +51,78 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        attachViewModelListener()
+        // Setup this class as a Subscriber to the Publiser.
+        setupSubscriber()
+        // Fetch API Data.
         fetchData()
+        // Setup the TableView.
         setupTableView()
+        // Setup the Error view.
         setupErrorLabel()
+        // Setup the Pull-down-to-refresh View.
         setupRefreshController()
     }
     
+    // Defines the count of items to be displayed in the TableView.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         storeResponse.count
     }
     
+    // Defines the UITableViewCell.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListingTableItem.identifer, for: indexPath) as! ProductListingTableItem
         cell.productItem = storeResponse[indexPath.row]
         return cell
     }
     
+    // Defines the height of the individual row.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70
     }
     
+    // Called when the text in the searchbar changes.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Stop the running timer.
         searchDebounceTimer?.invalidate()
+        
+        // Restart the timer
         searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
             self.filterData(searchBar: searchBar, searchText: searchText)
         }
     }
     
+    // Called when the Search Button is clicked on the keyboard.
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // We close the keyboard.
         searchBar.resignFirstResponder()
+    }
+    
+    // Get the Publisher data.
+    func getPublisherData(state: NetworkState, extra: Any?) {
+        switch state {
+        case .loading:
+            setupLoader()
+        case .success:
+            self.stopLoaderAndRefreshViewAnimation()
+            
+            guard let response = extra as? [Item] else { return }
+            self.storeResponse = response
+            self.masterStoreResponse = response
+            
+            self.attachTableView()
+        default:
+            self.stopLoaderAndRefreshViewAnimation()
+            self.attachErrorView()
+        }
     }
     
     // MARK: View Methods
     /// View Methods
+    // Setup this class as a Subsriber.
+    func setupSubscriber() {
+        Publisher.instance.subscribe(subscriber: self)
+    }
+    
     // Setup the RefreshController
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)
@@ -184,25 +217,5 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             await viewModel.getStoreDetails()
         }
     }
-        
-    // Attach listeners to listen to the Network call
-    // to fetch store data.
-    func attachViewModelListener() {
-        cancellable = viewModel.$store.sink {
-            if($0.isLoading == true) {
-                self.setupLoader()
-            } else {
-                self.stopLoaderAndRefreshViewAnimation()
-                if($0.success != nil) {
-                    guard let response = $0.success else { return }
-                    self.storeResponse = response
-                    self.masterStoreResponse = response
-                    
-                    self.attachTableView()
-                } else if($0.error != AppString.emptyString) {
-                    self.attachErrorView()
-                }
-            }
-        }
-    }
+    
 }
