@@ -27,7 +27,7 @@ class CoreDataHelper {
     // MARK: View Methods
     /// View Methods
     /// Clear all the values inside CoreData
-    func clearLocalDataValues() async -> Bool {
+    func clearLocalDataValues() -> Bool {
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: storeItemEntity)
         let deleteRequest: NSBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -48,13 +48,12 @@ class CoreDataHelper {
     }
     
     /// Store API Data into CoreData
-    func storeLocalData(storeResponse: StoreResponse) async -> Bool{
+    func storeLocalData(storeResponse: StoreResponse)-> Bool{
         
-        let isDeleted = await clearLocalDataValues()
+        let isDeleted = clearLocalDataValues()
         if !isDeleted {
             return false
         }
-
         
         storeResponse.data.items.forEach {
             item in

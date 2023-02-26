@@ -13,28 +13,31 @@ class DataRepository {
     var coreDataHelper: CoreDataHelper = CoreDataHelper(coreDataStack: CoreDataStack())
     
     /// Fetch store details from the API or CoreData if the API fails
-    func fetchStoreDetails() async -> DataWrapper<[Item]> {
+    /// `handler` : Works as a completion handler to return the API Response back to its caller.
+    func fetchStoreDetails(_ handler: (_ data: DataWrapper<[Item]>) -> Void) async {
         /// The result of the fetch process
         var response = DataWrapper<[Item]>()
         
-        let storeResponse = await ApiService().getStoreData()
-        
-        if storeResponse == nil {
-            let items: [Item] = coreDataHelper
-                .fetchLocalData()
-            
-            if items.count == 0 {
-                response.error = "No Data Found"
-            } else {
-                response.success = items
+        await ApiService().getStoreData { storeResponse in
+            if storeResponse == nil {
+                let items: [Item] = coreDataHelper
+                    .fetchLocalData()
+                
+                if items.count == 0 {
+                    response.error = "No Data Found"
+                } else {
+                    response.success = items
+                }
+                
+                handler(response)
             }
             
-            return response
+            // Store the API Response to the CoreData Entity.
+            let _ = coreDataHelper.storeLocalData(storeResponse: storeResponse!)
+            
+            response.success = storeResponse!.data.items
+            handler(response)
         }
-        
-        let _ = await coreDataHelper.storeLocalData(storeResponse: storeResponse!)
-        
-        response.success = storeResponse!.data.items
-        return response
+
     }
 }

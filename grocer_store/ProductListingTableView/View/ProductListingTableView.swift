@@ -187,7 +187,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         storeResponse = masterStoreResponse
         myTableView.backgroundView = nil
         if searchText.isEmpty {
-            viewModel.store.success = masterStoreResponse
             myTableView.reloadData()
             return
         }

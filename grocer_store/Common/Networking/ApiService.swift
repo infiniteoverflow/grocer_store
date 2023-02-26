@@ -9,21 +9,22 @@ import Foundation
 
 struct ApiService {
     
-    // Get the Store Data from the API
-    func getStoreData() async -> StoreResponse? {
+    /// Get the Store Data from the API
+    /// `handler` : Works as a completion handler to return the API Response back to its caller.
+    func getStoreData(_ handler: (_ storeResponse: StoreResponse?) -> Void) async {
         let data = await NetworkClient.instance.call(url: URLConstants.getStoreData)
         var storeModel: StoreResponse
         
         // if data is nil, then use the mock data
         if(data == nil) {
-            return nil
+            handler(nil)
         }
         
         do {
             storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
-            return storeModel
+            handler(storeModel)
         } catch {
-            return nil
+            handler(nil)
         }
     }
 }
