@@ -72,6 +72,12 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let itemDetailsVC = ItemDetailsViewController()
+//        itemDetailsVC.item = storeResponse[indexPath.row]
+//        present(itemDetailsVC, animated: true)
+    }
+    
     // Defines the height of the individual row.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70

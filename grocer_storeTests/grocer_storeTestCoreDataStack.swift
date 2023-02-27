@@ -42,7 +42,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
             )
             
             Task {
-                await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
+                self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
             }
         }
         
@@ -68,7 +68,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
             )
             
             Task {
-                let _ = await self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
+                let _ = self.coreDataHelper.storeLocalData(storeResponse: storeResponse)
                 let getItems = self.coreDataHelper.fetchLocalData()
                 XCTAssertEqual(getItems.count, 1)
             }
@@ -77,7 +77,7 @@ final class grocer_storeTestCoreDataStack: XCTestCase {
     
     /// Test the Clear CoreData operation.
     func testClearCoreData() async {
-        let cleared = await coreDataHelper.clearLocalDataValues()
+        let cleared = coreDataHelper.clearLocalDataValues()
         
         XCTAssertTrue(cleared)
         

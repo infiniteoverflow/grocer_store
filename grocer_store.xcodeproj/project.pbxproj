@@ -64,6 +64,7 @@
 		CEA86C9329A9BE2600BB24B0 /* AppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */; };
 		CEA86C9629A9D8A300BB24B0 /* ApiFetchFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */; };
 		CEA86C9929AC847300BB24B0 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */; };
+		CEA86C9F29ACA2A300BB24B0 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9E29ACA2A300BB24B0 /* ItemDetailsViewController.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnums.swift; sourceTree = "<group>"; };
 		CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchFailViewController.swift; sourceTree = "<group>"; };
 		CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
+		CEA86C9E29ACA2A300BB24B0 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +401,7 @@
 		CE7D33C6299A5BC9003158E6 /* grocer_store */ = {
 			isa = PBXGroup;
 			children = (
+				CEA86C9C29ACA27F00BB24B0 /* ItemDetails */,
 				CE3ED12829A761DF0053228E /* App */,
 				CE3ED12529A747240053228E /* ComingSoonView */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
@@ -489,6 +492,22 @@
 				CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CEA86C9C29ACA27F00BB24B0 /* ItemDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CEA86C9D29ACA29600BB24B0 /* View */,
+			);
+			path = ItemDetails;
+			sourceTree = "<group>";
+		};
+		CEA86C9D29ACA29600BB24B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEA86C9E29ACA2A300BB24B0 /* ItemDetailsViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,6 +750,7 @@
 			files = (
 				CE7D33CC299A5BC9003158E6 /* LandingPageViewController.swift in Sources */,
 				CEA86C8029A87FAB00BB24B0 /* ProductCollectionString.swift in Sources */,
+				CEA86C9F29ACA2A300BB24B0 /* ItemDetailsViewController.swift in Sources */,
 				CE3F836F299F4DD0004FCDFD /* CoreDataHelper.swift in Sources */,
 				CE2D8208299D17D8006B648C /* LoaderView.swift in Sources */,
 				CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */,
