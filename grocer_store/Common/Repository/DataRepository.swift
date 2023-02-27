@@ -34,12 +34,13 @@ class DataRepository {
                 
                 handler(response)
             }
-            
-            // Store the API Response to the CoreData Entity.
-            let _ = coreDataHelper.storeLocalData(storeResponse: storeResponse!)
-            
-            response.success = storeResponse!.data.items
-            handler(response)
+            else {
+                // Store the API Response to the CoreData Entity.
+                let _ = coreDataHelper.storeLocalData(storeResponse: storeResponse!)
+                
+                response.success = storeResponse!.data.items
+                handler(response)
+            }
         }
 
     }

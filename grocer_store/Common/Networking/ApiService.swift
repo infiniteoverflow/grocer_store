@@ -20,11 +20,13 @@ struct ApiService {
             handler(nil)
         }
         
-        do {
-            storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
-            handler(storeModel)
-        } catch {
-            handler(nil)
+        else {
+            do {
+                storeModel = try JSONDecoder().decode(StoreResponse.self, from: data!)
+                handler(storeModel)
+            } catch {
+                handler(nil)
+            }
         }
     }
 }
