@@ -14,6 +14,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     /// Unique identifier for the CollectionView Cell
     static let identifier = ProductCollectionString.productCollectionCellIdentifier
     
+    // Store the previous image url
+    private var prevImageURL = ""
+    
     // MARK: UI Elements
     /// UI Elements
     /// Store Item
@@ -25,7 +28,13 @@ class ProductCollectionViewCell: UICollectionViewCell {
             guard let imageUrl = item?.image else {
                 return
             }
-            updateImage(imageUrl: imageUrl)
+            
+            // If a new url is passed to the Item object and its value
+            // is the same as the previous url, then skip the process.
+            if prevImageURL != imageUrl {
+                prevImageURL = imageUrl
+                updateImage(imageUrl: imageUrl)
+            }
         }
     }
     
@@ -60,6 +69,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         addViews()
+        addConstraints()
     }
     
     // MARK: View Methods
@@ -83,6 +93,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     /// Add the UI Views
     func addViews() {
+        // Add the views to the contentView
+        contentView.addSubview(itemImage)
+        contentView.addSubview(itemNameLabel)
+        contentView.addSubview(itemPriceLabel)
+    }
+    
+    /// Add constraints to the Cell View
+    func addConstraints() {
         
         // Prevent the view’s autoresizing mask to be translated into
         // Auto Layout constraints.
@@ -90,16 +108,16 @@ class ProductCollectionViewCell: UICollectionViewCell {
         itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Add the views to the contentView
-        contentView.addSubview(itemImage)
-        contentView.addSubview(itemNameLabel)
-        contentView.addSubview(itemPriceLabel)
-
+        let imageContraints = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
         
-        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0).isActive = true
+        let nameConstraints = NSLayoutConstraint(item: itemNameLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
         
-        NSLayoutConstraint(item: itemNameLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
+        let priceConstraints = NSLayoutConstraint(item: itemPriceLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemNameLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 5)
         
-        NSLayoutConstraint(item: itemPriceLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemNameLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 5).isActive = true
+        NSLayoutConstraint.activate([
+            imageContraints,
+            nameConstraints,
+            priceConstraints
+        ])
     }
 }
