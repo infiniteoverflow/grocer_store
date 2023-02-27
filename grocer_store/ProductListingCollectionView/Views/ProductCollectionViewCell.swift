@@ -101,19 +101,22 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     /// Add constraints to the Cell View
     func addConstraints() {
-        
         // Prevent the view’s autoresizing mask to be translated into
         // Auto Layout constraints.
         itemImage.translatesAutoresizingMaskIntoConstraints = false
         itemNameLabel.translatesAutoresizingMaskIntoConstraints = false
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        // Constraints to the Item Image.
         let imageContraints = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
         
+        // Constraints to the Item Name.
         let nameConstraints = NSLayoutConstraint(item: itemNameLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
         
+        // Constraints to the Item Price.
         let priceConstraints = NSLayoutConstraint(item: itemPriceLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemNameLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 5)
         
+        // Activate the Constraints.
         NSLayoutConstraint.activate([
             imageContraints,
             nameConstraints,

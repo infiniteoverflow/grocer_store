@@ -7,18 +7,17 @@
 
 import UIKit
 
-class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, Subscriber {
+class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, NetworkDelegate {
     
     // MARK: Properties
     /// Properties
     /// List of properties used by the controller
-    
     // Defines the debounce timer for the search text comparison.
     var searchDebounceTimer: Timer?
     
     // ViewModel class that contains logic for interacting the model
     // with the UI View.
-    private var viewModel = ViewModel.instance
+    private var viewModel = ViewModel()
     
     // Stores the store items
     private var storeResponse: [Item] = []
@@ -48,8 +47,9 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setup this class as a Subscriber to the Publiser.
-        setupSubscriber()
+        viewModel.networkDelegate = self
+        // Fetch the Item list from the network
+        fetchData()
         // Setup the CollectionView.
         setupCollectionView()
         // Setup the Pull-down-to-refresh View.
@@ -58,13 +58,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // Called when the text in the searchbar changes.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Stop the timer if its running.
-        searchDebounceTimer?.invalidate()
-        
-        // Restart the timer, and perform the closure action after the given interval.
-        searchDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in
-            self.filterData(searchText: searchText)
-        }
+        self.filterData(searchText: searchText)
     }
     
     // Defines the count of items to be displayed in the CollectionView.
@@ -85,7 +79,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     }
     
     // Get the Publisher data.
-    func getPublisherData(state: NetworkState, extra: Any?) {
+    func updateViewWithData(state: NetworkState, extra: Any?) {
         switch state {
         case .loading:
             setupLoader()
@@ -102,12 +96,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
-    // MARK: UI Methods
-    // Setup this class as a Subsriber.
-    func setupSubscriber() {
-        Publisher.instance.subscribe(subscriber: self)
-    }
-    
+    // MARK: UI Methods    
     // Perform Filter on the ui data based on the search text.
     func filterData(searchText: String) {
         storeResponse = masterStoreResponse

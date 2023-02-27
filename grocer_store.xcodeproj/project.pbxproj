@@ -61,10 +61,9 @@
 		CEA86C8829A88E0800BB24B0 /* AppString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C7C29A87F0A00BB24B0 /* AppString.swift */; };
 		CEA86C8929A88E3000BB24B0 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D820C299D367A006B648C /* AppUtilities.swift */; };
 		CEA86C8B29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C8A29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift */; };
-		CEA86C8F29A9B7FA00BB24B0 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C8E29A9B7FA00BB24B0 /* Publisher.swift */; };
-		CEA86C9129A9B81B00BB24B0 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */; };
 		CEA86C9329A9BE2600BB24B0 /* AppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */; };
 		CEA86C9629A9D8A300BB24B0 /* ApiFetchFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */; };
+		CEA86C9929AC847300BB24B0 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,10 +139,9 @@
 		CEA86C8229A8804C00BB24B0 /* ProductTableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableString.swift; sourceTree = "<group>"; };
 		CEA86C8529A88C6400BB24B0 /* grocer_storeFilterLabelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeFilterLabelUITests.swift; sourceTree = "<group>"; };
 		CEA86C8A29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeExploreLabelUITest.swift; sourceTree = "<group>"; };
-		CEA86C8E29A9B7FA00BB24B0 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
-		CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnums.swift; sourceTree = "<group>"; };
 		CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchFailViewController.swift; sourceTree = "<group>"; };
+		CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +308,7 @@
 		CE686D3F299CC0A30067EDFF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CEA86C9729AC845800BB24B0 /* Protocols */,
 				CEA86C9429A9C36900BB24B0 /* Services */,
 				CE686D40299CC0A30067EDFF /* Networking */,
 				CE3F8372299F7EFC004FCDFD /* Repository */,
@@ -476,22 +475,20 @@
 			path = AppPerformanceTests;
 			sourceTree = "<group>";
 		};
-		CEA86C8D29A9B7E900BB24B0 /* PubSubService */ = {
-			isa = PBXGroup;
-			children = (
-				CEA86C8E29A9B7FA00BB24B0 /* Publisher.swift */,
-				CEA86C9029A9B81B00BB24B0 /* Subscriber.swift */,
-			);
-			path = PubSubService;
-			sourceTree = "<group>";
-		};
 		CEA86C9429A9C36900BB24B0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				CE3F836A299F4B2D004FCDFD /* CoreDataService */,
-				CEA86C8D29A9B7E900BB24B0 /* PubSubService */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CEA86C9729AC845800BB24B0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -741,9 +738,8 @@
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
 				CEA86C7829A8685000BB24B0 /* AppAssets.swift in Sources */,
 				CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */,
-				CEA86C8F29A9B7FA00BB24B0 /* Publisher.swift in Sources */,
+				CEA86C9929AC847300BB24B0 /* NetworkDelegate.swift in Sources */,
 				CEA86C7B29A87A6200BB24B0 /* AppFeatureString.swift in Sources */,
-				CEA86C9129A9B81B00BB24B0 /* Subscriber.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
 				CEA86C7629A8668F00BB24B0 /* AppColors.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 
 /// Defins the table view of the store data
-class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, Subscriber {
+class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NetworkDelegate {
     
     // MARK: Properties
     /// Properties
@@ -28,7 +28,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     private var masterStoreResponse: [Item] = []
     
     // with the UI View.
-    private var viewModel = ViewModel.instance
+    private var viewModel = ViewModel()
     
     // MARK: UI Elements
     /// UI Elements
@@ -51,8 +51,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setup this class as a Subscriber to the Publiser.
-        setupSubscriber()
+        viewModel.networkDelegate = self
         // Fetch API Data.
         fetchData()
         // Setup the TableView.
@@ -96,7 +95,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     }
     
     // Get the Publisher data.
-    func getPublisherData(state: NetworkState, extra: Any?) {
+    func updateViewWithData(state: NetworkState, extra: Any?) {
         switch state {
         case .loading:
             setupLoader()
@@ -116,11 +115,6 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     // MARK: View Methods
     /// View Methods
-    // Setup this class as a Subsriber.
-    func setupSubscriber() {
-        Publisher.instance.subscribe(subscriber: self)
-    }
-    
     // Setup the RefreshController
     func setupRefreshController() {
         refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)

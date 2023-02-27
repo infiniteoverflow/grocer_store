@@ -448,70 +448,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9E4CF570-A7C6-4698-A189-873674430D3F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "grocer_store/ProductListingTableView/View/ProductTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "productItem"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "9E4CF570-A7C6-4698-A189-873674430D3F - aaf71ff7b597d2af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in grocer_store.ProductListingTableItem.productItem.didset : Swift.Optional&lt;grocer_store.Item&gt;"
-                  moduleName = "grocer_store"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/ProductListingTableView/View/ProductTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "232">
-               </Location>
-               <Location
-                  uuid = "9E4CF570-A7C6-4698-A189-873674430D3F - aaf71ff7b597d2af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in grocer_store.ProductListingTableItem.productItem.didset : Swift.Optional&lt;grocer_store.Item&gt;"
-                  moduleName = "grocer_store"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aswin/Desktop/swift/grocer_store/grocer_store/ProductListingTableView/View/ProductTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "552">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3B61F2B4-65FA-499C-BBA2-3B1332D7A268"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "grocer_store/ProductListingTableView/View/ProductTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "productItem"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6E89072C-7D6C-4D20-8D92-2EFBDDEE2E2C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -691,8 +627,8 @@
             filePath = "grocer_store/Common/ViewModel/ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "getStoreDetails()"
             landmarkType = "7">
             <Locations>
@@ -818,8 +754,8 @@
             filePath = "grocer_store/ProductListingCollectionView/Views/ProductListingCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "setupRefreshController()"
             landmarkType = "7">
          </BreakpointContent>
@@ -834,8 +770,8 @@
             filePath = "grocer_store/ProductListingCollectionView/Views/ProductListingCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "setupCollectionView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -850,8 +786,8 @@
             filePath = "grocer_store/ProductListingCollectionView/Views/ProductListingCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "setupCollectionView()"
             landmarkType = "7">
          </BreakpointContent>

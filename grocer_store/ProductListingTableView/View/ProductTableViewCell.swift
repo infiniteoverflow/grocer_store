@@ -17,6 +17,9 @@ class ProductListingTableItem : UITableViewCell {
     /// Unique identifier for the Table Cell
     static let identifer = ProductTableString.productTableCellIdentifier
     
+    // Store the previous image url
+    private var prevImageURL = ""
+    
     // MARK: UI Elements
     /// UI Elements
     /// Stores the Item data
@@ -30,18 +33,10 @@ class ProductListingTableItem : UITableViewCell {
             guard let imageUrl = productItem?.image else {
                 return
             }
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
-                    if let image = UIImage(data: data) {
-                        Task {
-                            self?.itemImage.image = image
-                        }
-                    }
-                } else {
-                    Task {
-                        self?.itemImage.image = UIImage(named: AppAssets.phonePePlaceholder)
-                    }
-                }
+            
+            if prevImageURL != imageUrl {
+                prevImageURL = imageUrl
+                updateImage(imageUrl: imageUrl)
             }
         }
     }
@@ -93,8 +88,24 @@ class ProductListingTableItem : UITableViewCell {
     // Setup the image
     func setupImage() {
         itemImage.backgroundColor = AppColors.appLightGray
-        itemImage.layer.cornerRadius = 8
+        itemImage.layer.cornerRadius = 20
         itemImage.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func updateImage(imageUrl: String) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
+                if let image = UIImage(data: data) {
+                    Task {
+                        self?.itemImage.image = image
+                    }
+                }
+            } else {
+                Task {
+                    self?.itemImage.image = UIImage(named: AppAssets.phonePePlaceholder)
+                }
+            }
+        }
     }
     
     // MARK: Setup Labels
@@ -133,34 +144,50 @@ class ProductListingTableItem : UITableViewCell {
     // Add the constraints
     func addConstraints() {
         
-        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0).isActive = true
+        // Constraints for the Item Image.
+        let imageTopConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
+        let imageLeadingConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34)
+        let imageWidthConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50)
+        let imageHeightConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50)
         
-        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34).isActive = true
+        // Constraints for the Item Name.
+        let nameLeadingConstraint = NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16)
         
-        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
-
-        NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50).isActive = true
+        // Constraints for the MRP Label.
+        let mrpLeadingConstraint = NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16)
+        let mrpTopConstraint = NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
         
-        NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
+        // Constraints for the Price.
+        let priceLeadingConstraint = NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: mrpLabel, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 2)
+        let priceTopConstraint = NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
         
-        NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
+        // Constraint for the UI Divider
+        let dividerTopConstraint = NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemPrice, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 14)
+        let dividerLeadingConstraint = NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16)
+        let dividerTrailingConstraint = NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34)
+        let dividerHeightConstraint = NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0.5)
         
-        NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
+        // Constraint for the Extra Label
+        let extraBottomConstraint = NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: uiDivider, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: -14)
+        let extraTrailingConstraint = NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -70)
         
-        NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: mrpLabel, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 2).isActive = true
-        
-        NSLayoutConstraint(item: itemPrice, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8).isActive = true
-        
-        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemPrice, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 14).isActive = true
-        
-        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16).isActive = true
-        
-        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
-        
-        NSLayoutConstraint(item: uiDivider, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 0.5).isActive = true
-        
-        NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: uiDivider, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: -14).isActive = true
-        
-        NSLayoutConstraint(item: extraLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -70).isActive = true
+        // Activate the constraints.
+        NSLayoutConstraint.activate([
+            imageTopConstraint,
+            imageLeadingConstraint,
+            imageWidthConstraint,
+            imageHeightConstraint,
+            nameLeadingConstraint,
+            mrpLeadingConstraint,
+            mrpTopConstraint,
+            priceTopConstraint,
+            priceLeadingConstraint,
+            dividerTopConstraint,
+            dividerHeightConstraint,
+            dividerLeadingConstraint,
+            dividerTrailingConstraint,
+            extraBottomConstraint,
+            extraTrailingConstraint
+        ])
     }
 }
