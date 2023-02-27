@@ -10,8 +10,11 @@ import Foundation
 /// A Repository that connects the Data source with the ViewModel
 class DataRepository {
     
+    // MARK: Properties
+    /// Instance to the CoreDataHelper class that takes care of your CoreData functionalities.
     var coreDataHelper: CoreDataHelper = CoreDataHelper(coreDataStack: CoreDataStack())
     
+    // MARK: Methods
     /// Fetch store details from the API or CoreData if the API fails
     /// `handler` : Works as a completion handler to return the API Response back to its caller.
     func fetchStoreDetails(_ handler: (_ data: DataWrapper<[Item]>) -> Void) async {
