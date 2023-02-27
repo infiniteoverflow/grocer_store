@@ -57,17 +57,33 @@ class AppHeaderViewController: UIViewController  {
     // Add the constraints
     private func addConstraints() {
         
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50).isActive = true
-        NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49).isActive = true
+        // Constraints for the Title Label.
+        let titleLabelTopConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
+        let titleLabelLeadingConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49)
         
-        NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 50).isActive = true
-        NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
+        // Constraints for the Filter Label.
+        let filterLabelTopConstraint = NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 50)
+        let filterLabelTrailingConstraint = NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34)
+       
+       // Constraints for the Search Bar.
+        let searchBarTopConstraintWithTitle = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
+        let searchBarTopConstraintWithFilter = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
+        let searchBarLeadingConstraint = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34)
+        let searchBarTrailingConstraint = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34)
+        let searchBarBottomConstraint = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: -21)
         
-        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16).isActive = true
-        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34).isActive = true
-        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34).isActive = true
-        NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: -21).isActive = true
+        // Activate the constraints
+        NSLayoutConstraint.activate([
+            titleLabelTopConstraint,
+            titleLabelLeadingConstraint,
+            filterLabelTopConstraint,
+            filterLabelTrailingConstraint,
+            searchBarBottomConstraint,
+            searchBarLeadingConstraint,
+            searchBarTrailingConstraint,
+            searchBarTopConstraintWithTitle,
+            searchBarTopConstraintWithFilter
+        ])
     }
     
     // MARK: Add Subviews

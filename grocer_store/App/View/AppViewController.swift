@@ -23,17 +23,9 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
-        view.backgroundColor = .white
-        
-        self.delegate = self
-        tabBar.isTranslucent = true
-        tabBar.itemSpacing = 10.0
-        tabBar.itemWidth = 76.0
-        tabBar.itemPositioning = .centered
-    
+        setupTabBar()
         setUpTheViewController()
-        
-        self.selectPage(at: 0)
+        selectPage(at: 0)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -48,9 +40,18 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     
     // MARK: UI Methods
     /// UI Methods
+    /// Setup the TabBar
+    private func setupTabBar() {
+        self.delegate = self
+        tabBar.isTranslucent = true
+        tabBar.itemSpacing = 10.0
+        tabBar.itemWidth = 76.0
+        tabBar.itemPositioning = .centered
+    }
+    
     /// Setup the ViewControllers to be used for the app.
     private func setUpTheViewController() {
-        
+        view.backgroundColor = .white
         guard let centerPageViewController = createCenterPageViewController() else { return }
         
         var controllers: [UIViewController] = []
@@ -106,20 +107,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         appHeaderViewController.searchDelegate = productListingTableView
         
         view.addSubview(appHeaderViewController.view)
-        
-        let headerTopConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-        let headerLeadingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let headerTrailingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let headerHeight = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 153)
-        
-        view.addConstraints([
-            headerTopConstraint,
-            headerLeadingConstraint,
-            headerTrailingConstraint,
-            headerHeight
-        ])
-        
-        NSLayoutConstraint.activate(view.constraints)
+        setupHeaderConstraints(appHeaderViewController: appHeaderViewController)
         
         // Setting the tag for individual views so that they can be
         // easily distinguishable during tab index change.
@@ -146,6 +134,23 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         pageViewController.swipeDelegate = self
         
         return pageViewController
+    }
+    
+    // Setup constraints for the header section
+    private func setupHeaderConstraints(appHeaderViewController: UIViewController) {
+        let headerTopConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let headerLeadingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let headerTrailingConstraint = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let headerHeight = NSLayoutConstraint(item: appHeaderViewController.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 153)
+        
+        view.addConstraints([
+            headerTopConstraint,
+            headerLeadingConstraint,
+            headerTrailingConstraint,
+            headerHeight
+        ])
+        
+        NSLayoutConstraint.activate(view.constraints)
     }
     
     // Defines the TabBarItem UI.
