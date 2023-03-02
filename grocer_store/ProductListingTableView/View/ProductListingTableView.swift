@@ -46,6 +46,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     // Performs the pull to refresh on the ViewController
     let refreshControl = UIRefreshControl()
+    
+    // Shows the Slider on the screen.
+    private let slider = UISlider()
         
     // MARK: Lifecycle methods
     /// Lifecycle methods
@@ -73,9 +76,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let itemDetailsVC = ItemDetailsViewController()
-//        itemDetailsVC.item = storeResponse[indexPath.row]
-//        present(itemDetailsVC, animated: true)
+        let itemDetailsVC = ItemDetailsViewController()
+        itemDetailsVC.item = storeResponse[indexPath.row]
+        self.navigationController?.pushViewController(itemDetailsVC, animated: true)
     }
     
     // Defines the height of the individual row.
@@ -112,7 +115,8 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             self.storeResponse = response
             self.masterStoreResponse = response
             
-            self.attachTableView()
+            self.attachPostDataLoadView()
+            // Setup the Slider
         default:
             self.stopLoaderAndRefreshViewAnimation()
             self.attachErrorView()
@@ -126,6 +130,40 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         refreshControl.attributedTitle = NSAttributedString(string: AppString.refreshText)
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         myTableView.addSubview(refreshControl)
+    }
+    
+    // Add Constraints for the TableView
+    func addTableViewConstraints() {
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let tableTopConstraint = NSLayoutConstraint(item: myTableView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 150)
+        let tableWidthConstraint = NSLayoutConstraint(item: myTableView!, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
+        
+        self.view.addConstraints([
+            tableTopConstraint,
+            tableWidthConstraint
+        ])
+        
+        NSLayoutConstraint.activate(self.view.constraints)
+    }
+    
+    // Add Constraints for the Slider
+    func addSliderConstraint() {
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        
+        let sliderTopConstraint = NSLayoutConstraint(item: slider, attribute: .top, relatedBy: .equal, toItem: myTableView, attribute: .bottom, multiplier: 1, constant: 10)
+        let sliderBottomConstraint = NSLayoutConstraint(item: slider, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -100)
+        let sliderLeadingConstraint = NSLayoutConstraint(item: slider, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 20)
+        let sliderTrailingConstraint = NSLayoutConstraint(item: slider, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -20)
+        
+        self.view.addConstraints([
+            sliderTopConstraint,
+            sliderBottomConstraint,
+            sliderLeadingConstraint,
+            sliderTrailingConstraint
+        ])
+        
+        NSLayoutConstraint.activate(self.view.constraints)
     }
     
     // Execute this method when we pull to refresh the view
@@ -165,10 +203,13 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     }
     
     // Attach the TableView
-    func attachTableView() {
+    func attachPostDataLoadView() {
         Task {
-            self.myTableView.frame = CGRect(x: 0, y: 153, width: self.view.frame.size.width, height: self.view.frame.size.height - 153)
             self.view.addSubview(self.myTableView)
+            self.view.addSubview(self.slider)
+            
+            self.addTableViewConstraints()
+            self.addSliderConstraint()
         }
     }
     

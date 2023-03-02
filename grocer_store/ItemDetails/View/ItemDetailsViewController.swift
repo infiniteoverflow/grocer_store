@@ -51,8 +51,8 @@ class ItemDetailsViewController: UIViewController {
     // MARK: Setup Image
     // Setup the image
     func setupImage() {
-        itemImage.backgroundColor = AppColors.appLightGray
-        itemImage.layer.cornerRadius = 20
+        itemImage.backgroundColor = .clear
+        itemImage.layer.cornerRadius = 80
         itemImage.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -94,15 +94,14 @@ class ItemDetailsViewController: UIViewController {
         // Constraints for the Item Image.
         let imageTopConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 100)
         let imageLeadingConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34)
-        let imageTrailingConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 34)
-        let imageWidthConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 200)
+        let imageTrailingConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34)
+        
         let imageHeightConstraint = NSLayoutConstraint(item: itemImage, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 200)
         
         // Constraints for the Item Name.
-        let nameLeadingConstraint = NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16)
+        let nameTopConstraint = NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
         
         // Constraints for the MRP Label.
-        let mrpLeadingConstraint = NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 16)
         let mrpTopConstraint = NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
         
         // Constraints for the Price.
@@ -114,10 +113,8 @@ class ItemDetailsViewController: UIViewController {
             imageTopConstraint,
             imageTrailingConstraint,
             imageLeadingConstraint,
-            imageWidthConstraint,
             imageHeightConstraint,
-            nameLeadingConstraint,
-            mrpLeadingConstraint,
+            nameTopConstraint,
             mrpTopConstraint,
             priceTopConstraint,
             priceLeadingConstraint,

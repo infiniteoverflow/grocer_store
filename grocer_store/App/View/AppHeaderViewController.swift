@@ -27,6 +27,8 @@ class AppHeaderViewController: UIViewController  {
     /// Gives the filter title of the header section.
     private var filterLabel: UILabel = {
         let tl = UILabel()
+        tl.isUserInteractionEnabled = true
+//        tl.addGestureRecognizer(UITapGestureRecognizer(target: AppHeaderViewController.self, action: #selector(AppHeaderViewController.setupFilterPopover(sender:))))
         tl.text = AppFeatureString.filter
         tl.font = .systemFont(ofSize: 16,weight: .regular)
         tl.textColor = AppColors.secondary
@@ -51,6 +53,7 @@ class AppHeaderViewController: UIViewController  {
         setupLabels()
         addSubViews()
         addConstraints()
+        setupFilterPopover()
     }
     
     // MARK: Constraints
@@ -124,6 +127,14 @@ class AppHeaderViewController: UIViewController  {
     private func setupLabels() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         filterLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    // MARK: Setup Filter Popover
+    // Setup the Filter Popover
+    @objc private func setupFilterPopover() {
+        self.modalPresentationStyle = .popover
+        self.popoverPresentationController?.barButtonItem = UIBarButtonItem()
+        present(ItemDetailsViewController(), animated: true)
     }
     
 
