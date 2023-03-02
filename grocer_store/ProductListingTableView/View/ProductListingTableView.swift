@@ -171,6 +171,16 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         fetchData()
     }
     
+    @objc func sliderOnChange(sender: UISlider) {
+        let newValue = Int(sender.value)
+        sender.setValue(Float(newValue), animated: false)
+        
+        storeResponse = masterStoreResponse
+        storeResponse = Array(storeResponse.prefix(upTo: newValue))
+        
+        myTableView.reloadData()
+    }
+    
     // Setup the Table View for displaying table data.
     func setupTableView() {
         myTableView = UITableView(frame: view.frame)
@@ -192,6 +202,14 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         }
     }
     
+    func setupSliderView() {
+        self.slider.minimumValue = 1
+        self.slider.maximumValue = Float(storeResponse.count)
+        self.slider.isContinuous = true
+        self.slider.addTarget(self, action: #selector(sliderOnChange), for: .valueChanged)
+        self.slider.value = Float(storeResponse.count)
+    }
+    
     // Dispose Loader and Refresh View Animation
     func stopLoaderAndRefreshViewAnimation() {
         Task {
@@ -208,6 +226,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             self.view.addSubview(self.myTableView)
             self.view.addSubview(self.slider)
             
+            self.setupSliderView()
             self.addTableViewConstraints()
             self.addSliderConstraint()
         }
