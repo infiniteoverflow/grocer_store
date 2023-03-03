@@ -171,6 +171,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         fetchData()
     }
     
+    // Method that listens to the UISlider value changes.
     @objc func sliderOnChange(sender: UISlider) {
         let newValue = Int(sender.value)
         sender.setValue(Float(newValue), animated: false)

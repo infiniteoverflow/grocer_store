@@ -43,6 +43,9 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Empty Search Result UI
     private let emptySearchResultView = EmptySearchResultViewController()
     
+    // Shows the Slider on the screen.
+    private let slider = UISlider()
+    
     // MARK: View Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
@@ -89,14 +92,60 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
             self.storeResponse = response
             self.masterStoreResponse = response
             
-            self.attachCollectionView()
+            self.attachPostDataLoadView()
         default:
             self.stopLoaderAndRefreshViewAnimation()
             self.attachErrorView()
         }
     }
     
-    // MARK: UI Methods    
+    // MARK: UI Methods
+    
+    // Add Constraints for the TableView
+    func addCollectionViewConstraints() {
+        collectionview.translatesAutoresizingMaskIntoConstraints = false
+        
+        let tableTopConstraint = NSLayoutConstraint(item: collectionview!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 150)
+        let tableWidthConstraint = NSLayoutConstraint(item: collectionview!, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
+        
+        self.view.addConstraints([
+            tableTopConstraint,
+            tableWidthConstraint
+        ])
+        
+        NSLayoutConstraint.activate(self.view.constraints)
+    }
+    
+    // Add Constraints for the Slider
+    func addSliderConstraint() {
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        
+        let sliderTopConstraint = NSLayoutConstraint(item: slider, attribute: .top, relatedBy: .equal, toItem: collectionview, attribute: .bottom, multiplier: 1, constant: 10)
+        let sliderBottomConstraint = NSLayoutConstraint(item: slider, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -100)
+        let sliderLeadingConstraint = NSLayoutConstraint(item: slider, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 20)
+        let sliderTrailingConstraint = NSLayoutConstraint(item: slider, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -20)
+        
+        self.view.addConstraints([
+            sliderTopConstraint,
+            sliderBottomConstraint,
+            sliderLeadingConstraint,
+            sliderTrailingConstraint
+        ])
+        
+        NSLayoutConstraint.activate(self.view.constraints)
+    }
+    
+    // Method that listens to the UISlider value changes.
+    @objc func sliderOnChange(sender: UISlider) {
+        let newValue = Int(sender.value)
+        sender.setValue(Float(newValue), animated: false)
+        
+        storeResponse = masterStoreResponse
+        storeResponse = Array(storeResponse.prefix(upTo: newValue))
+        
+        collectionview.reloadData()
+    }
+    
     // Perform Filter on the ui data based on the search text.
     func filterData(searchText: String) {
         storeResponse = masterStoreResponse
@@ -114,6 +163,15 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
         
         collectionview?.reloadData()
+    }
+    
+    // Setup the Slider View.
+    func setupSliderView() {
+        self.slider.minimumValue = 1
+        self.slider.maximumValue = Float(storeResponse.count)
+        self.slider.isContinuous = true
+        self.slider.addTarget(self, action: #selector(sliderOnChange), for: .valueChanged)
+        self.slider.value = Float(storeResponse.count)
     }
     
     // Setup the Collection View to show the grid of store items.
@@ -161,10 +219,15 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
-    // Attach the TableView
-    func attachCollectionView() {
+    // Attach the CollectionView
+    func attachPostDataLoadView() {
         Task {
-            self.view.addSubview(self.collectionview!)
+            self.view.addSubview(self.collectionview)
+            self.view.addSubview(self.slider)
+            
+            self.setupSliderView()
+            self.addCollectionViewConstraints()
+            self.addSliderConstraint()
         }
     }
     
