@@ -88,6 +88,11 @@ class ItemDetailsViewController: UIViewController {
         mrpLabel.font = .systemFont(ofSize: 14)
         itemPrice.font = .systemFont(ofSize: 14)
         
+        // Defines the alignment for the labels
+        itemName.textAlignment = .center
+        mrpLabel.textAlignment = .right
+        extraLabel.textAlignment = .center
+        
         // Defines the textcolor for the labels.
         extraLabel.textColor = .gray
         mrpLabel.textColor = .gray
@@ -149,10 +154,12 @@ class ItemDetailsViewController: UIViewController {
     func setExtraLabelConstraints() {
         let extraTopConstraint = NSLayoutConstraint(item: extraLabel, attribute: .top, relatedBy: .equal, toItem: mrpLabel, attribute: .bottom, multiplier: 1, constant: 10)
         let extraLeadingConstraint = NSLayoutConstraint(item: extraLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let extraTrailingConstraint = NSLayoutConstraint(item: extraLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         
         self.view.addConstraints([
             extraTopConstraint,
-            extraLeadingConstraint
+            extraLeadingConstraint,
+            extraTrailingConstraint
         ])
     }
     
@@ -170,18 +177,26 @@ class ItemDetailsViewController: UIViewController {
     // Constraints for the MRP Label
     func setMrpConstraints() {
         let mrpTopConstraint = NSLayoutConstraint(item: mrpLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemName, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8)
+        let mrpLeadingConstraint = NSLayoutConstraint(item: mrpLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let mrpTrailingConstraint = NSLayoutConstraint(item: mrpLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 0.49, constant: 0)
         
         self.view.addConstraints([
-            mrpTopConstraint
+            mrpTopConstraint,
+            mrpLeadingConstraint,
+            mrpTrailingConstraint
         ])
     }
     
     // Constraints for the Item Name.
     func setNameConstraints() {
         let nameTopConstraint = NSLayoutConstraint(item: itemName, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: itemImage, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
+        let nameLeadingConstraint = NSLayoutConstraint(item: itemName, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let nameTrailingConstraint = NSLayoutConstraint(item: itemName, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
         
         self.view.addConstraints([
-            nameTopConstraint
+            nameTopConstraint,
+            nameLeadingConstraint,
+            nameTrailingConstraint
         ])
 
     }
