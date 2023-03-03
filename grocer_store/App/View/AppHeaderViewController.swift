@@ -25,15 +25,7 @@ class AppHeaderViewController: UIViewController  {
     }()
     
     /// Gives the filter title of the header section.
-    private var filterLabel: UILabel = {
-        let tl = UILabel()
-        tl.isUserInteractionEnabled = true
-//        tl.addGestureRecognizer(UITapGestureRecognizer(target: AppHeaderViewController.self, action: #selector(AppHeaderViewController.setupFilterPopover(sender:))))
-        tl.text = AppFeatureString.filter
-        tl.font = .systemFont(ofSize: 16,weight: .regular)
-        tl.textColor = AppColors.secondary
-        return tl
-    }()
+    private var filterLabel = UILabel()
     
     /// Search bar in the header section.
     private var searchBar: UISearchBar = {
@@ -43,32 +35,44 @@ class AppHeaderViewController: UIViewController  {
         searchBar.layoutIfNeeded()
         return searchBar
     }()
-
+    
+    /// Menu Icon
+    private var menuIcon = UIImageView()
+    
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup the Various views
         setupView()
-        setupSearchBar()
         setupLabels()
+        setupMenuIcon()
+        setupSearchBar()
+        
+        // Add the Subviews
         addSubViews()
+        
+        // Add Constraints to the views.
         addConstraints()
-        setupFilterPopover()
     }
     
     // MARK: Constraints
     // Add the constraints
     private func addConstraints() {
         
+        // Constraints for the Menu icon.
+        let menuTopConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
+        let menuLeadingConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49)
+        
         // Constraints for the Title Label.
         let titleLabelTopConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
-        let titleLabelLeadingConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49)
+        let titleLabelLeadingConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: menuIcon, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 10)
         
         // Constraints for the Filter Label.
         let filterLabelTopConstraint = NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 50)
         let filterLabelTrailingConstraint = NSLayoutConstraint(item: filterLabel, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: -34)
-       
-       // Constraints for the Search Bar.
+        
+        // Constraints for the Search Bar.
         let searchBarTopConstraintWithTitle = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
         let searchBarTopConstraintWithFilter = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 16)
         let searchBarLeadingConstraint = NSLayoutConstraint(item: searchBar, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 34)
@@ -77,6 +81,8 @@ class AppHeaderViewController: UIViewController  {
         
         // Activate the constraints
         NSLayoutConstraint.activate([
+            menuTopConstraint,
+            menuLeadingConstraint,
             titleLabelTopConstraint,
             titleLabelLeadingConstraint,
             filterLabelTopConstraint,
@@ -92,6 +98,7 @@ class AppHeaderViewController: UIViewController  {
     // MARK: Add Subviews
     // Add the subviews
     private func addSubViews() {
+        view.addSubview(menuIcon)
         view.addSubview(titleLabel)
         view.addSubview(filterLabel)
         view.addSubview(searchBar)
@@ -102,6 +109,16 @@ class AppHeaderViewController: UIViewController  {
     private func setupView() {
         view.backgroundColor = AppColors.primary
         view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 153)
+    }
+    
+    // Setup the menu icon
+    private func setupMenuIcon() {
+        self.menuIcon.translatesAutoresizingMaskIntoConstraints = false
+        self.menuIcon.image = UIImage(systemName: "line.3.horizontal")
+        
+        self.menuIcon.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target:self,action:#selector(onMenuTap))
+        self.menuIcon.addGestureRecognizer(tapRecognizer)
     }
     
     // MARK: Setup SearchBar
@@ -127,15 +144,28 @@ class AppHeaderViewController: UIViewController  {
     private func setupLabels() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         filterLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        filterLabel.text = AppFeatureString.filter
+        filterLabel.font = .systemFont(ofSize: 16,weight: .regular)
+        filterLabel.textColor = AppColors.secondary
+        
+        // Handling clicks
+        filterLabel.isUserInteractionEnabled = true
+        let labelTapGesture = UITapGestureRecognizer(target:self,action: #selector(onFilterTap))
+        filterLabel.addGestureRecognizer(labelTapGesture)
     }
     
     // MARK: Setup Filter Popover
-    // Setup the Filter Popover
-    @objc private func setupFilterPopover() {
-        self.modalPresentationStyle = .popover
-        self.popoverPresentationController?.barButtonItem = UIBarButtonItem()
-        present(ItemDetailsViewController(), animated: true)
+    // Listen to taps on the Filter Label.
+    @objc private func onFilterTap(sender:UITapGestureRecognizer) {
+        print("onFilterTap")
     }
     
-
+    // MARK: Setup Menu tap listener
+    // Listen to taps on the menu icon.
+    @objc func onMenuTap() {
+        print("Menu clicked")
+    }
+    
+    
 }

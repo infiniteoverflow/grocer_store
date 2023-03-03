@@ -48,6 +48,16 @@ class ItemDetailsViewController: UIViewController {
     // Defines the AspectRatio of the Item Image.
     private var imageAspectRatio: CGFloat = 0.0
     
+    override func viewDidLoad() {
+        // Show the navigation bar when the view is loaded.
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Hide the navigation bar when the view is being removed.
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = .white
@@ -61,7 +71,12 @@ class ItemDetailsViewController: UIViewController {
     // MARK: Setup the Close Button
     // Setup the Close Button
     func setupCloseButton() {
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         
+        // Setup the Tap Gesture Recognizer.
+        closeButton.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onCloseTap))
+        closeButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: Setup Image
@@ -130,9 +145,9 @@ class ItemDetailsViewController: UIViewController {
         setPriceConstraints()
         // Constraints for the Extra Label.
         setExtraLabelConstraints()
-        // Constraints for the close button
+        // Constraints for the Close Button
         if !fromTableView {
-           setCloseConstraints()
+            setCloseConstraints()
         }
         
         // Activate the constraints.
@@ -141,8 +156,8 @@ class ItemDetailsViewController: UIViewController {
     
     // Constraints for the close button
     func setCloseConstraints() {
-        let closeTopConstraint = NSLayoutConstraint(item: closeButton, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 20)
-        let closeTrailingConstraint = NSLayoutConstraint(item: closeButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let closeTopConstraint = NSLayoutConstraint(item: closeButton, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 10)
+        let closeTrailingConstraint = NSLayoutConstraint(item: closeButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -10)
         
         self.view.addConstraints([
             closeTopConstraint,
@@ -237,6 +252,11 @@ class ItemDetailsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // Close Button Tap Gesture Recognizer action
+    @objc func onCloseTap() {
+        self.dismiss(animated: true)
     }
     
 }
