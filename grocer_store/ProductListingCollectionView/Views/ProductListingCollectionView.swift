@@ -25,6 +25,9 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     // Stores the store items in a temp list
     private var masterStoreResponse: [Item] = []
     
+    // Stores the Runtime store items during search
+    private var sliderMasterStoreResponse: [Item] = []
+    
     // MARK: UI Elements
     /// UI Elements
     // View to show an error message if the API fails
@@ -96,8 +99,10 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         case .success:
             self.stopLoaderAndRefreshViewAnimation()
             guard let response = extra as? [Item] else { return }
+            
             self.storeResponse = response
             self.masterStoreResponse = response
+            self.sliderMasterStoreResponse = response
             
             self.attachPostDataLoadView()
         default:
@@ -144,13 +149,14 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     
     // Method that listens to the UISlider value changes.
     @objc func sliderOnChange(sender: UISlider) {
+        // Use the sliderMasterStoreResponse as the input source for the slider operation.
+        storeResponse = sliderMasterStoreResponse
         let newValue = Int(sender.value)
         sender.setValue(Float(newValue), animated: false)
         
-        storeResponse = masterStoreResponse
         storeResponse = Array(storeResponse.prefix(upTo: newValue))
         
-        collectionview.reloadData()
+        collectionview?.reloadData()
     }
     
     // Perform Filter on the ui data based on the search text.
@@ -158,11 +164,18 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         storeResponse = masterStoreResponse
         collectionview?.backgroundView = nil
         if searchText.isEmpty {
+            // Define the maximumValue to be the total count of the runtime source.
+            self.slider.maximumValue = Float(masterStoreResponse.count)
+            
+            self.slider.setValue(Float(masterStoreResponse.count), animated: true)
+            // Reset the sliderMasterStoreResponse to contain all the items.
+            sliderMasterStoreResponse = masterStoreResponse
+            
             collectionview?.reloadData()
             return
         }
         storeResponse = storeResponse.filter { item in
-            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
+            return item.price?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
         if storeResponse.isEmpty {
@@ -170,6 +183,11 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
         
         collectionview?.reloadData()
+        
+        sliderMasterStoreResponse = storeResponse
+
+        self.slider.maximumValue = Float(sliderMasterStoreResponse.count)
+        self.slider.setValue(Float(sliderMasterStoreResponse.count), animated: true)
     }
     
     // Setup the Slider View.

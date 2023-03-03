@@ -27,6 +27,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Stores the store items in a temp list
     private var masterStoreResponse: [Item] = []
     
+    // Stores the Runtime store items during search
+    private var sliderMasterStoreResponse: [Item] = []
+    
     // with the UI View.
     private var viewModel = ViewModel()
     
@@ -112,8 +115,10 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             self.stopLoaderAndRefreshViewAnimation()
             
             guard let response = extra as? [Item] else { return }
+            
             self.storeResponse = response
             self.masterStoreResponse = response
+            self.sliderMasterStoreResponse = response
             
             self.attachPostDataLoadView()
             // Setup the Slider
@@ -173,7 +178,8 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     // Method that listens to the UISlider value changes.
     @objc func sliderOnChange(sender: UISlider) {
-        storeResponse = masterStoreResponse
+        // Use the sliderMasterStoreResponse as the input source for the slider operation.
+        storeResponse = sliderMasterStoreResponse
         let newValue = Int(sender.value)
         sender.setValue(Float(newValue), animated: false)
         
@@ -245,14 +251,22 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     // Perform Filter on the ui data based on the search text.
     func filterData(searchBar: UISearchBar, searchText: String) {
         self.searchDelegate?.searchBar?(searchBar, textDidChange: searchText)
+        
         storeResponse = masterStoreResponse
         myTableView.backgroundView = nil
         if searchText.isEmpty {
+            // Define the maximumValue to be the total count of the runtime source.
+            self.slider.maximumValue = Float(masterStoreResponse.count)
+            
+            self.slider.setValue(Float(masterStoreResponse.count), animated: true)
+            // Reset the sliderMasterStoreResponse to contain all the items.
+            sliderMasterStoreResponse = masterStoreResponse
+            
             myTableView.reloadData()
             return
         }
         storeResponse = storeResponse.filter { item in
-            return item.name?.lowercased().contains(searchText.lowercased()) ?? false
+            return item.price?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
         if storeResponse.isEmpty {
@@ -260,8 +274,10 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         }
         myTableView.reloadData()
         
-//        self.slider.value = Float(storeResponse.count)
-//        self.slider.maximumValue = Float(storeResponse.count)
+        sliderMasterStoreResponse = storeResponse
+
+        self.slider.maximumValue = Float(sliderMasterStoreResponse.count)
+        self.slider.setValue(Float(sliderMasterStoreResponse.count), animated: true)
     }
     
     // Perfrom Network call to fetch Store Data.
