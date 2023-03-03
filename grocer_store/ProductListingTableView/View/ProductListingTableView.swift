@@ -173,10 +173,10 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     
     // Method that listens to the UISlider value changes.
     @objc func sliderOnChange(sender: UISlider) {
+        storeResponse = masterStoreResponse
         let newValue = Int(sender.value)
         sender.setValue(Float(newValue), animated: false)
         
-        storeResponse = masterStoreResponse
         storeResponse = Array(storeResponse.prefix(upTo: newValue))
         
         myTableView.reloadData()
@@ -259,6 +259,9 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             myTableView.backgroundView = emptySearchResultView.view
         }
         myTableView.reloadData()
+        
+//        self.slider.value = Float(storeResponse.count)
+//        self.slider.maximumValue = Float(storeResponse.count)
     }
     
     // Perfrom Network call to fetch Store Data.

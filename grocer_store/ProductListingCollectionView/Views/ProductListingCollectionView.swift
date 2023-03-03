@@ -81,6 +81,13 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         CGSize(width: 50, height: 145)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let itemDetailsVC = ItemDetailsViewController()
+        itemDetailsVC.item = storeResponse[indexPath.row]
+        itemDetailsVC.fromTableView = false
+        self.present(itemDetailsVC, animated: true)
+    }
+    
     // Get the Publisher data.
     func updateViewWithData(state: NetworkState, extra: Any?) {
         switch state {
