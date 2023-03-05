@@ -34,6 +34,7 @@
 		CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F8370299F78C6004FCDFD /* DataRepository.swift */; };
 		CE5C92BA29A09E4500AB3B9D /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C92B929A09E4500AB3B9D /* TestCoreDataStack.swift */; };
 		CE5C92BB29A09EB900AB3B9D /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836E299F4DD0004FCDFD /* CoreDataHelper.swift */; };
+		CE621E5129B431700042FC6A /* AppFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E5029B431700042FC6A /* AppFilterViewController.swift */; };
 		CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D41299CC0A30067EDFF /* NetworkClient.swift */; };
 		CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D42299CC0A30067EDFF /* DataWrapper.swift */; };
 		CE686D4B299CC0A30067EDFF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D43299CC0A30067EDFF /* ApiService.swift */; };
@@ -112,6 +113,7 @@
 		CE3F836E299F4DD0004FCDFD /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		CE3F8370299F78C6004FCDFD /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		CE5C92B929A09E4500AB3B9D /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		CE621E5029B431700042FC6A /* AppFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFilterViewController.swift; sourceTree = "<group>"; };
 		CE686D41299CC0A30067EDFF /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		CE686D42299CC0A30067EDFF /* DataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
 		CE686D43299CC0A30067EDFF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				CE3ED12129A7324D0053228E /* AppViewController.swift */,
 				CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */,
 				CE3ED12329A733910053228E /* AppPageViewController.swift */,
+				CE621E5029B431700042FC6A /* AppFilterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				CEA86C8029A87FAB00BB24B0 /* ProductCollectionString.swift in Sources */,
 				CEA86C9F29ACA2A300BB24B0 /* ItemDetailsViewController.swift in Sources */,
 				CE3F836F299F4DD0004FCDFD /* CoreDataHelper.swift in Sources */,
+				CE621E5129B431700042FC6A /* AppFilterViewController.swift in Sources */,
 				CE2D8208299D17D8006B648C /* LoaderView.swift in Sources */,
 				CE686D4E299CC0A30067EDFF /* StoreData.swift in Sources */,
 				CE686D4D299CC0A30067EDFF /* Item.swift in Sources */,

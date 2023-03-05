@@ -8,7 +8,7 @@
 import UIKit
 
 /// Defines the Header Section of the App.
-class AppHeaderViewController: UIViewController  {
+class AppHeaderViewController: UIViewController, UIPopoverPresentationControllerDelegate  {
     
     // MARK: Properties
     /// Properties
@@ -56,6 +56,11 @@ class AppHeaderViewController: UIViewController  {
         addConstraints()
     }
     
+    // Set the AdaptivePresentationStyle of the Popover
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+    
     // MARK: Constraints
     // Add the constraints
     private func addConstraints() {
@@ -63,6 +68,8 @@ class AppHeaderViewController: UIViewController  {
         // Constraints for the Menu icon.
         let menuTopConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
         let menuLeadingConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49)
+        let menuHeightConstraint = NSLayoutConstraint(item: menuIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+        let menuWidthConstraint = NSLayoutConstraint(item: menuIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
         
         // Constraints for the Title Label.
         let titleLabelTopConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
@@ -83,6 +90,8 @@ class AppHeaderViewController: UIViewController  {
         NSLayoutConstraint.activate([
             menuTopConstraint,
             menuLeadingConstraint,
+            menuHeightConstraint,
+            menuWidthConstraint,
             titleLabelTopConstraint,
             titleLabelLeadingConstraint,
             filterLabelTopConstraint,
@@ -152,13 +161,20 @@ class AppHeaderViewController: UIViewController  {
         // Handling clicks
         filterLabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target:self,action: #selector(onFilterTap))
+        labelTapGesture.numberOfTapsRequired = 1
+        labelTapGesture.numberOfTouchesRequired = 1
         filterLabel.addGestureRecognizer(labelTapGesture)
     }
     
     // MARK: Setup Filter Popover
     // Listen to taps on the Filter Label.
-    @objc private func onFilterTap(sender:UITapGestureRecognizer) {
-        print("onFilterTap")
+    @objc func onFilterTap() {
+        let popoverVC = AppFilterViewController()
+        popoverVC.modalPresentationStyle = .popover
+        popoverVC.popoverPresentationController?.sourceView = filterLabel
+        popoverVC.popoverPresentationController?.permittedArrowDirections = .up
+        popoverVC.popoverPresentationController?.delegate = self
+        self.present(popoverVC, animated: true, completion: nil)
     }
     
     // MARK: Setup Menu tap listener
@@ -166,6 +182,4 @@ class AppHeaderViewController: UIViewController  {
     @objc func onMenuTap() {
         print("Menu clicked")
     }
-    
-    
 }

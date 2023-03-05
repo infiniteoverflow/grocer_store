@@ -20,9 +20,13 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     /// The Image for the TabBarItem
     var tabBarImage = UIImage(named: AppAssets.bottomCircleGreen)!
     
+    /// Header Section of the App.
+    let appHeaderViewController = AppHeaderViewController()
+    
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
+        view.addSubview(appHeaderViewController.view)
         setupTabBar()
         setUpTheViewController()
         selectPage(at: 0)
@@ -103,10 +107,8 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         
         
         // Add the header section to the view
-        let appHeaderViewController = AppHeaderViewController()
         appHeaderViewController.searchDelegate = productListingTableView
         
-        view.addSubview(appHeaderViewController.view)
         setupHeaderConstraints(appHeaderViewController: appHeaderViewController)
         
         // Setting the tag for individual views so that they can be
