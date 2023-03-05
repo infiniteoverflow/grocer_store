@@ -14,6 +14,9 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     /// Properties
     var searchDelegate: UISearchBarDelegate? = nil
     
+    /// Delegate instance for Menu Button Pressed
+    var menuButtonDelegate: SideMenuDelegate? = nil
+    
     // MARK: UI Views
     /// UI Views
     /// Gives the title of the header section.
@@ -154,6 +157,9 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         filterLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        filterLabel.accessibilityIdentifier = "FilterLabel"
+        titleLabel.accessibilityIdentifier = "TitleLabel"
+        
         filterLabel.text = AppFeatureString.filter
         filterLabel.font = .systemFont(ofSize: 16,weight: .regular)
         filterLabel.textColor = AppColors.secondary
@@ -169,17 +175,17 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     // MARK: Setup Filter Popover
     // Listen to taps on the Filter Label.
     @objc func onFilterTap() {
-        let popoverVC = AppFilterViewController()
-        popoverVC.modalPresentationStyle = .popover
-        popoverVC.popoverPresentationController?.sourceView = filterLabel
-        popoverVC.popoverPresentationController?.permittedArrowDirections = .up
-        popoverVC.popoverPresentationController?.delegate = self
-        self.present(popoverVC, animated: true, completion: nil)
+        let filterPopoverVC = AppFilterViewController()
+        filterPopoverVC.modalPresentationStyle = .popover
+        filterPopoverVC.popoverPresentationController?.sourceView = filterLabel
+        filterPopoverVC.popoverPresentationController?.permittedArrowDirections = .up
+        filterPopoverVC.popoverPresentationController?.delegate = self
+        self.present(filterPopoverVC, animated: true, completion: nil)
     }
     
     // MARK: Setup Menu tap listener
     // Listen to taps on the menu icon.
     @objc func onMenuTap() {
-        print("Menu clicked")
+        self.menuButtonDelegate?.menuButtonTapped()
     }
 }

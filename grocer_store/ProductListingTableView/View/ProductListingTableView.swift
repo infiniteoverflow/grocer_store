@@ -106,6 +106,10 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         searchBar.resignFirstResponder()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("Inside")
+    }
+    
     // Get the Publisher data.
     func updateViewWithData(state: NetworkState, extra: Any?) {
         switch state {
@@ -198,6 +202,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         myTableView.contentInset = UIEdgeInsets(top: 39,left: 0,bottom: 0,right: 0)
         myTableView.separatorStyle = .none
         myTableView.keyboardDismissMode = .onDrag
+        myTableView.accessibilityIdentifier = "MainTableView"
     }
     
     // Setup the loader if the view state is "Loading"
@@ -215,6 +220,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         self.slider.isContinuous = true
         self.slider.addTarget(self, action: #selector(sliderOnChange), for: .valueChanged)
         self.slider.value = Float(storeResponse.count)
+        self.slider.accessibilityIdentifier = "ItemSlider"
     }
     
     // Dispose Loader and Refresh View Animation

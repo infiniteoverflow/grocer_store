@@ -7,10 +7,14 @@
 
 import UIKit
 
-class AppViewController: UITabBarController,UITabBarControllerDelegate, PageViewControllerDelegate {
-    
+class AppViewController: UITabBarController,UITabBarControllerDelegate, PageViewControllerDelegate, SideMenuDelegate {
+
     // MARK: View Properties
     /// View Properties
+    ///
+    lazy var slideInMenuPadding: CGFloat = self.view.frame.width * 0.30
+    var isSlideInMenuPresented = false
+    
     /// The color for the selected TabBarItem
     let selectedColor = AppColors.secondary
     
@@ -23,10 +27,18 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     /// Header Section of the App.
     let appHeaderViewController = AppHeaderViewController()
     
+    /// Side Menu View
+    lazy var menuView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        return view
+    }()
+    
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
         view.addSubview(appHeaderViewController.view)
+//        menuView.pinMenuTo(view, with: slideInMenuPadding)
         setupTabBar()
         setUpTheViewController()
         selectPage(at: 0)
@@ -40,6 +52,14 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     func pageDidSwipe(to index: Int) {
         guard let viewController = self.viewControllers?[index] else { return }
         self.handleTabbarItemChange(viewController: viewController)
+    }
+    
+    func menuButtonTapped() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.view.frame.origin.x = self.isSlideInMenuPresented ? 0 : self.view.frame.width - self.slideInMenuPadding
+        } completion: { (finished) in
+            self.isSlideInMenuPresented.toggle()
+        }
     }
     
     // MARK: UI Methods
@@ -108,6 +128,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         
         // Add the header section to the view
         appHeaderViewController.searchDelegate = productListingTableView
+        appHeaderViewController.menuButtonDelegate = self
         
         setupHeaderConstraints(appHeaderViewController: appHeaderViewController)
         
@@ -181,5 +202,25 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         if selectedIndex == 1 {
             viewControllers[selectedIndex].tabBarItem.selectedImage =  self.tabBarImage.withRenderingMode(.alwaysOriginal)
         }
+    }
+}
+
+public extension UIView {
+    func edgeTo(_ view: UIView) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func pinMenuTo(_ view: UIView, with constant: CGFloat) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constant).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
