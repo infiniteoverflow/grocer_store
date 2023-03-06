@@ -131,6 +131,7 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
         self.menuIcon.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target:self,action:#selector(onMenuTap))
         self.menuIcon.addGestureRecognizer(tapRecognizer)
+        self.menuIcon.accessibilityIdentifier = "MenuIcon"
     }
     
     // MARK: Setup SearchBar
