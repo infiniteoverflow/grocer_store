@@ -69,10 +69,10 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     private func addConstraints() {
         
         // Constraints for the Menu icon.
-        let menuTopConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)
-        let menuLeadingConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 49)
-        let menuHeightConstraint = NSLayoutConstraint(item: menuIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
-        let menuWidthConstraint = NSLayoutConstraint(item: menuIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+        let menuTopConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:45)
+        let menuLeadingConstraint = NSLayoutConstraint(item: menuIcon, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 29)
+        let menuHeightConstraint = NSLayoutConstraint(item: menuIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+        let menuWidthConstraint = NSLayoutConstraint(item: menuIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
         
         // Constraints for the Title Label.
         let titleLabelTopConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant:50)

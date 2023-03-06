@@ -40,6 +40,7 @@
 		CE621E7929B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7829B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift */; };
 		CE621E7C29B5124B0042FC6A /* grocer_storeFilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7B29B5124B0042FC6A /* grocer_storeFilterUITests.swift */; };
 		CE621E7F29B513850042FC6A /* grocer_storeCollectionViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7E29B513850042FC6A /* grocer_storeCollectionViewUITests.swift */; };
+		CE621E8129B57C510042FC6A /* AppMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E8029B57C510042FC6A /* AppMenuViewController.swift */; };
 		CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D41299CC0A30067EDFF /* NetworkClient.swift */; };
 		CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D42299CC0A30067EDFF /* DataWrapper.swift */; };
 		CE686D4B299CC0A30067EDFF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D43299CC0A30067EDFF /* ApiService.swift */; };
@@ -123,6 +124,7 @@
 		CE621E7829B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeItemDetailsUITests.swift; sourceTree = "<group>"; };
 		CE621E7B29B5124B0042FC6A /* grocer_storeFilterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeFilterUITests.swift; sourceTree = "<group>"; };
 		CE621E7E29B513850042FC6A /* grocer_storeCollectionViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeCollectionViewUITests.swift; sourceTree = "<group>"; };
+		CE621E8029B57C510042FC6A /* AppMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMenuViewController.swift; sourceTree = "<group>"; };
 		CE686D41299CC0A30067EDFF /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		CE686D42299CC0A30067EDFF /* DataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
 		CE686D43299CC0A30067EDFF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				CE3F8327299DF9AA004FCDFD /* AppHeaderViewController.swift */,
 				CE3ED12329A733910053228E /* AppPageViewController.swift */,
 				CE621E5029B431700042FC6A /* AppFilterViewController.swift */,
+				CE621E8029B57C510042FC6A /* AppMenuViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */,
 				CE621E5329B43B6E0042FC6A /* SideMenuDelegateProtocol.swift in Sources */,
 				CE0C18E329A1CF9F00B4D582 /* CoreDataStack.swift in Sources */,
+				CE621E8129B57C510042FC6A /* AppMenuViewController.swift in Sources */,
 				CE2D8201299CFA62006B648C /* ProductListingCollectionView.swift in Sources */,
 				CEA86C7D29A87F0A00BB24B0 /* AppString.swift in Sources */,
 				CEA86C9329A9BE2600BB24B0 /* AppEnums.swift in Sources */,

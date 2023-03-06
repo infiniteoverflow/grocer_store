@@ -7,10 +7,14 @@
 
 import UIKit
 
-class AppViewController: UITabBarController,UITabBarControllerDelegate, PageViewControllerDelegate {
+class AppViewController: UITabBarController,UITabBarControllerDelegate, PageViewControllerDelegate, SideMenuDelegate {
     
     // MARK: View Properties
     /// View Properties
+    
+    lazy var slideInMenuPadding: CGFloat = self.view.frame.width * 0.30
+    var isSlideInMenuPresented = false
+    
     /// The color for the selected TabBarItem
     let selectedColor = AppColors.secondary
     
@@ -23,14 +27,15 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     /// Header Section of the App.
     let appHeaderViewController = AppHeaderViewController()
     
+    lazy var menuViewController = AppMenuViewController()
     
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
-        
         setupTabBar()
         setUpTheViewController()
         selectPage(at: 0)
+        setupSideMenu()
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -43,6 +48,17 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         self.handleTabbarItemChange(viewController: viewController)
     }
     
+    // Delegate method that tells if the side menu was triggered.
+    func menuButtonTapped() {
+        self.menuViewController.view.isHidden.toggle()
+        
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.menuViewController.view.frame.size = CGSize(width: self.view.frame.width * 0.8, height: self.menuViewController.view.frame.height)
+        } completion: { (finished) in
+            
+        }
+    }
+    
     // MARK: UI Methods
     /// UI Methods
     /// Setup the TabBar
@@ -52,6 +68,14 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         tabBar.itemSpacing = 10.0
         tabBar.itemWidth = 76.0
         tabBar.itemPositioning = .centered
+    }
+    
+    /// Setup the Side Menu
+    private func setupSideMenu() {
+        menuViewController.menuButtonDelegate = self
+        menuViewController.view.pinMenuTo(view, with: slideInMenuPadding)
+        menuViewController.view.isHidden = true
+        menuViewController.view.frame.size = CGSize(width: 0, height: self.menuViewController.view.frame.height)
     }
     
     /// Setup the ViewControllers to be used for the app.
@@ -109,6 +133,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         
         // Add the header section to the view
         appHeaderViewController.searchDelegate = productListingTableView
+        appHeaderViewController.menuButtonDelegate = self
         
         view.addSubview(appHeaderViewController.view)
         
@@ -184,5 +209,25 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         if selectedIndex == 1 {
             viewControllers[selectedIndex].tabBarItem.selectedImage =  self.tabBarImage.withRenderingMode(.alwaysOriginal)
         }
+    }
+}
+
+public extension UIView {
+    func edgeTo(_ view: UIView) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func pinMenuTo(_ view: UIView, with constant: CGFloat) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constant).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
