@@ -74,7 +74,7 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     private func setupSideMenu() {
         menuViewController.menuButtonDelegate = self
         menuViewController.view.pinMenuTo(view, with: slideInMenuPadding)
-        menuViewController.view.isHidden = true
+        menuViewController.view.isHidden = false
         menuViewController.view.frame.size = CGSize(width: 0, height: self.menuViewController.view.frame.height)
     }
     
