@@ -176,6 +176,7 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     // Listen to taps on the Filter Label.
     @objc func onFilterTap() {
         let filterPopoverVC = AppFilterViewController()
+        filterPopoverVC.view.accessibilityIdentifier = "AppFilterViewController"
         filterPopoverVC.modalPresentationStyle = .popover
         filterPopoverVC.popoverPresentationController?.sourceView = filterLabel
         filterPopoverVC.popoverPresentationController?.permittedArrowDirections = .up

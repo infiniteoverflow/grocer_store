@@ -18,7 +18,7 @@ final class grocer_storeFilterLabelUITests: XCTestCase {
 
     // Test Filter Label shows up on Launch
     func testFilterShowsUpOnLaunch() {
-        let filterLabel = app.staticTexts.element(matching: .any, identifier: "Filter")
+        let filterLabel = app.buttons["FilterLabel"]
         XCTAssertTrue(filterLabel.exists)
     }
 }

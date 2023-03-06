@@ -35,6 +35,11 @@
 		CE5C92BA29A09E4500AB3B9D /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5C92B929A09E4500AB3B9D /* TestCoreDataStack.swift */; };
 		CE5C92BB29A09EB900AB3B9D /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F836E299F4DD0004FCDFD /* CoreDataHelper.swift */; };
 		CE621E5129B431700042FC6A /* AppFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E5029B431700042FC6A /* AppFilterViewController.swift */; };
+		CE621E5329B43B6E0042FC6A /* SideMenuDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E5229B43B6E0042FC6A /* SideMenuDelegateProtocol.swift */; };
+		CE621E7629B4C92A0042FC6A /* grocer_storeUITestsAppSliderStandaloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7529B4C92A0042FC6A /* grocer_storeUITestsAppSliderStandaloneUITests.swift */; };
+		CE621E7929B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7829B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift */; };
+		CE621E7C29B5124B0042FC6A /* grocer_storeFilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7B29B5124B0042FC6A /* grocer_storeFilterUITests.swift */; };
+		CE621E7F29B513850042FC6A /* grocer_storeCollectionViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE621E7E29B513850042FC6A /* grocer_storeCollectionViewUITests.swift */; };
 		CE686D49299CC0A30067EDFF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D41299CC0A30067EDFF /* NetworkClient.swift */; };
 		CE686D4A299CC0A30067EDFF /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D42299CC0A30067EDFF /* DataWrapper.swift */; };
 		CE686D4B299CC0A30067EDFF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE686D43299CC0A30067EDFF /* ApiService.swift */; };
@@ -46,7 +51,6 @@
 		CE6EE8B129A5BBFB005D0535 /* EmptySearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6EE8B029A5BBFB005D0535 /* EmptySearchResultViewController.swift */; };
 		CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */; };
 		CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */; };
-		CE7D33CC299A5BC9003158E6 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33CB299A5BC9003158E6 /* LandingPageViewController.swift */; };
 		CE7D33D1299A5BCA003158E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7D33D0299A5BCA003158E6 /* Assets.xcassets */; };
 		CE7D33D4299A5BCA003158E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7D33D2299A5BCA003158E6 /* LaunchScreen.storyboard */; };
 		CE7D33DF299A5BCA003158E6 /* grocer_storeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7D33DE299A5BCA003158E6 /* grocer_storeTests.swift */; };
@@ -64,7 +68,7 @@
 		CEA86C8B29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C8A29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift */; };
 		CEA86C9329A9BE2600BB24B0 /* AppEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */; };
 		CEA86C9629A9D8A300BB24B0 /* ApiFetchFailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */; };
-		CEA86C9929AC847300BB24B0 /* NetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */; };
+		CEA86C9929AC847300BB24B0 /* NetworkDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9829AC847300BB24B0 /* NetworkDelegateProtocol.swift */; };
 		CEA86C9F29ACA2A300BB24B0 /* ItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA86C9E29ACA2A300BB24B0 /* ItemDetailsViewController.swift */; };
 		CEBE4C69201C7BE7880D978B /* Pods_grocer_storeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45CEDBCA53A64B9A4E82E8AC /* Pods_grocer_storeTests.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +118,11 @@
 		CE3F8370299F78C6004FCDFD /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		CE5C92B929A09E4500AB3B9D /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		CE621E5029B431700042FC6A /* AppFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFilterViewController.swift; sourceTree = "<group>"; };
+		CE621E5229B43B6E0042FC6A /* SideMenuDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDelegateProtocol.swift; sourceTree = "<group>"; };
+		CE621E7529B4C92A0042FC6A /* grocer_storeUITestsAppSliderStandaloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeUITestsAppSliderStandaloneUITests.swift; sourceTree = "<group>"; };
+		CE621E7829B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeItemDetailsUITests.swift; sourceTree = "<group>"; };
+		CE621E7B29B5124B0042FC6A /* grocer_storeFilterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeFilterUITests.swift; sourceTree = "<group>"; };
+		CE621E7E29B513850042FC6A /* grocer_storeCollectionViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeCollectionViewUITests.swift; sourceTree = "<group>"; };
 		CE686D41299CC0A30067EDFF /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		CE686D42299CC0A30067EDFF /* DataWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
 		CE686D43299CC0A30067EDFF /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -126,7 +135,6 @@
 		CE7D33C4299A5BC9003158E6 /* grocer_store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grocer_store.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7D33C7299A5BC9003158E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7D33C9299A5BC9003158E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE7D33CB299A5BC9003158E6 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		CE7D33D0299A5BCA003158E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7D33D3299A5BCA003158E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7D33D5299A5BCA003158E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,7 +152,7 @@
 		CEA86C8A29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grocer_storeExploreLabelUITest.swift; sourceTree = "<group>"; };
 		CEA86C9229A9BE2600BB24B0 /* AppEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnums.swift; sourceTree = "<group>"; };
 		CEA86C9529A9D8A300BB24B0 /* ApiFetchFailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchFailViewController.swift; sourceTree = "<group>"; };
-		CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegate.swift; sourceTree = "<group>"; };
+		CEA86C9829AC847300BB24B0 /* NetworkDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDelegateProtocol.swift; sourceTree = "<group>"; };
 		CEA86C9E29ACA2A300BB24B0 /* ItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -310,6 +318,38 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		CE621E7429B4C8FC0042FC6A /* AppSliderTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE621E7529B4C92A0042FC6A /* grocer_storeUITestsAppSliderStandaloneUITests.swift */,
+			);
+			path = AppSliderTests;
+			sourceTree = "<group>";
+		};
+		CE621E7729B50DBD0042FC6A /* ItemDetailsTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE621E7829B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift */,
+			);
+			path = ItemDetailsTests;
+			sourceTree = "<group>";
+		};
+		CE621E7A29B512340042FC6A /* FilterTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE621E7B29B5124B0042FC6A /* grocer_storeFilterUITests.swift */,
+			);
+			path = FilterTests;
+			sourceTree = "<group>";
+		};
+		CE621E7D29B5136A0042FC6A /* CollectionViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE621E7E29B513850042FC6A /* grocer_storeCollectionViewUITests.swift */,
+			);
+			path = CollectionViewTests;
+			sourceTree = "<group>";
+		};
 		CE686D3F299CC0A30067EDFF /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,22 +403,6 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
-		CE686D5A299CDC670067EDFF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				CE7D33CB299A5BC9003158E6 /* LandingPageViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		CE686D5E299CDDAE0067EDFF /* LandingPage */ = {
-			isa = PBXGroup;
-			children = (
-				CE686D5A299CDC670067EDFF /* View */,
-			);
-			path = LandingPage;
-			sourceTree = "<group>";
-		};
 		CE7D33BB299A5BC9003158E6 = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +433,6 @@
 				CE3ED12529A747240053228E /* ComingSoonView */,
 				CE2D81FE299CFA4B006B648C /* ProductListingCollectionView */,
 				CE2D81F8299CF812006B648C /* ProductListingTableView */,
-				CE686D5E299CDDAE0067EDFF /* LandingPage */,
 				CE686D59299CDB680067EDFF /* Delegates */,
 				CE686D3F299CC0A30067EDFF /* Common */,
 				CE7D33D0299A5BCA003158E6 /* Assets.xcassets */,
@@ -433,6 +456,10 @@
 		CE7D33E7299A5BCB003158E6 /* grocer_storeUITests */ = {
 			isa = PBXGroup;
 			children = (
+				CE621E7D29B5136A0042FC6A /* CollectionViewTests */,
+				CE621E7A29B512340042FC6A /* FilterTests */,
+				CE621E7729B50DBD0042FC6A /* ItemDetailsTests */,
+				CE621E7429B4C8FC0042FC6A /* AppSliderTests */,
 				CEA86C8C29A892B800BB24B0 /* AppPerformanceTests */,
 				CEA86C8429A88BE700BB24B0 /* HeaderSectionTests */,
 			);
@@ -492,7 +519,8 @@
 		CEA86C9729AC845800BB24B0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CEA86C9829AC847300BB24B0 /* NetworkDelegate.swift */,
+				CEA86C9829AC847300BB24B0 /* NetworkDelegateProtocol.swift */,
+				CE621E5229B43B6E0042FC6A /* SideMenuDelegateProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -751,7 +779,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7D33CC299A5BC9003158E6 /* LandingPageViewController.swift in Sources */,
 				CEA86C8029A87FAB00BB24B0 /* ProductCollectionString.swift in Sources */,
 				CEA86C9F29ACA2A300BB24B0 /* ItemDetailsViewController.swift in Sources */,
 				CE3F836F299F4DD0004FCDFD /* CoreDataHelper.swift in Sources */,
@@ -762,7 +789,7 @@
 				CE7D33C8299A5BC9003158E6 /* AppDelegate.swift in Sources */,
 				CEA86C7829A8685000BB24B0 /* AppAssets.swift in Sources */,
 				CE3ED12429A733910053228E /* AppPageViewController.swift in Sources */,
-				CEA86C9929AC847300BB24B0 /* NetworkDelegate.swift in Sources */,
+				CEA86C9929AC847300BB24B0 /* NetworkDelegateProtocol.swift in Sources */,
 				CEA86C7B29A87A6200BB24B0 /* AppFeatureString.swift in Sources */,
 				CE3F8371299F78C6004FCDFD /* DataRepository.swift in Sources */,
 				CE7D33CA299A5BC9003158E6 /* SceneDelegate.swift in Sources */,
@@ -781,6 +808,7 @@
 				CE2D81FD299CF895006B648C /* ProductListingTableView.swift in Sources */,
 				CE686D4F299CC0A30067EDFF /* StoreResponse.swift in Sources */,
 				CE686D55299CC0B80067EDFF /* ViewModel.swift in Sources */,
+				CE621E5329B43B6E0042FC6A /* SideMenuDelegateProtocol.swift in Sources */,
 				CE0C18E329A1CF9F00B4D582 /* CoreDataStack.swift in Sources */,
 				CE2D8201299CFA62006B648C /* ProductListingCollectionView.swift in Sources */,
 				CEA86C7D29A87F0A00BB24B0 /* AppString.swift in Sources */,
@@ -814,12 +842,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE621E7629B4C92A0042FC6A /* grocer_storeUITestsAppSliderStandaloneUITests.swift in Sources */,
 				CE7D33EB299A5BCB003158E6 /* grocer_storeUITestsLaunchTests.swift in Sources */,
 				CEA86C8829A88E0800BB24B0 /* AppString.swift in Sources */,
+				CE621E7929B50DDD0042FC6A /* grocer_storeItemDetailsUITests.swift in Sources */,
 				CEA86C8B29A8918000BB24B0 /* grocer_storeExploreLabelUITest.swift in Sources */,
+				CE621E7F29B513850042FC6A /* grocer_storeCollectionViewUITests.swift in Sources */,
 				CE3ED12029A7079E0053228E /* grocer_storeSearchUITests.swift in Sources */,
 				CEA86C8929A88E3000BB24B0 /* AppUtilities.swift in Sources */,
 				CEA86C8629A88C6400BB24B0 /* grocer_storeFilterLabelUITests.swift in Sources */,
+				CE621E7C29B5124B0042FC6A /* grocer_storeFilterUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

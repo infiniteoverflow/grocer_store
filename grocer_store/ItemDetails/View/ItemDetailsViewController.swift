@@ -85,6 +85,7 @@ class ItemDetailsViewController: UIViewController {
         itemImage.backgroundColor = .clear
         itemImage.layer.cornerRadius = 80
         itemImage.translatesAutoresizingMaskIntoConstraints = false
+        itemImage.accessibilityIdentifier = "ItemImage"
     }
     
     // MARK: Setup Labels
@@ -96,6 +97,12 @@ class ItemDetailsViewController: UIViewController {
         itemPrice.translatesAutoresizingMaskIntoConstraints = false
         extraLabel.translatesAutoresizingMaskIntoConstraints = false
         mrpLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Define the identifiers for the labels
+        itemName.accessibilityIdentifier = "ItemName"
+        itemPrice.accessibilityIdentifier = "ItemPrice"
+        extraLabel.accessibilityIdentifier = "ExtraLabel"
+        mrpLabel.accessibilityIdentifier = "MRPLabel"
         
         // Defines the font for the labels.
         itemName.font = .systemFont(ofSize: 14,weight: .bold)

@@ -64,7 +64,7 @@ final class grocer_storeSearchUITests: XCTestCase {
         let searchField = app.searchFields["Search"]
         searchField.tap()
         searchField.typeText("Testing")
-        
+
         app/*@START_MENU_TOKEN@*/.buttons["Search"]/*[[".keyboards",".buttons[\"search\"]",".buttons[\"Search\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         XCTAssertEqual(app.keyboards.count, 0)
     }
@@ -78,5 +78,15 @@ final class grocer_storeSearchUITests: XCTestCase {
         
         app/*@START_MENU_TOKEN@*/.buttons["Search"]/*[[".keyboards",".buttons[\"search\"]",".buttons[\"Search\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         XCTAssertEqual(searchField.value as! String, "Testing")
+    }
+    
+    // Verify Empty Search Result screen is visible
+    func testEmptySearchResultViewVisible() throws {
+        let searchField = app.searchFields["Search"]
+        searchField.tap()
+        searchField.typeText("Testing")
+    
+        let viewExists = app.otherElements["EmptySearchResultView"].waitForExistence(timeout: 5)
+        XCTAssertTrue(viewExists)
     }
 }

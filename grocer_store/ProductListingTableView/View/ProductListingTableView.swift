@@ -75,6 +75,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListingTableItem.identifer, for: indexPath) as! ProductListingTableItem
         cell.productItem = storeResponse[indexPath.row]
+        cell.accessibilityIdentifier = storeResponse[indexPath.row].name
         return cell
     }
     
@@ -276,6 +277,7 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
         }
         
         if storeResponse.isEmpty {
+            emptySearchResultView.view.accessibilityIdentifier = "EmptySearchResultView"
             myTableView.backgroundView = emptySearchResultView.view
         }
         myTableView.reloadData()

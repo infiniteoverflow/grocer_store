@@ -76,6 +76,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
         cell.item = storeResponse[indexPath.row]
+        cell.accessibilityIdentifier = storeResponse[indexPath.row].name
         return cell
     }
     
@@ -217,6 +218,7 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         collectionview.contentInset = UIEdgeInsets(top: 39, left: 32, bottom: 0, right: 60)
         collectionview.keyboardDismissMode = .onDrag
         collectionview.addSubview(refreshControl)
+        collectionview.accessibilityIdentifier = "MainCollectionView"
     }
     
     // Setup the RefreshController to be used for swipe-down-to-refresh
