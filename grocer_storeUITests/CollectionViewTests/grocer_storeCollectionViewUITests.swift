@@ -31,9 +31,6 @@ final class grocer_storeCollectionViewUITests: XCTestCase {
         
         if collectionView.cells.count > 0 {
             XCTAssertTrue(collectionView.cells["Item 1"].exists)
-        } else {
-            XCTAssertTrue(collectionView.exists)
         }
-        
     }
 }

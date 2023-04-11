@@ -29,6 +29,12 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     
     lazy var menuViewController = AppMenuViewController()
     
+    // TableView of the app
+    let productListingTableView = ProductListingTableView()
+    
+    // CollectionView of the app
+    let productListingCollectionView = ProductListingCollectionView()
+    
     // MARK: Lifecycle methods
     /// Lifecycle methods
     override func viewDidLoad() {
@@ -116,12 +122,6 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
     /// Creates a PageViewController for multiple tabs.
     private func createCenterPageViewController() -> UIPageViewController? {
         
-        // TableView of the app
-        let productListingTableView = ProductListingTableView()
-        
-        // CollectionView of the app
-        let productListingCollectionView = ProductListingCollectionView()
-        
         // Connecting the searchDelegate of the TableView with the CollectionView
         // to pass the searchText between both the screens.
         productListingTableView.searchDelegate = productListingCollectionView
@@ -197,6 +197,12 @@ class AppViewController: UITabBarController,UITabBarControllerDelegate, PageView
         let selectedIndex = viewController.view.tag
         self.tabBar.tintColor = deselectedColor
         self.tabBar.unselectedItemTintColor = deselectedColor
+        
+        if selectedIndex == 1 {
+            appHeaderViewController.filterDelegate = productListingCollectionView
+        } else if selectedIndex == 0 {
+            appHeaderViewController.filterDelegate = productListingTableView
+        }
         
         for i in 0..<viewControllers.count {
             let tabbarItem = viewControllers[i].tabBarItem

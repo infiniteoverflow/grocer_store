@@ -45,4 +45,12 @@ final class grocer_storeTests: XCTestCase {
         let expectedColor = UIColor(red: 93/255, green: 176/255, blue: 117/255, alpha: 1)
         XCTAssertEqual(colorAfterConversion, expectedColor)
     }
+    
+    // Test the color: #5DB07500
+    func test_color_5DB07500_from_hexcode() {
+        let hexcode = "#5DB07500"
+        let colorAfterConversion = AppUtilities.hexStringToUIColor(hex: hexcode)
+        let expectedColor = UIColor(red: 93/255, green: 176/255, blue: 117/255, alpha: 1)
+        XCTAssertEqual(colorAfterConversion, expectedColor)
+    }
 }

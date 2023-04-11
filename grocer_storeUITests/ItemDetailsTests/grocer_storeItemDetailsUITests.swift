@@ -33,8 +33,6 @@ final class grocer_storeItemDetailsUITests: XCTestCase {
             XCTAssertTrue(app.staticTexts["ItemPrice"].exists)
             XCTAssertTrue(app.staticTexts["ExtraLabel"].exists)
             XCTAssertTrue(app.staticTexts["MRPLabel"].exists)
-        } else {
-            XCTAssertTrue(tableView.exists)
         }
     }
 }

@@ -7,8 +7,17 @@
 
 import UIKit
 
-class AppMenuViewController: UIViewController {
+class AppMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: Properties
+    let menuOptions = [
+        "Account",
+        "Change Language",
+        "Refer your Friend",
+        "Settings",
+    ]
+    
+    // MARK: UI Views
     /// Delegate instance for Menu Button Pressed
     var menuButtonDelegate: SideMenuDelegate? = nil
     
@@ -23,7 +32,11 @@ class AppMenuViewController: UIViewController {
     
     // Used to display the User Description
     let userDescription = UILabel()
+    
+    // Display the Side Menu options
+    private var sideMenuOptionsTable = UITableView()
 
+    // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppColors.secondary
@@ -33,11 +46,23 @@ class AppMenuViewController: UIViewController {
         setupUserImage()
         setupUserName()
         setupUserDescription()
+        setupMenuOptionsTableView()
         
         setupCloseConstraints()
         setupUserImageConstraints()
         setupUserNameConstraints()
         setupUserDescriptionConstraints()
+        setupMenuOptionsTableConstraints()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        menuOptions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuOptionsVC", for: indexPath)
+        cell.textLabel?.text = menuOptions[indexPath.row]
+        return cell
     }
     
     // MARK: UI View Methods
@@ -47,6 +72,21 @@ class AppMenuViewController: UIViewController {
         view.addSubview(userImage)
         view.addSubview(userName)
         view.addSubview(userDescription)
+        view.addSubview(sideMenuOptionsTable)
+    }
+    
+    // Setup the Table View for displaying Menu options.
+    func setupMenuOptionsTableView() {
+        sideMenuOptionsTable.frame = view.frame
+        sideMenuOptionsTable.dataSource = self
+        sideMenuOptionsTable.delegate = self
+        sideMenuOptionsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MenuOptionsVC")
+        sideMenuOptionsTable.showsVerticalScrollIndicator = true
+        sideMenuOptionsTable.contentInset = UIEdgeInsets(top: 39,left: 0,bottom: 0,right: 0)
+        sideMenuOptionsTable.separatorStyle = .singleLine
+        sideMenuOptionsTable.keyboardDismissMode = .onDrag
+        sideMenuOptionsTable.accessibilityIdentifier = "MenuOptionsTable"
+        sideMenuOptionsTable.backgroundColor = AppColors.secondary
     }
     
     // Setup the User Description
@@ -87,6 +127,23 @@ class AppMenuViewController: UIViewController {
     }
     
     // MARK: UI Methods
+    // Setup Menu Options Table Constraints
+    func setupMenuOptionsTableConstraints() {
+        sideMenuOptionsTable.translatesAutoresizingMaskIntoConstraints = false
+        
+        let topConstraint = NSLayoutConstraint(item: sideMenuOptionsTable, attribute: .top, relatedBy: .equal, toItem: userDescription, attribute: .bottom, multiplier: 1, constant: 20)
+        let leadingConstraint = NSLayoutConstraint(item: sideMenuOptionsTable, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10)
+        let trailingConstraint = NSLayoutConstraint(item: sideMenuOptionsTable, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -10)
+        let bottomConstraint = NSLayoutConstraint(item: sideMenuOptionsTable, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -20)
+        
+        self.view.addConstraints([
+            topConstraint,
+            leadingConstraint,
+            trailingConstraint,
+            bottomConstraint
+        ])
+    }
+    
     // Setup User Description Constraints
     func setupUserDescriptionConstraints() {
         userDescription.translatesAutoresizingMaskIntoConstraints = false

@@ -36,8 +36,6 @@ struct AppUtilities {
             green = Double((rgb & 0x00FF0000) >> 16) / 255.0
             blue = Double((rgb & 0x0000FF00) >> 8) / 255.0
             
-        } else {
-            return UIColor.gray
         }
         
         return UIColor(red: red, green: green, blue: blue, alpha: opacity)

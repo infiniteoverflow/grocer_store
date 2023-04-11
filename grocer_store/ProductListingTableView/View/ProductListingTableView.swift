@@ -8,7 +8,7 @@
 import UIKit
 
 /// Defins the table view of the store data
-class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NetworkDelegate {
+class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, NetworkDelegate, FilterDelegateProtocol {
     
     // MARK: Properties
     /// Properties
@@ -131,6 +131,11 @@ class ProductListingTableView: UIPageViewController,UITableViewDelegate, UITable
             self.stopLoaderAndRefreshViewAnimation()
             self.attachErrorView()
         }
+    }
+    
+    // Get the Filter Data
+    func filterTapped(filter: String) {
+        print("Filter received in TableView")
     }
     
     // MARK: View Methods

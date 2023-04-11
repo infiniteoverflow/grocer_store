@@ -17,6 +17,9 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     /// Delegate instance for Menu Button Pressed
     var menuButtonDelegate: SideMenuDelegate? = nil
     
+    /// Delegate instance for Filter operation
+    var filterDelegate: FilterDelegateProtocol? = nil
+    
     // MARK: UI Views
     /// UI Views
     /// Gives the title of the header section.
@@ -176,6 +179,7 @@ class AppHeaderViewController: UIViewController, UIPopoverPresentationController
     // MARK: Setup Filter Popover
     // Listen to taps on the Filter Label.
     @objc func onFilterTap() {
+        self.filterDelegate?.filterTapped(filter: "")
         let filterPopoverVC = AppFilterViewController()
         filterPopoverVC.view.accessibilityIdentifier = "AppFilterViewController"
         filterPopoverVC.modalPresentationStyle = .popover

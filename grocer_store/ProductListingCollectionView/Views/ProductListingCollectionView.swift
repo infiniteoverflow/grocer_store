@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, NetworkDelegate {
+class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, NetworkDelegate, FilterDelegateProtocol {
     
     // MARK: Properties
     /// Properties
@@ -112,8 +112,12 @@ class ProductListingCollectionView: UIPageViewController, UICollectionViewDataSo
         }
     }
     
-    // MARK: UI Methods
+    // Get the Filter Data
+    func filterTapped(filter: String) {
+        print("Filter received in CollectionView")
+    }
     
+    // MARK: UI Methods
     // Add Constraints for the TableView
     func addCollectionViewConstraints() {
         collectionview.translatesAutoresizingMaskIntoConstraints = false
